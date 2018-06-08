@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
+
 /**
  * AboutController implements the CRUD actions for About model.
  */
@@ -33,62 +34,14 @@ class AboutController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $id = 1;
-        $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
-            $files = UploadedFile::getInstances($model, 'image');
-            if ($model->validate() && $model->save()) {
-                if (!empty($files)) {
-                    $this->Upload($files);
-                }
-            }
-            Yii::$app->session->setFlash('success', "About Content Updated Successfully");
-            return $this->redirect(['index']);
-        }
+        $searchModel = new AboutSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'model' => $model,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
-    
-    public function Upload($files) {
-        if ($files != '') {
-            $paths = Yii::$app->basePath . '/../uploads/about_slider/';
-            $path = $this->CheckPath($paths);
-            foreach ($files as $file) {
-                $name = $this->fileExists($path, $file->baseName . '.' . $file->extension, $file, 1);
-                $file->saveAs($path . '/' . $name);
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function CheckPath($paths) {
-        if (!is_dir($paths)) {
-            mkdir($paths);
-        }
-        return $paths;
-    }
-
-    public function fileExists($path, $name, $file, $sufix) {
-        if (file_exists($path . '/' . $name)) {
-
-            $name = basename($path . '/' . $file->baseName, '.' . $file->extension) . '_' . $sufix . '.' . $file->extension;
-            return $this->fileExists($path, $name, $file, $sufix + 1);
-        } else {
-            return $name;
-        }
-    }
-
-    public function actionRemove($path) {
-        if (file_exists($path)) {
-            unlink($path);
-        }
-        return $this->redirect(Yii::$app->request->referrer);
-    }
-
 
     /**
      * Displays a single About model.
@@ -108,14 +61,50 @@ class AboutController extends Controller {
      */
     public function actionCreate() {
         $model = new About();
+        $model->setScenario('create');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                        'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $about_avensia_image = UploadedFile::getInstance($model, 'about_avensia_image');
+            $model->about_avensia_image = $about_avensia_image->extension;
+            $general_trending_image = UploadedFile::getInstance($model, 'general_trending_image');
+            $model->general_trending_image = $general_trending_image->extension;
+            $tech_solution_image = UploadedFile::getInstance($model, 'tech_solution_image');
+            $model->tech_solution_image = $tech_solution_image->extension;
+            $facility_management_image = UploadedFile::getInstance($model, 'facility_management_image');
+            $model->facility_management_image = $facility_management_image->extension;
+            $it_image = UploadedFile::getInstance($model, 'it_image');
+            $model->it_image = $it_image->extension;
+            if ($model->validate() && $model->save()) {
+                $this->Upload($model, $about_avensia_image, $general_trending_image, $tech_solution_image, $facility_management_image,$it_image);
+                Yii::$app->session->setFlash('success', "About Content added Successfully");
+            }
+        } return $this->render('create', [
+                    'model' => $model,
+        ]);
+    }
+    
+    /*
+     * Upload images
+     */
+
+    public function Upload($model, $about_avensia_image, $general_trending_image, $tech_solution_image, $facility_management_image,$it_image) {
+        $path = Yii::$app->basePath . '/../uploads/about/';
+        if (!empty($about_avensia_image)) {
+            $about_avensia_image->saveAs($path . 'about_avensia_image.' . $about_avensia_image->extension);
         }
+        if (!empty($general_trending_image)) {
+            $general_trending_image->saveAs($path . 'general_trending_image.' . $general_trending_image->extension);
+        }
+        if (!empty($tech_solution_image)) {
+            $tech_solution_image->saveAs($path . 'tech_solution_image.' . $tech_solution_image->extension);
+        }
+        if (!empty($facility_management_image)) {
+            $facility_management_image->saveAs($path . 'facility_management_image.' . $facility_management_image->extension);
+        }
+        if (!empty($it_image)) {
+            $it_image->saveAs($path . 'it_image.' . $it_image->extension);
+        }
+        return TRUE;
     }
 
     /**
@@ -126,14 +115,49 @@ class AboutController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $about_avensia_image_ = $model->about_avensia_image;
+        $general_trending_image_ = $model->general_trending_image;
+        $tech_solution_image_ = $model->tech_solution_image;
+        $facility_management_image_ = $model->facility_management_image;
+        $it_image_ = $model->it_image;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                        'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $about_avensia_image = UploadedFile::getInstance($model, 'about_avensia_image');
+            $general_trending_image = UploadedFile::getInstance($model, 'general_trending_image');
+            $tech_solution_image = UploadedFile::getInstance($model, 'tech_solution_image');
+            $facility_management_image = UploadedFile::getInstance($model, 'facility_management_image');
+            $it_image = UploadedFile::getInstance($model, 'it_image');
+            if (!empty($about_avensia_image)) {
+                $model->about_avensia_image = $about_avensia_image->extension;
+            } else {
+                $model->who_we_are_image = $who_we_are_image_;
+            }
+            if (!empty($our_mission_image)) {
+                $model->our_mission_image = $our_mission_image->extension;
+            } else {
+                $model->our_mission_image = $our_mission_image_;
+            }
+            if (!empty($our_vision_image)) {
+                $model->our_vision_image = $our_vision_image->extension;
+            } else {
+                $model->our_vision_image = $our_vision_image_;
+            }
+            if (!empty($why_choose_us_image)) {
+                $model->why_choose_us_image = $why_choose_us_image->extension;
+            } else {
+                $model->why_choose_us_image = $why_choose_us_image_;
+            }
+            if ($model->validate() && $model->save()) {
+                $this->Upload($model, $who_we_are_image, $our_mission_image, $our_vision_image, $why_choose_us_image);
+                Yii::$app->session->setFlash('success', "About Content Updated Successfully");
+            }
+            Yii::$app->session->setFlash('success', "Slider Updated Successfully");
+            return $this->redirect(['update', 'id' => $model->id]);
         }
+
+        return $this->render('update', [
+                    'model' => $model,
+        ]);
     }
 
     /**

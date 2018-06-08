@@ -18,8 +18,9 @@ return [
         'EncryptDecrypt' => [
             'class' => 'common\components\EncryptDecrypt'
         ],
-        'NumToWord' => [
-            'class' => 'common\components\NumToWord'
+        'AlertMessage' => [
+            'class' => 'common\components\AlertMessageWidget'
         ],
+        
     ],
 ];

@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
                     <?= Html::a('<i class="fa-th-list"></i><span> Create Slider</span>', ['create'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
+                    <?= \common\components\AlertMessageWidget::widget() ?>
                     <?=
                     GridView::widget([
                         'dataProvider' => $dataProvider,
@@ -41,10 +42,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     return $img;
                                 },
                             ],
-                            'title',
-                            'sub_title',
+//                            'title',
+//                            'sub_title',
                             'alt_tag',
-                           [
+                            [
                                 'attribute' => 'status',
                                 'value' => function($model, $key, $index, $column) {
                                     if ($model->status == '0') {

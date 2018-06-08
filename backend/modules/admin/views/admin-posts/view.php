@@ -45,20 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             'value' => $model->admin == 1 ? 'Yes' : 'No',
                                                         ],
                                                             [
-                                                            'attribute' => 'masters',
-                                                            'value' => $model->masters == 1 ? 'Yes' : 'No',
-                                                        ],
-                                                            [
-                                                            'attribute' => 'enquiry',
-                                                            'value' => $model->enquiry == 1 ? 'Yes' : 'No',
-                                                        ],
-                                                            [
-                                                            'attribute' => 'users',
-                                                            'value' => $model->users == 1 ? 'Yes' : 'No',
-                                                        ],
-                                                            [
-                                                            'attribute' => 'employees',
-                                                            'value' => $model->employees == 1 ? 'Yes' : 'No',
+                                                            'attribute' => 'cms_contents',
+                                                            'value' => $model->cms_contents == 1 ? 'Yes' : 'No',
                                                         ],
                                                     //'enquiry',
                                                     //'users',

@@ -17,13 +17,27 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'title') ?>
+    <?= $form->field($model, 'about_avensia') ?>
 
-    <?= $form->field($model, 'image') ?>
+    <?= $form->field($model, 'about_avensia_image') ?>
 
-    <?= $form->field($model, 'content') ?>
+    <?= $form->field($model, 'about_general_trending') ?>
 
-    <?= $form->field($model, 'status') ?>
+    <?= $form->field($model, 'general_trending_image') ?>
+
+    <?php // echo $form->field($model, 'about_tech_solution') ?>
+
+    <?php // echo $form->field($model, 'tech_solution_image') ?>
+
+    <?php // echo $form->field($model, 'about_facility_management') ?>
+
+    <?php // echo $form->field($model, 'facility_management_image') ?>
+
+    <?php // echo $form->field($model, 'about_it') ?>
+
+    <?php // echo $form->field($model, 'it_image') ?>
+
+    <?php // echo $form->field($model, 'status') ?>
 
     <?php // echo $form->field($model, 'CB') ?>
 

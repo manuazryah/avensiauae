@@ -82,7 +82,7 @@ AppAsset::register($this);
                         <?= Html::a('<i class="fa fa-sliders"></i> <span class="title">Sliders</span>', ['/cms/slider/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
-                        <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Venice Cabs</span>', ['/cms/about/index'], ['class' => 'title']) ?>
+                        <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Avensia</span>', ['/cms/about/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
                         <?= Html::a('<i class="fa fa-car"></i> <span class="title">Car Packages</span>', ['/cms/tour-packages/car-packages'], ['class' => 'title']) ?>
@@ -167,7 +167,7 @@ AppAsset::register($this);
                             <li class="user-footer" style="background: #eeeeee;">
                                 <div class="row">
                                     <div class="pull-left">
-                                        <?= Html::a('Profile', ['/admin/admin-users/update', 'id' => Yii::$app->user->identity->id], ['class' => 'btn btn-white', 'style' => 'padding: 9px 20px;border: 1px solid #a09f9f;']) ?>
+                                        <?= Html::a('Profile', ['/admin/admin-users/update', 'id' => Yii::$app->user->identity->id], ['class' => 'btn btn-white', 'style' => 'padding: 5px 20px;border: 1px solid #a09f9f;']) ?>
                                     </div>
                                     <div class="pull-right">
                                         <?php
@@ -228,7 +228,7 @@ AppAsset::register($this);
                             <?= Html::a('<i class="fa fa-sliders"></i> <span class="title">Sliders</span>', ['/cms/slider/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
-                            <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Venice Cabs</span>', ['/cms/about/index'], ['class' => 'title']) ?>
+                            <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Avensia</span>', ['/cms/about/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-car"></i> <span class="title">Car Packages</span>', ['/cms/tour-packages/car-packages'], ['class' => 'title']) ?>
@@ -300,9 +300,7 @@ AppAsset::register($this);
 
                         <!-- Add your copyright text here -->
                         <div class="footer-text">
-                            &copy; 2014
-                            <strong>Xenon</strong>
-                            theme by <a href="http://laborator.co" target="_blank">Laborator</a> - <a href="http://themeforest.net/item/xenon-bootstrap-admin-theme/9059661?ref=Laborator" target="_blank">Purchase for only <strong>23$</strong></a>
+                            <strong>Copyright © 2018 Avensiauae. All Rights Reserved</strong>
                         </div>
 
 

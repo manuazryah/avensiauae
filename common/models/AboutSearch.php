@@ -19,7 +19,7 @@ class AboutSearch extends About
     {
         return [
             [['id', 'status', 'CB', 'UB'], 'integer'],
-            [['title', 'image', 'content', 'DOC', 'DOU'], 'safe'],
+            [['about_avensia', 'about_avensia_image', 'about_general_trending', 'general_trending_image', 'about_tech_solution', 'tech_solution_image', 'about_facility_management', 'facility_management_image', 'about_it', 'it_image', 'DOC', 'DOU'], 'safe'],
         ];
     }
 
@@ -67,9 +67,16 @@ class AboutSearch extends About
             'DOU' => $this->DOU,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'content', $this->content]);
+        $query->andFilterWhere(['like', 'about_avensia', $this->about_avensia])
+            ->andFilterWhere(['like', 'about_avensia_image', $this->about_avensia_image])
+            ->andFilterWhere(['like', 'about_general_trending', $this->about_general_trending])
+            ->andFilterWhere(['like', 'general_trending_image', $this->general_trending_image])
+            ->andFilterWhere(['like', 'about_tech_solution', $this->about_tech_solution])
+            ->andFilterWhere(['like', 'tech_solution_image', $this->tech_solution_image])
+            ->andFilterWhere(['like', 'about_facility_management', $this->about_facility_management])
+            ->andFilterWhere(['like', 'facility_management_image', $this->facility_management_image])
+            ->andFilterWhere(['like', 'about_it', $this->about_it])
+            ->andFilterWhere(['like', 'it_image', $this->it_image]);
 
         return $dataProvider;
     }
