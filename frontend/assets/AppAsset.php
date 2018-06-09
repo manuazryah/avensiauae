@@ -7,8 +7,8 @@ use yii\web\AssetBundle;
 /**
  * Main frontend application asset bundle.
  */
-class AppAsset extends AssetBundle
-{
+class AppAsset extends AssetBundle {
+
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -21,7 +21,7 @@ class AppAsset extends AssetBundle
         'css/slick-theme.css',
     ];
     public $js = [
-        'js/jquery-min.js',
+//        'js/jquery-min.js',
         'js/popper.min.js',
         'js/bootstrap.min.js',
         'js/grayscale.js',
@@ -30,4 +30,5 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
 }

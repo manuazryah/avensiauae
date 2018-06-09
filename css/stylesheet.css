@@ -449,6 +449,9 @@ a:focus {
 .home-general-trading-section .trading-box .head-box a{
 	color:#FFF;
 }
+.home-general-trading-section .trading-box .head-box a:hover{
+	background-color: transparent;
+}
 .home-general-trading-section .trading-box .head-box .small{
 	font-size:20px;
 	display:block;

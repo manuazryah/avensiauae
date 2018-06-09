@@ -32,12 +32,12 @@ class Slider extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['status', 'CB', 'UB'], 'integer'],
-            [['DOC', 'DOU'], 'safe'],
-            [['alt_tag'], 'required'],
-            [['image', 'title', 'sub_title', 'alt_tag'], 'string', 'max' => 100],
-            [['image'], 'required', 'on' => 'create'],
-            [['image'], 'file', 'extensions' => 'jpg, gif, png,jpeg'],
+                [['status', 'CB', 'UB'], 'integer'],
+                [['DOC', 'DOU'], 'safe'],
+                [['alt_tag'], 'required'],
+                [['image', 'title', 'sub_title', 'alt_tag'], 'string', 'max' => 100],
+                [['image'], 'required', 'on' => 'create'],
+                [['image'], 'file', 'extensions' => 'jpg, png,jpeg'],
         ];
     }
 

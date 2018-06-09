@@ -3,13 +3,10 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
 
 AppAsset::register($this);
+$general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])->all();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -22,14 +19,15 @@ AppAsset::register($this);
         <meta name="robots" content="noindex,nofollow">
         <title>Avensia Group</title>
         <link rel="shortcut icon" href="<?= yii::$app->homeUrl; ?>images/favicon.png">
+        <script src="<?= Yii::$app->homeUrl ?>js/jquery-min.js"></script>
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
     <body>
         <?php $this->beginBody() ?>
-        <?php $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id; // controller action id ?>
-        <header class="header"><!--header--> 
+        <?php $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id; // controller action id  ?>
+        <header class="header"><!--header-->
             <!--head-top-section-->
             <section class="top-section"><!--top-section-->
                 <div class="container">
@@ -109,21 +107,17 @@ AppAsset::register($this);
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/general-trading' ? 'active' : '' ?>">General trading</a>
                                         <ul class="dropdown-menu animated2 fadeInUp">
-                                            <li>
-                                                <?= Html::a('Medical Consumables', ['/site/general-trading', 'page' => 'medical-consumables'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Stationery Products', ['/site/general-trading', 'page' => 'stationery-products'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('General Disposables', ['/site/general-trading', 'page' => 'general-disposables'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Industrial spare parts', ['/site/general-trading', 'page' => 'industrial-spare-parts'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Safety Products', ['/site/general-trading', 'page' => 'safety-products'], ['class' => 'dropdown-item']) ?>
-                                            </li>
+                                            <?php
+                                            if (!empty($general_tradings)) {
+                                                foreach ($general_tradings as $general_trading) {
+                                                    ?>
+                                                    <li>
+                                                        <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' ? 'active' : '' ?>">IT</a>
@@ -215,21 +209,17 @@ AppAsset::register($this);
                                                 </li>
                                                 <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/general-trading' ? 'active' : '' ?>">General trading</a>
                                                     <ul class="dropdown-menu animated2 fadeInUp">
-                                                        <li>
-                                                            <?= Html::a('Medical Consumables', ['/site/general-trading', 'page' => 'medical-consumables'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Stationery Products', ['/site/general-trading', 'page' => 'stationery-products'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('General Disposables', ['/site/general-trading', 'page' => 'general-disposables'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Industrial spare parts', ['/site/general-trading', 'page' => 'industrial-spare-parts'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Safety Products', ['/site/general-trading', 'page' => 'safety-products'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
+                                                        <?php
+                                                        if (!empty($general_tradings)) {
+                                                            foreach ($general_tradings as $general_trading) {
+                                                                ?>
+                                                                <li>
+                                                                    <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                                </li>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                     </ul>
                                                 </li>
                                                 <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' ? 'active' : '' ?>">IT</a>
@@ -301,8 +291,8 @@ AppAsset::register($this);
                     </div>
                 </div>
             </section>
-            <!--fixed-top header--> 
-            <!--nav-section--> 
+            <!--fixed-top header-->
+            <!--nav-section-->
         </header>
         <?= $content ?>
 
@@ -372,7 +362,7 @@ AppAsset::register($this);
                     </div>
                 </div>
             </div>
-        </footer><!--footer--> 
+        </footer><!--footer-->
         <section class="copyright"><!--copyright-->
             <div class="container">
                 <p>Copyright © <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <b>Avensiauae.</b> All Rights Reserved</p>

@@ -1,10 +1,16 @@
 <?php
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
+
 $this->title = '';
+$arr1 = array(1, 2, 3);
+$arr2 = array(4, 5);
+$general_trading1 = common\models\GeneralTrading::find()->where(['id' => $arr1])->all();
+$general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])->all();
 ?>
 <section class="banner">
-    <div id="demo" class="carousel slide" data-ride="carousel"> 
+    <div id="demo" class="carousel slide" data-ride="carousel">
         <!-- The slide show -->
         <?php if (!empty($sliders)) { ?>
             <div class="carousel-inner">
@@ -13,16 +19,16 @@ $this->title = '';
                 foreach ($sliders as $slider) {
                     $i++;
                     ?>
-                    <div class="carousel-item <?= $i== 1?'active':''?>"> <img src="<?= yii::$app->homeUrl; ?>uploads/sliders/<?= $slider->id ?>/<?= $slider->id ?>.<?= $slider->image ?>" alt="<?= $slider->alt_tag ?>" class="img-fluid"> </div>
+                    <div class="carousel-item <?= $i == 1 ? 'active' : '' ?>"> <img src="<?= yii::$app->homeUrl; ?>uploads/sliders/<?= $slider->id ?>/<?= $slider->id ?>.<?= $slider->image ?>" alt="<?= $slider->alt_tag ?>" class="img-fluid"> </div>
                 <?php }
                 ?>
             </div>
         <?php }
         ?>
-        <!-- Left and right controls --> 
-        <a class="carousel-control-prev" href="#demo" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon"></span> </a> 
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev"> <span class="carousel-control-prev-icon"></span> </a> <a class="carousel-control-next" href="#demo" data-slide="next"> <span class="carousel-control-next-icon"></span> </a>
     </div>
-    <!-- close carousel --> 
+    <!-- close carousel -->
 </section>
 <section class="home-main-about-section"><!--home-main-about-section-->
     <div class="container">
@@ -50,18 +56,17 @@ $this->title = '';
         </div>
         <!--banner-sub-section-->
         <div class="sub-section-shadow"></div>
-        <!--sub-section-shadow--> 
+        <!--sub-section-shadow-->
     </div>
     <section class="home-welcome-section"><!--home-welcome-section-->
         <div class="container">
             <div class="welcome-cont-box"> <small class="small">WELCOME TO THE</small>
                 <h2 class="head-text">Avensia Group</h2>
-                <p>Avensia Tech Solutions LLC - Company is based in Dubai and our progress is always fulfilling our customer demands. The company's principal areas of business interests include General Maintenance, facilities management, technical contracting work on buildings and provision of specialized skilled manpower and technical project management.</p>
-                <p>Customer satisfaction, Integrity and commitment in all aspects of business are the core values of the organization. Our management team has decades of business experience which forms the innerstrength of Avensia Tech Solutions LLC</p>
+                <?= $about_content->about_avensia ?>
             </div>
         </div>
     </section>
-    <!--home-welcome-section--> 
+    <!--home-welcome-section-->
 </section>
 <!--home-main-about-section-->
 <section class="home-general-trading-section"><!--home-general-trading-section-->
@@ -70,51 +75,52 @@ $this->title = '';
             <h2 class="head">General trading</h2>
             <small class="small-text">what we provide</small> </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>images/trading-img1.jpg" class="img-fluid" alt="" title="">
-                    <div class="head-box"> <a href="general-trading.html">
-                            <div class="blue"><small class="small">Medical</small>
-                                <h3 class="head-text">Consumables</h3>
+            <?php
+            if (!empty($general_trading1)) {
+                $j = 0;
+                foreach ($general_trading1 as $value1) {
+                    $j++;
+                    ?>
+                    <div class="col-md-4">
+                        <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/general_trading/<?= $value1->id ?>/<?= $value1->id ?>.<?= $value1->image ?>" class="img-fluid" alt="<?= $value1->image->alt_tag ?>" title="">
+                            <div class="head-box">
+                                <?php
+                                if ($j % 2 == 0) {
+                                    $class1 = 'green';
+                                } else {
+                                    $class1 = 'blue';
+                                }
+                                ?>
+                                <?= Html::a('<div class="' . $class1 . '"><small class="small">' . $value1->title . '</small></div>', ['/site/general-trading', 'page' => 'medical-consumables'], ['class' => 'dropdown-item']) ?>
                             </div>
-                        </a> </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>images/trading-img2.jpg" class="img-fluid" alt="" title="">
-                    <div class="head-box"> <a href="#">
-                            <div class="green"><small class="small">Stationary </small>
-                                <h3 class="head-text">Products</h3>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            if (!empty($general_trading2)) {
+                $k = 0;
+                foreach ($general_trading2 as $value2) {
+                    $k++;
+                    ?>
+                    <div class="col-md-6">
+                        <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/general_trading/<?= $value2->id ?>/<?= $value2->id ?>.<?= $value2->image ?>" class="img-fluid" alt="<?= $value2->image->alt_tag ?>" title="">
+                            <div class="head-box">
+                                <?php
+                                if ($k % 2 == 0) {
+                                    $class2 = 'blue';
+                                } else {
+                                    $class2 = 'green';
+                                }
+                                ?>
+                                <?= Html::a('<div class="' . $class2 . '"><small class="small">' . $value2->title . '</small></div>', ['/site/general-trading', 'page' => $value2->canonical_name], ['class' => 'dropdown-item']) ?>
                             </div>
-                        </a> </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>images/trading-img3.jpg" class="img-fluid" alt="" title="">
-                    <div class="head-box"> <a href="#">
-                            <div class="blue"><small class="small">General</small>
-                                <h3 class="head-text">disposables</h3>
-                            </div>
-                        </a> </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>images/trading-img4.jpg" class="img-fluid" alt="" title="">
-                    <div class="head-box"> <a href="#">
-                            <div class="green"><small class="small">Industrial</small>
-                                <h3 class="head-text">spare parts</h3>
-                            </div>
-                        </a> </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>images/trading-img5.jpg" class="img-fluid" alt="" title="">
-                    <div class="head-box"> <a href="#">
-                            <div class="blue"><small class="small">Safety</small>
-                                <h3 class="head-text">Products</h3>
-                            </div>
-                        </a> </div>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
         </div>
     </div>
 </section>

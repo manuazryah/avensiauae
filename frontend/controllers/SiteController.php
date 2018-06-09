@@ -13,6 +13,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use common\models\Slider;
+use common\models\About;
+use common\models\ProjectGallery;
 
 /**
  * Site controller
@@ -28,12 +30,12 @@ class SiteController extends Controller {
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
                 'rules' => [
-                    [
+                        [
                         'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
-                    [
+                        [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -70,9 +72,11 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $sliders = Slider::find()->where(['status'=>1])->all();
-        return $this->render('index',[
-            'sliders'=>$sliders,
+        $sliders = Slider::find()->where(['status' => 1])->all();
+        $about_content = About::find()->where(['status' => 1])->one();
+        return $this->render('index', [
+                    'sliders' => $sliders,
+                    'about_content' => $about_content,
         ]);
     }
 
@@ -125,7 +129,10 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionAbout() {
-        return $this->render('about');
+        $about_content = About::find()->where(['status' => 1])->one();
+        return $this->render('about', [
+                    'about_content' => $about_content,
+        ]);
     }
 
     /**
@@ -170,9 +177,12 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionGallery() {
-        return $this->render('gallery');
+        $gallery_images = ProjectGallery::find()->where(['status' => 1])->all();
+        return $this->render('gallery', [
+                    'gallery_images' => $gallery_images,
+        ]);
     }
-    
+
     /**
      * Displays blog page.
      *
@@ -182,6 +192,7 @@ class SiteController extends Controller {
         return $this->render('blog', [
         ]);
     }
+
     /**
      * Displays blog details page.
      *
@@ -191,6 +202,7 @@ class SiteController extends Controller {
         return $this->render('blog-details', [
         ]);
     }
+
     /**
      * Displays site map page.
      *

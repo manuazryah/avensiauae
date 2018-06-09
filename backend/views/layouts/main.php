@@ -82,59 +82,31 @@ AppAsset::register($this);
                         <?= Html::a('<i class="fa fa-sliders"></i> <span class="title">Sliders</span>', ['/cms/slider/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
-                        <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Avensia</span>', ['/cms/about/index'], ['class' => 'title']) ?>
-                    </li>
-                    <li>
-                        <?= Html::a('<i class="fa fa-car"></i> <span class="title">Car Packages</span>', ['/cms/tour-packages/car-packages'], ['class' => 'title']) ?>
-                    </li>
-                    <li>
-                        <?= Html::a('<i class="fa fa-bus"></i> <span class="title">Tempo Traveler</span>', ['/cms/tour-packages/tempo-traveler'], ['class' => 'title']) ?>
-                    </li>
-                    <li>
-                        <?= Html::a('<i class="fa fa-cubes"></i> <span class="title">Pilgrimages</span>', ['/cms/pilgrimages/index'], ['class' => 'title']) ?>
-                    </li>
-                    <li>
-                        <?= Html::a('<i class="fa fa-image"></i> <span class="title">Gallery</span>', ['/cms/gallery/index'], ['class' => 'title']) ?>
+                        <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Avensia</span>', ['/cms/about/update', 'id' => 1], ['class' => 'title']) ?>
                     </li>
                     <li>
                         <a href="">
-                            <i class="fa fa-ship"></i>
-                            <span class="title">House Boat</span>
+                            <i class="fa fa-cubes"></i>
+                            <span class="title">General Trading</span>
                         </a>
                         <ul>
                             <li>
-                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Package Types', ['/cms/house-boat-package-type/index'], ['class' => 'title']) ?>
+                                <?= Html::a('<i class="fa fa-angle-double-right"></i> General Trading', ['/cms/general-trading/index'], ['class' => 'title']) ?>
                             </li>
+
                             <li>
-                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Boat Package', ['/cms/boat-package/index'], ['class' => 'title']) ?>
-                            </li>
-                            <li>
-                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Exiting Packages', ['/cms/exiting-packages/index'], ['class' => 'title']) ?>
+                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Products', ['/cms/product/index'], ['class' => 'title']) ?>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <?= Html::a('<i class="fa fa-image"></i> <span class="title">Project Gallery</span>', ['/cms/project-gallery/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
                         <?= Html::a('<i class="fa fa-map-marker"></i> <span class="title">Contact Address</span>', ['/cms/contact-address/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
                         <?= Html::a('<i class="fa fa-comments-o"></i> <span class="title">Testimonials</span>', ['/cms/testimonial/index'], ['class' => 'title']) ?>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="fa fa-bell-slash-o"></i>
-                            <span class="title">Terms & Conditions</span>
-                        </a>
-                        <ul>
-                            <li>
-                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Car Package', ['/cms/terms-conditions/car-package'], ['class' => 'title']) ?>
-                            </li>
-                            <li>
-                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Traveler Package', ['/cms/terms-conditions/traveler-package'], ['class' => 'title']) ?>
-                            </li>
-                            <li>
-                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Boat Packages', ['/cms/terms-conditions/boat-package'], ['class' => 'title']) ?>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <?= Html::a('<i class="fa fa-tags"></i> <span class="title">Meta Tags</span>', ['/cms/meta-tags/index'], ['class' => 'title']) ?>
@@ -228,59 +200,31 @@ AppAsset::register($this);
                             <?= Html::a('<i class="fa fa-sliders"></i> <span class="title">Sliders</span>', ['/cms/slider/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
-                            <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Avensia</span>', ['/cms/about/index'], ['class' => 'title']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('<i class="fa fa-car"></i> <span class="title">Car Packages</span>', ['/cms/tour-packages/car-packages'], ['class' => 'title']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('<i class="fa fa-bus"></i> <span class="title">Tempo Traveler</span>', ['/cms/tour-packages/tempo-traveler'], ['class' => 'title']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('<i class="fa fa-cubes"></i> <span class="title">Pilgrimages</span>', ['/cms/pilgrimages/index'], ['class' => 'title']) ?>
-                        </li>
-                        <li>
-                            <?= Html::a('<i class="fa fa-image"></i> <span class="title">Gallery</span>', ['/cms/gallery/index'], ['class' => 'title']) ?>
+                            <?= Html::a('<i class="fa fa-sitemap"></i> <span class="title">About Avensia</span>', ['/cms/about/update', 'id' => 1], ['class' => 'title']) ?>
                         </li>
                         <li>
                             <a href="">
-                                <i class="fa fa-ship"></i>
-                                <span class="title">House Boat</span>
+                                <i class="fa fa-cubes"></i>
+                                <span class="title">General Trading</span>
                             </a>
                             <ul>
                                 <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Package Types', ['/cms/house-boat-package-type/index'], ['class' => 'title']) ?>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> General Trading', ['/cms/general-trading/index'], ['class' => 'title']) ?>
                                 </li>
+
                                 <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Boat Package', ['/cms/boat-package/index'], ['class' => 'title']) ?>
-                                </li>
-                                <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Exiting Packages', ['/cms/exiting-packages/index'], ['class' => 'title']) ?>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Products', ['/cms/product/index'], ['class' => 'title']) ?>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <?= Html::a('<i class="fa fa-image"></i> <span class="title">Project Gallery</span>', ['/cms/project-gallery/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-map-marker"></i> <span class="title">Contact Address</span>', ['/cms/contact-address/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-comments-o"></i> <span class="title">Testimonials</span>', ['/cms/testimonial/index'], ['class' => 'title']) ?>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-bell-slash-o"></i>
-                                <span class="title">Terms & Conditions</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Car Package', ['/cms/terms-conditions/car-package'], ['class' => 'title']) ?>
-                                </li>
-                                <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Traveler Package', ['/cms/terms-conditions/traveler-package'], ['class' => 'title']) ?>
-                                </li>
-                                <li>
-                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Boat Packages', ['/cms/terms-conditions/boat-package'], ['class' => 'title']) ?>
-                                </li>
-                            </ul>
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-tags"></i> <span class="title">Meta Tags</span>', ['/cms/meta-tags/index'], ['class' => 'title']) ?>

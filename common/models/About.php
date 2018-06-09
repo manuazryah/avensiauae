@@ -24,43 +24,40 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class About extends \yii\db\ActiveRecord
-{
+class About extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'about';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['about_avensia', 'about_general_trending', 'about_tech_solution', 'about_facility_management', 'about_it'], 'string'],
-            [['status', 'CB', 'UB'], 'integer'],
-            [['DOC', 'DOU'], 'safe'],
-            [['about_avensia', 'about_general_trending', 'about_tech_solution', 'about_facility_management', 'about_it'], 'required'],
-            [['about_avensia_image', 'general_trending_image', 'tech_solution_image', 'facility_management_image', 'it_image'], 'string', 'max' => 100],
-            [['about_avensia_image', 'general_trending_image', 'tech_solution_image', 'facility_management_image', 'it_image'], 'required', 'on' => 'create'],
-            [['about_avensia_image', 'general_trending_image', 'tech_solution_image', 'facility_management_image', 'it_image'], 'file', 'extensions' => 'jpg,png,jpeg'],
+                [['about_avensia', 'about_general_trending', 'about_tech_solution', 'about_facility_management', 'about_it'], 'string'],
+                [['status', 'CB', 'UB'], 'integer'],
+                [['DOC', 'DOU'], 'safe'],
+                [['about_avensia', 'about_general_trending', 'about_tech_solution', 'about_facility_management', 'about_it'], 'required'],
+                [['about_avensia_image', 'general_trending_image', 'tech_solution_image', 'facility_management_image', 'it_image'], 'string', 'max' => 100],
+                [['about_avensia_image', 'general_trending_image', 'tech_solution_image', 'facility_management_image', 'it_image'], 'required', 'on' => 'create'],
+                [['about_avensia_image', 'general_trending_image', 'tech_solution_image', 'facility_management_image', 'it_image'], 'file', 'extensions' => 'jpg,png,jpeg'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'about_avensia' => 'About Avensia',
             'about_avensia_image' => 'About Avensia Image',
-            'about_general_trending' => 'About General Trending',
-            'general_trending_image' => 'General Trending Image',
+            'about_general_trending' => 'About General Trading',
+            'general_trending_image' => 'General Trading Image',
             'about_tech_solution' => 'About Tech Solution',
             'tech_solution_image' => 'Tech Solution Image',
             'about_facility_management' => 'About Facility Management',
@@ -74,4 +71,5 @@ class About extends \yii\db\ActiveRecord
             'DOU' => 'Dou',
         ];
     }
+
 }
