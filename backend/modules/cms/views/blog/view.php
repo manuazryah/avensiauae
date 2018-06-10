@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ContactAddress */
+/* @var $model common\models\Blog */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Contact Addresses', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Blogs', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
@@ -20,8 +20,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         </div>
                         <div class="panel-body">
-                                <?=  Html::a('<i class="fa-th-list"></i><span> Manage Contact Address</span>', ['index'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
-                                <div class="panel-body"><div class="contact-address-view">
+                                <?=  Html::a('<i class="fa-th-list"></i><span> Manage Blog</span>', ['index'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
+                                <div class="panel-body"><div class="blog-view">
                                                 <p>
                                                         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                                                         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -37,17 +37,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 'model' => $model,
                                                 'attributes' => [
                                                             'id',
-            'address_title',
-            'address:ntext',
-            'telephone',
-            'fax',
-            'po_box',
-            'email:email',
-            'tech_solution_phone',
-            'general_trading_phone',
-            'it_phone',
-            'facility_management_phone',
-            'default_address',
+            'author',
+            'blog_heading',
+            'image',
+            'small_description:ntext',
+            'detailed_description:ntext',
+            'blog_date',
             'status',
             'CB',
             'UB',

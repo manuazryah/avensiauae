@@ -33,15 +33,12 @@ class ContactAddressController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        $id = 1;
-        $model = $this->findModel($id);
-        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model) && $model->validate() && $model->save()) {
-            Yii::$app->session->setFlash('success', "Exiting Packages Updated Successfully");
-            return $this->redirect(['index']);
-        }
+        $searchModel = new ContactAddressSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'model' => $model,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -64,13 +61,22 @@ class ContactAddressController extends Controller {
     public function actionCreate() {
         $model = new ContactAddress();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                        'model' => $model,
-            ]);
-        }
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $default_exist = ContactAddress::find()->where(['default_address' => 1])->one();
+            if ($model->default_address == 1) {
+                if (!empty($default_exist)) {
+                    $default_exist->default_address = 0;
+                    $default_exist->update();
+                }
+                $model->default_address = 1;
+            }
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Contact Address added Successfully");
+                $model = new ContactAddress();
+            }
+        } return $this->render('create', [
+                    'model' => $model,
+        ]);
     }
 
     /**
@@ -81,14 +87,22 @@ class ContactAddressController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                        'model' => $model,
-            ]);
-        }
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $default_exist = ContactAddress::find()->where(['default_address' => 1])->one();
+            if ($model->default_address == 1) {
+                if (!empty($default_exist)) {
+                    $default_exist->default_address = 0;
+                    $default_exist->update();
+                }
+                $model->default_address = 1;
+            }
+            if ($model->save()) {
+                Yii::$app->session->setFlash('success', "Contact Address Updated Successfully");
+                return $this->redirect(['update', 'id' => $model->id]);
+            }
+        } return $this->render('update', [
+                    'model' => $model,
+        ]);
     }
 
     /**

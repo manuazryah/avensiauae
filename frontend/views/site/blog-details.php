@@ -23,14 +23,9 @@ $this->title = 'Blog';
             <div class="row">
                 <div class="col-lg-8"><!--col-md-8-->
 
-                    <div class="img-box"><img src="<?= yii::$app->homeUrl; ?>images/blog-bg.jpg" class="img-fluid"></div>
-                    <div class="date">Post By: admin <span>| </span> February 19, 2018<span>| </span> No Comments</div>
-                    <h2>Web Development </h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ILorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <h2>Blog Heading</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ILorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                    <h2>Blog Heading</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ILorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <div class="img-box"><img src="<?= yii::$app->homeUrl; ?>uploads/blog/<?= $blog_detail->id ?>/<?= $blog_detail->id ?>.<?= $blog_detail->image ?>" alt="<?= $blog_detail->blog_heading ?>" class="img-fluid"></div>
+                    <div class="date">Post By: <?= $blog_detail->author ?> <span>| </span> <?= date("F d Y", strtotime($blog_detail->blog_date)); ?></div>
+                    <?= $blog_detail->detailed_description ?>
                     <div class="share-box">
                         <h3>Share This Article:</h3>
                         <div class="follows-Share">
@@ -45,7 +40,7 @@ $this->title = 'Blog';
                         <div class="clear"></div>
                     </div>
                     <div class="blog-contact-form">
-                        <h2>ADD A COMMENT</h2>	
+                        <h2>ADD A COMMENT</h2>
                         <p>Your email address will not be published. Required fields are marked *</p>
                         <form class="in-main-form">
                             <div class="row">
@@ -91,67 +86,32 @@ $this->title = 'Blog';
 
                         <h2>Recent Posts</h2>
                         <div class=" blog-recent-posts">
-                            <div class="posts"><!--posts-->
-                                <div class="row">
-                                    <div class="col-sm-5"><img src="<?= yii::$app->homeUrl; ?>images/blog.jpg" class="img-fluid"> </div>
-                                    <div class="col-sm-7">
-                                        <a href="#"><h3>Totam Rem Aperiam Eaque Ipsa Quae ab Illo.</h3></a>
-                                        <small>February 19, 2018</small>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <!--posts-->
-                            <div class="posts"><!--posts-->
-                                <div class="row">
-                                    <div class="col-sm-5"><img src="<?= yii::$app->homeUrl; ?>images/blog2.jpg" class="img-fluid"> </div>
-                                    <div class="col-sm-7">
-                                        <a href="#"><h3>Totam Rem Aperiam Eaque Ipsa Quae ab Illo.</h3></a>
-                                        <small>February 19, 2018</small>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <!--posts-->
-                            <div class="posts"><!--posts-->
-                                <div class="row">
-                                    <div class="col-sm-5"><img src="<?= yii::$app->homeUrl; ?>images/blog3.jpg" class="img-fluid"> </div>
-                                    <div class="col-sm-7">
-                                        <a href="#"><h3>Totam Rem Aperiam Eaque Ipsa Quae ab Illo.</h3></a>
-                                        <small>February 19, 2018</small>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <!--posts-->
-                            <div class="posts"><!--posts-->
-                                <div class="row">
-                                    <div class="col-sm-5"><img src="<?= yii::$app->homeUrl; ?>images/blog.jpg" class="img-fluid"> </div>
-                                    <div class="col-sm-7">
-                                        <a href="#"><h3>Totam Rem Aperiam Eaque Ipsa Quae ab Illo.</h3></a>
-                                        <small>February 19, 2018</small>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <!--posts-->
-                            <div class="posts"><!--posts-->
-                                <div class="row">
-                                    <div class="col-sm-5"><img src="<?= yii::$app->homeUrl; ?>images/blog2.jpg" class="img-fluid"> </div>
-                                    <div class="col-sm-7">
-                                        <a href="#"><h3>Totam Rem Aperiam Eaque Ipsa Quae ab Illo.</h3></a>
-                                        <small>February 19, 2018</small>
-                                    </div>
-                                    <div class="clear"></div>
-                                </div>
-                            </div>
-                            <!--posts--> 
+                            <?php
+                            if (!empty($blogs)) {
+                                foreach ($blogs as $blog) {
+                                    if (!empty($blog)) {
+                                        ?>
+                                        <div class="posts"><!--posts-->
+                                            <div class="row">
+                                                <div class="col-sm-5"><img src="<?= yii::$app->homeUrl; ?>uploads/blog/<?= $blog->id ?>/small.<?= $blog->image ?>" alt="<?= $blog->blog_heading ?>" class="img-fluid"> </div>
+                                                <div class="col-sm-7">
+                                                    <?= Html::a('<h3>' . $blog->blog_heading . '</h3>', ['/site/blog-details', 'id' => $blog->id], ['class' => 'link']) ?>
+                                                    <small><?= date("F d Y", strtotime($blog->blog_date)); ?></small>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
-        </div>  
+        </div>
 
 
     </div>

@@ -22,13 +22,37 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </div>
                 <div class="panel-body">
-                    <div class="contact-address-create">
-                        <?=
-                        $this->render('_form', [
-                            'model' => $model,
-                        ])
-                        ?>
-                    </div>
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+                    <?php // Html::a('<i class="fa-th-list"></i><span> Create Contact Address</span>', ['create'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
+                    <?=
+                    GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                                ['class' => 'yii\grid\SerialColumn'],
+//                                                            'id',
+                            'address_title',
+//                            'address:ntext',
+                            'telephone',
+                            'fax',
+                            'po_box',
+                            'email:email',
+                            // 'tech_solution_phone',
+                            // 'general_trading_phone',
+                            // 'it_phone',
+                            // 'facility_management_phone',
+                            // 'default_address',
+                            // 'status',
+                            // 'CB',
+                            // 'UB',
+                            // 'DOC',
+                            // 'DOU',
+                            ['class' => 'yii\grid\ActionColumn',
+                                'template' => '{update}'],
+                        ],
+                    ]);
+                    ?>
                 </div>
             </div>
         </div>

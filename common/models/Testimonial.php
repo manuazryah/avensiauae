@@ -17,36 +17,33 @@ use Yii;
  * @property string $DOC
  * @property string $DOU
  */
-class Testimonial extends \yii\db\ActiveRecord
-{
+class Testimonial extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'testimonial';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            [['message'], 'string'],
-            [['name','message'], 'required'],
-            [['status', 'CB', 'UB'], 'integer'],
-            [['DOC', 'DOU', 'image'], 'safe'],
-            [['name'], 'string', 'max' => 100],
-            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
+                [['message'], 'string', 'max' => 220],
+                [['name', 'message'], 'required'],
+                [['status', 'CB', 'UB'], 'integer'],
+                [['DOC', 'DOU', 'image'], 'safe'],
+                [['name'], 'string', 'max' => 100],
+                [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg'],
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'id' => 'ID',
             'name' => 'Name',
@@ -59,4 +56,5 @@ class Testimonial extends \yii\db\ActiveRecord
             'DOU' => 'Dou',
         ];
     }
+
 }

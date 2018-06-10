@@ -74,9 +74,13 @@ class SiteController extends Controller {
     public function actionIndex() {
         $sliders = Slider::find()->where(['status' => 1])->all();
         $about_content = About::find()->where(['status' => 1])->one();
+        $testimonials = \common\models\Testimonial::find()->where(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(2)->all();
+        $blogs = \common\models\Blog::find(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(3)->all();
         return $this->render('index', [
                     'sliders' => $sliders,
                     'about_content' => $about_content,
+                    'testimonials' => $testimonials,
+                    'blogs' => $blogs,
         ]);
     }
 
@@ -119,8 +123,78 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionContact() {
+        $contact_addresses = \common\models\ContactAddress::find()->all();
+        $model = new \common\models\ContactForm();
+        if ($model->load(Yii::$app->request->post())) {
+            $model->date = date('Y-m-d');
+            if ($model->save()) {
+                $this->sendContactMail($model);
+                Yii::$app->session->setFlash('success', 'Your contact request send successfully.');
+                $model = new \common\models\ContactForm();
+            }
+        }
         return $this->render('contact', [
+                    'contact_addresses' => $contact_addresses,
         ]);
+    }
+
+    /*
+     * Contact Enguery mail function
+     */
+
+    public function sendContactMail($model) {
+        $to = "manu@azryah.com";
+//        $to = 'bookings@venicecabs.com';
+        $subject = "Contact Request";
+
+        $message = "
+<html>
+<head>
+
+</head>
+<body>
+<table>
+
+<tr>
+
+<th>Name</th>
+<th>:-</th>
+<td>" . $model->name . "</td>
+         </tr>
+<tr>
+
+<th>Email</th>
+<th>:-</th>
+<td>" . $model->email . "</td>
+         </tr>
+
+<tr>
+
+
+<th>Phone No</th>
+<th>:-</th>
+<td>" . $model->phone . "</td>
+         </tr>
+
+<tr>
+
+<th>Message</th>
+<th>:-</th>
+<td>" . $model->message . "</td>
+         </tr>
+
+</table>
+</body>
+</html>
+";
+// Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+        $headers .= 'From: ' . $model->email . "\r\n";
+        $headers .= "To: $to\r\n";
+        mail($to, $subject, $message, $headers);
+        return TRUE;
     }
 
     /**
@@ -196,7 +270,9 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionBlog() {
+        $blogs = \common\models\Blog::find()->where(['status' => 1])->all();
         return $this->render('blog', [
+                    'blogs' => $blogs,
         ]);
     }
 
@@ -205,8 +281,12 @@ class SiteController extends Controller {
      *
      * @return mixed
      */
-    public function actionBlogDetails() {
+    public function actionBlogDetails($id) {
+        $blog_detail = \common\models\Blog::find()->where(['id' => $id])->one();
+        $blogs = \common\models\Blog::find()->where(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(15)->all();
         return $this->render('blog-details', [
+                    'blog_detail' => $blog_detail,
+                    'blogs' => $blogs,
         ]);
     }
 

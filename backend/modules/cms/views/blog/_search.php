@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ContactAddressSearch */
+/* @var $model common\models\BlogSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="contact-address-search">
+<div class="blog-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,27 +17,17 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'address_title') ?>
+    <?= $form->field($model, 'author') ?>
 
-    <?= $form->field($model, 'address') ?>
+    <?= $form->field($model, 'blog_heading') ?>
 
-    <?= $form->field($model, 'telephone') ?>
+    <?= $form->field($model, 'image') ?>
 
-    <?= $form->field($model, 'fax') ?>
+    <?= $form->field($model, 'small_description') ?>
 
-    <?php // echo $form->field($model, 'po_box') ?>
+    <?php // echo $form->field($model, 'detailed_description') ?>
 
-    <?php // echo $form->field($model, 'email') ?>
-
-    <?php // echo $form->field($model, 'tech_solution_phone') ?>
-
-    <?php // echo $form->field($model, 'general_trading_phone') ?>
-
-    <?php // echo $form->field($model, 'it_phone') ?>
-
-    <?php // echo $form->field($model, 'facility_management_phone') ?>
-
-    <?php // echo $form->field($model, 'default_address') ?>
+    <?php // echo $form->field($model, 'blog_date') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

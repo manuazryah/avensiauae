@@ -205,28 +205,27 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
             <h2 class="head">Company Testimonial</h2>
             <small class="small-text">our Testimonial</small> </div>
         <div class="row">
-            <div class="col-lg-6">
-                <div class="Testimonial">
-                    <div class="cont-box">
-                        <div class="img-box"><img src="<?= yii::$app->homeUrl; ?>images/testimonials-img.jpg" class="img-fluid"></div>
-                        <div class="text-box">
-                            <p>"When I contemplate my experience with your company three words comes to mind: Quality, Cosnideration and Integrity. I look forward to working with Orio Builders in the future and continu to give my emphatic  any friend "</p>
+            <?php
+            if (!empty($testimonials)) {
+                foreach ($testimonials as $testimonial) {
+                    if (!empty($testimonial)) {
+                        ?>
+                        <div class="col-lg-6">
+                            <div class="Testimonial">
+                                <div class="cont-box">
+                                    <div class="img-box"><img src="<?= yii::$app->homeUrl; ?>uploads/testimonial/<?= $testimonial->id ?>/<?= $testimonial->id ?>.<?= $testimonial->image ?>" alt="<?= $testimonial->name ?>" class="img-fluid"></div>
+                                    <div class="text-box">
+                                        <p><?= $testimonial->message ?></p>
+                                    </div>
+                                    <h3 class="head"><?= $testimonial->name ?></h3>
+                                    <small class="small">Genarel customer</small> </div>
+                            </div>
                         </div>
-                        <h3 class="head">LIJIA CHACKO - DUBAI</h3>
-                        <small class="small">Genarel customer</small> </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="Testimonial">
-                    <div class="cont-box">
-                        <div class="img-box"><img src="<?= yii::$app->homeUrl; ?>images/testimonials-img2.jpg" class="img-fluid"></div>
-                        <div class="text-box">
-                            <p>"When I contemplate my experience with your company three words comes to mind: Quality, Cosnideration and Integrity. I look forward to working with Orio Builders in the future and continu to give my emphatic  any friend "</p>
-                        </div>
-                        <h3 class="head">LIJIA CHACKO - DUBAI</h3>
-                        <small class="small">Genarel customer</small> </div>
-                </div>
-            </div>
+                        <?php
+                    }
+                }
+            }
+            ?>
         </div>
     </div>
 </section>
@@ -236,39 +235,28 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
             <h2 class="head">Our Blog</h2>
             <small class="small-text">Our Blog</small> </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="main-blog-box"> <img src="<?= yii::$app->homeUrl; ?>images/blog.jpg" class="img-fluid">
-                    <div class="cont-box">
-                        <div class="date-box">
-                            <h2 class="d-head">05</h2>
-                            <b class="b-text">Mar 2018</b> </div>
-                        <h3 class="head-text">Blog Heading</h3>
-                        <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy </p>
-                        <a href="blog.html" class="link">Read More</a> </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="main-blog-box"> <img src="<?= yii::$app->homeUrl; ?>images/blog2.jpg" class="img-fluid">
-                    <div class="cont-box">
-                        <div class="date-box">
-                            <h2 class="d-head">05</h2>
-                            <b class="b-text">Mar 2018</b> </div>
-                        <h3 class="head-text">Blog Heading</h3>
-                        <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy </p>
-                        <a href="blog.html" class="link">Read More</a> </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="main-blog-box"> <img src="<?= yii::$app->homeUrl; ?>images/blog3.jpg" class="img-fluid">
-                    <div class="cont-box">
-                        <div class="date-box">
-                            <h2 class="d-head">05</h2>
-                            <b class="b-text">Mar 2018</b> </div>
-                        <h3 class="head-text">Blog Heading</h3>
-                        <p class="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy </p>
-                        <a href="blog.html" class="link">Read More</a></div>
-                </div>
-            </div>
+            <?php
+            if (!empty($blogs)) {
+                foreach ($blogs as $blog) {
+                    if (!empty($blog)) {
+                        ?>
+                        <div class="col-md-4">
+                            <div class="main-blog-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/blog/<?= $blog->id ?>/<?= $blog->id ?>.<?= $blog->image ?>" alt="<?= $blog->blog_heading ?>" class="img-fluid">
+                                <div class="cont-box">
+                                    <div class="date-box">
+                                        <h2 class="d-head"><?= date("d", strtotime($blog->blog_date)); ?></h2>
+                                        <b class="b-text"><?= date("M Y", strtotime($blog->blog_date)); ?></b> </div>
+                                    <h3 class="head-text"><?= $blog->blog_heading ?></h3>
+                                    <p class="text"><?= $blog->small_description ?></p>
+                                    <?= Html::a('Read More', ['/site/blog-details', 'id' => $blog->id], ['class' => 'link']) ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+            }
+            ?>
         </div>
     </div>
 </section>

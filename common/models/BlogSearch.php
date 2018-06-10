@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\ContactAddress;
+use common\models\Blog;
 
 /**
- * ContactAddressSearch represents the model behind the search form about `common\models\ContactAddress`.
+ * BlogSearch represents the model behind the search form about `common\models\Blog`.
  */
-class ContactAddressSearch extends ContactAddress
+class BlogSearch extends Blog
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class ContactAddressSearch extends ContactAddress
     public function rules()
     {
         return [
-            [['id', 'default_address', 'status', 'CB', 'UB'], 'integer'],
-            [['address_title', 'address', 'telephone', 'fax', 'po_box', 'email', 'tech_solution_phone', 'general_trading_phone', 'it_phone', 'facility_management_phone', 'DOC', 'DOU'], 'safe'],
+            [['id', 'status', 'CB', 'UB'], 'integer'],
+            [['author', 'blog_heading', 'image', 'small_description', 'detailed_description', 'blog_date', 'DOC', 'DOU'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ContactAddressSearch extends ContactAddress
      */
     public function search($params)
     {
-        $query = ContactAddress::find();
+        $query = Blog::find();
 
         // add conditions that should always apply here
 
@@ -60,7 +60,7 @@ class ContactAddressSearch extends ContactAddress
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'default_address' => $this->default_address,
+            'blog_date' => $this->blog_date,
             'status' => $this->status,
             'CB' => $this->CB,
             'UB' => $this->UB,
@@ -68,16 +68,11 @@ class ContactAddressSearch extends ContactAddress
             'DOU' => $this->DOU,
         ]);
 
-        $query->andFilterWhere(['like', 'address_title', $this->address_title])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'telephone', $this->telephone])
-            ->andFilterWhere(['like', 'fax', $this->fax])
-            ->andFilterWhere(['like', 'po_box', $this->po_box])
-            ->andFilterWhere(['like', 'email', $this->email])
-            ->andFilterWhere(['like', 'tech_solution_phone', $this->tech_solution_phone])
-            ->andFilterWhere(['like', 'general_trading_phone', $this->general_trading_phone])
-            ->andFilterWhere(['like', 'it_phone', $this->it_phone])
-            ->andFilterWhere(['like', 'facility_management_phone', $this->facility_management_phone]);
+        $query->andFilterWhere(['like', 'author', $this->author])
+            ->andFilterWhere(['like', 'blog_heading', $this->blog_heading])
+            ->andFilterWhere(['like', 'image', $this->image])
+            ->andFilterWhere(['like', 'small_description', $this->small_description])
+            ->andFilterWhere(['like', 'detailed_description', $this->detailed_description]);
 
         return $dataProvider;
     }

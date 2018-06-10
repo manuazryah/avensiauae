@@ -7,6 +7,7 @@ use frontend\assets\AppAsset;
 
 AppAsset::register($this);
 $general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])->all();
+$contact_info = \common\models\ContactAddress::find()->where(['default_address' => 1])->one();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@ $general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])
     </head>
     <body>
         <?php $this->beginBody() ?>
-        <?php $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id; // controller action id  ?>
+        <?php $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id; // controller action id   ?>
         <header class="header"><!--header-->
             <!--head-top-section-->
             <section class="top-section"><!--top-section-->
@@ -74,16 +75,16 @@ $general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])
                         <div class="col-sm-8">
                             <div class="top-contat">
                                 <div class="phone"> <small class="small">Facility Management</small>
-                                    <h2 class="head-text">0509962388</h2>
+                                    <h2 class="head-text"><?= $contact_info->facility_management_phone ?></h2>
                                 </div>
                                 <div class="phone"> <small class="small">IT</small>
-                                    <h2 class="head-text">0509962388</h2>
+                                    <h2 class="head-text"><?= $contact_info->facility_management_phone ?></h2>
                                 </div>
                                 <div class="phone border-left"> <small class="small">General Trading</small>
-                                    <h2 class="head-text">0509962388</h2>
+                                    <h2 class="head-text"><?= $contact_info->it_phone ?></h2>
                                 </div>
                                 <div class="mail"> <small class="small">Email:</small>
-                                    <h2 class="head-text">info@avensiauae.com</h2>
+                                    <h2 class="head-text"><?= $contact_info->email ?></h2>
                                 </div>
                             </div>
                         </div>
@@ -353,11 +354,11 @@ $general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])
                     </div>
                     <div class="col-lg-3">
                         <h2 class="f-head">Address</h2>
-                        <div class="f-address">Dubai Mall located in Downtown Burj Khalifa & Dubai Fountain</div>
-                        <div class="f-address f-phone"><small>General Trading</small>0509962388</div>
-                        <div class="f-address f-phone"><small>IT</small>0509962388</div>
-                        <div class="f-address f-phone"><small>Facility Management</small>0509962388</div>
-                        <div class="f-address f-mail">info@avensiauae.com</div>
+                        <div class="f-address"><?= $contact_info->address ?></div>
+                        <div class="f-address f-phone"><small>General Trading</small><?= $contact_info->general_trading_phone ?></div>
+                        <div class="f-address f-phone"><small>IT</small><?= $contact_info->it_phone ?></div>
+                        <div class="f-address f-phone"><small>Facility Management</small><?= $contact_info->facility_management_phone ?></div>
+                        <div class="f-address f-mail"><?= $contact_info->email ?></div>
 
                     </div>
                 </div>

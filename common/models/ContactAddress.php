@@ -8,12 +8,17 @@ use Yii;
  * This is the model class for table "contact_address".
  *
  * @property int $id
- * @property string $city
- * @property string $landmark
- * @property string $phone1
- * @property string $phone2
- * @property string $phone_uae
+ * @property string $address_title
+ * @property string $address
+ * @property string $telephone
+ * @property string $fax
+ * @property string $po_box
  * @property string $email
+ * @property string $tech_solution_phone
+ * @property string $general_trading_phone
+ * @property string $it_phone
+ * @property string $facility_management_phone
+ * @property int $default_address
  * @property int $status
  * @property int $CB
  * @property int $UB
@@ -34,11 +39,12 @@ class ContactAddress extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-                [['phone1', 'phone2', 'phone_uae', 'city', 'landmark', 'email'], 'required'],
-                [['status', 'CB', 'UB'], 'integer'],
+                [['address'], 'string'],
+                [['default_address', 'status', 'CB', 'UB'], 'integer'],
+                [['address_title'], 'required'],
                 [['DOC', 'DOU'], 'safe'],
-                [['email'], 'email'],
-                [['city', 'landmark', 'email'], 'string', 'max' => 100],
+                [['address_title', 'email'], 'string', 'max' => 100],
+                [['telephone', 'fax', 'po_box', 'tech_solution_phone', 'general_trading_phone', 'it_phone', 'facility_management_phone'], 'string', 'max' => 25],
         ];
     }
 
@@ -48,12 +54,17 @@ class ContactAddress extends \yii\db\ActiveRecord {
     public function attributeLabels() {
         return [
             'id' => 'ID',
-            'city' => 'City',
-            'landmark' => 'Landmark',
-            'phone1' => 'Phone1',
-            'phone2' => 'Phone2',
-            'phone_uae' => 'Phone Uae',
+            'address_title' => 'Address Title',
+            'address' => 'Address',
+            'telephone' => 'Telephone',
+            'fax' => 'Fax',
+            'po_box' => 'Po Box',
             'email' => 'Email',
+            'tech_solution_phone' => 'Tech Solution Phone',
+            'general_trading_phone' => 'General Trading Phone',
+            'it_phone' => 'It Phone',
+            'facility_management_phone' => 'Facility Management Phone',
+            'default_address' => 'Set as Default Address',
             'status' => 'Status',
             'CB' => 'Cb',
             'UB' => 'Ub',
