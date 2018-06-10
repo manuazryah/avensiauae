@@ -71,7 +71,7 @@ class ProjectGalleryController extends Controller {
                     $path = Yii::$app->basePath . '/../uploads/project_gallery/' . $model->id . '/';
                     $size = [
                             ['width' => 100, 'height' => 100, 'name' => 'small'],
-                            ['width' => 3000, 'height' => 2000, 'name' => 'image'],
+                            ['width' => 750, 'height' => 538, 'name' => 'image'],
                     ];
                     Yii::$app->UploadFile->UploadFile($model, $image, $path, $size);
                 }
@@ -104,7 +104,7 @@ class ProjectGalleryController extends Controller {
                     $path = Yii::$app->basePath . '/../uploads/project_gallery/' . $model->id . '/';
                     $size = [
                             ['width' => 100, 'height' => 100, 'name' => 'small'],
-                            ['width' => 3000, 'height' => 2000, 'name' => 'image'],
+                            ['width' => 750, 'height' => 538, 'name' => 'image'],
                     ];
                     Yii::$app->UploadFile->UploadFile($model, $image, $path, $size);
                 }

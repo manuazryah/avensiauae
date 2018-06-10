@@ -82,7 +82,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                     $j++;
                     ?>
                     <div class="col-md-4">
-                        <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/general_trading/<?= $value1->id ?>/<?= $value1->id ?>.<?= $value1->image ?>" class="img-fluid" alt="<?= $value1->image->alt_tag ?>" title="">
+                        <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/general_trading/<?= $value1->id ?>/<?= $value1->id ?>.<?= $value1->image ?>" class="img-fluid" alt="<?= $value1->alt_tag ?>" title="">
                             <div class="head-box">
                                 <?php
                                 if ($j % 2 == 0) {
@@ -104,7 +104,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                     $k++;
                     ?>
                     <div class="col-md-6">
-                        <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/general_trading/<?= $value2->id ?>/<?= $value2->id ?>.<?= $value2->image ?>" class="img-fluid" alt="<?= $value2->image->alt_tag ?>" title="">
+                        <div class="trading-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/general_trading/<?= $value2->id ?>/<?= $value2->id ?>.<?= $value2->image ?>" class="img-fluid" alt="<?= $value2->alt_tag ?>" title="">
                             <div class="head-box">
                                 <?php
                                 if ($k % 2 == 0) {

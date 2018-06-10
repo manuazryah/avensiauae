@@ -141,7 +141,14 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionGeneralTrading($page = NULL) {
-        return $this->render('general-trading');
+        if (!empty($page) && $page != '') {
+            $general_traid = \common\models\GeneralTrading::find()->where(['canonical_name' => $page])->one();
+        } else {
+            $general_traid = \common\models\GeneralTrading::find()->where(['id' => 1])->one();
+        }
+        return $this->render('general-trading', [
+                    'general_traid' => $general_traid,
+        ]);
     }
 
     /**

@@ -32,11 +32,11 @@ $this->title = 'General Trading';
                     <h2 class="head"><a data-toggle="collapse"  href="#IT-Services" role="button">IT Services</a></h2>
                     <ul class="list-box collapse" id="IT-Services">
                         <li><a href="#">Networking </a></li>
-                        <li><a href="#">IP Telephonic System - pbx or pabx</a></li> 
+                        <li><a href="#">IP Telephonic System - pbx or pabx</a></li>
                         <li><a href="#">Network switches </a></li>
                         <li><a href="#">Wifi or network access point </a></li>
                         <li><a href="#">Office IT equipments </a></li>
-                        <li><a href="#">IT equipments in dubai</a></li> 
+                        <li><a href="#">IT equipments in dubai</a></li>
                         <li><a href="#">CCTV reference </a></li>
                     </ul>
                 </div>
@@ -60,85 +60,36 @@ $this->title = 'General Trading';
             </div>
             <div class="col-lg-8">
                 <div class="service-cont-box">
-                    <h3 class="service-head">Medical Consumables </h3>
-                    <div class="cont"><p>Quality Assured Support and AMC - AVENSIA Tech Solutions Integrator, focused in LAN, MAN, WAN, WIRELESS, NETWORK MANAGEMENT, STORAGE, SECURITY AND CONVERGEDVOICE– DATA-VIDEO, SERVERS, DEKTOP and PHYSICAL SECURITY & SURVEILLANCE Solutions domains. Our highly committed and skilled set of professionals will add value by proposing technically superior and commercially competitive solutions.</p></div>
-                    <div class="general-trading-box">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-1.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-2.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head green">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-3.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-4.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head green">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-5.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head ">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-6.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head green">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-1.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-2.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head green">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-3.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-4.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head green">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-5.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head ">Product Name</h3>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="tradin-main">
-                                    <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>images/general-trading/gt-6.jpg" class="img-fluid"></div>
-                                    <h3 class="trading-head green">Product Name</h3>
-                                </div>
-                            </div>
+                    <?php
+                    if (!empty($general_traid)) {
+                        ?>
+                        <h3 class="service-head"><?= $general_traid->title ?></h3>
+                        <div class="cont">
+                            <?= $general_traid->description ?>
                         </div>
-                    </div>
-
+                        <?php
+                        $products = common\models\Product::find()->where(['general_trad_id' => $general_traid->id])->all();
+                        ?>
+                        <?php
+                        if (!empty($products)) {
+                            ?>
+                            <div class="general-trading-box">
+                                <div class="row">
+                                    <?php foreach ($products as $product) { ?>
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="tradin-main">
+                                                <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>uploads/products/<?= $product->id ?>/<?= $product->id ?>.<?= $product->product_image ?>" class="img-fluid" alt="<?= $product->alt_tag ?>"></div>
+                                                <h3 class="trading-head"><?= $product->product_name ?></h3>
+                                            </div>
+                                        </div>
+                                    <?php }
+                                    ?>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                    ?>
                 </div>
             </div>
         </div>
