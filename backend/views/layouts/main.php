@@ -120,6 +120,12 @@ AppAsset::register($this);
                             <li>
                                 <?= Html::a('<i class="fa fa-angle-double-right"></i> IT', ['/cms/it-sevices/index'], ['class' => 'title']) ?>
                             </li>
+                            <li>
+                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Technical Services', ['/cms/technical-services/index'], ['class' => 'title']) ?>
+                            </li>
+                            <li>
+                                <?= Html::a('<i class="fa fa-angle-double-right"></i> Facility Management', ['/cms/facility-management-details/index'], ['class' => 'title']) ?>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -263,6 +269,12 @@ AppAsset::register($this);
                                 </li>
                                 <li>
                                     <?= Html::a('<i class="fa fa-angle-double-right"></i> IT', ['/cms/it-sevices/index'], ['class' => 'title']) ?>
+                                </li>
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Technical Services', ['/cms/technical-services/index'], ['class' => 'title']) ?>
+                                </li>
+                                <li>
+                                    <?= Html::a('<i class="fa fa-angle-double-right"></i> Facility Management', ['/cms/facility-management-details/index'], ['class' => 'title']) ?>
                                 </li>
                             </ul>
                         </li>

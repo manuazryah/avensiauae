@@ -18,8 +18,8 @@ class FacilityManagementDetailsSearch extends FacilityManagementDetails
     public function rules()
     {
         return [
-            [['id', 'type', 'status', 'CB', 'UB'], 'integer'],
-            [['main_content', 'image', 'sub_title', 'sub_content', 'equipment_list', 'DOC', 'DOU'], 'safe'],
+            [['id', 'status', 'CB', 'UB'], 'integer'],
+            [['service', 'canonical_name', 'main_content', 'image', 'sub_title', 'sub_content', 'equipment_list', 'DOC', 'DOU'], 'safe'],
         ];
     }
 
@@ -60,7 +60,6 @@ class FacilityManagementDetailsSearch extends FacilityManagementDetails
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'type' => $this->type,
             'status' => $this->status,
             'CB' => $this->CB,
             'UB' => $this->UB,
@@ -68,7 +67,9 @@ class FacilityManagementDetailsSearch extends FacilityManagementDetails
             'DOU' => $this->DOU,
         ]);
 
-        $query->andFilterWhere(['like', 'main_content', $this->main_content])
+        $query->andFilterWhere(['like', 'service', $this->service])
+            ->andFilterWhere(['like', 'canonical_name', $this->canonical_name])
+            ->andFilterWhere(['like', 'main_content', $this->main_content])
             ->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'sub_title', $this->sub_title])
             ->andFilterWhere(['like', 'sub_content', $this->sub_content])

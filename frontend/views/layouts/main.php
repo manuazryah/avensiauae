@@ -8,7 +8,9 @@ use frontend\assets\AppAsset;
 AppAsset::register($this);
 $general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])->all();
 $it_service_links = common\models\ItSevices::find()->where(['status' => 1])->all();
-$contact_info = \common\models\ContactAddress::find()->where(['default_address' => 1])->one();
+$technical_service_links = common\models\TechnicalServices::find()->where(['status' => 1])->all();
+$facility_service_links = common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
+$contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -79,10 +81,10 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                                     <h2 class="head-text"><?= $contact_info->facility_management_phone ?></h2>
                                 </div>
                                 <div class="phone"> <small class="small">IT</small>
-                                    <h2 class="head-text"><?= $contact_info->facility_management_phone ?></h2>
+                                    <h2 class="head-text"><?= $contact_info->it_phone ?></h2>
                                 </div>
                                 <div class="phone border-left"> <small class="small">General Trading</small>
-                                    <h2 class="head-text"><?= $contact_info->it_phone ?></h2>
+                                    <h2 class="head-text"><?= $contact_info->general_trading_phone ?></h2>
                                 </div>
                                 <div class="mail"> <small class="small">Email:</small>
                                     <h2 class="head-text"><?= $contact_info->email ?></h2>
@@ -139,31 +141,32 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/technical-service' ? 'active' : '' ?>">technical service</a>
                                         <ul class="dropdown-menu animated2 fadeInUp">
-                                            <li>
-                                                <?= Html::a('Steel Fabrication', ['/site/technical-service', 'page' => 'steel-fabrication'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Architectural metal works and Gold plating', ['/site/technical-service', 'page' => 'metal-works-and-gold-plating'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Interior designing', ['/site/technical-service', 'page' => 'interior-designing'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Sealing and partitioning', ['/site/technical-service', 'page' => 'sealing-and-partitioning'], ['class' => 'dropdown-item']) ?>
-                                            </li>
+                                            <?php
+                                            if (!empty($technical_service_links)) {
+                                                foreach ($technical_service_links as $technical_service_link) {
+                                                    ?>
+                                                    <li>
+                                                        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/facility-management' ? 'active' : '' ?>">facility management</a>
                                         <ul class="dropdown-menu animated2 fadeInUp">
-                                            <li>
-                                                <?= Html::a('Electro Mechanical Services', ['/site/facility-management', 'page' => 'electro-mechanical-services'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('House Keeping Services', ['/site/facility-management', 'page' => 'house-keeping-services'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('General Maintenance', ['/site/facility-management', 'page' => 'general-maintenance'], ['class' => 'dropdown-item']) ?>
-                                            </li>
+                                            <?php
+                                            if (!empty($facility_service_links)) {
+                                                foreach ($facility_service_links as $facility_service_link) {
+                                                    ?>
+                                                    <li>
+                                                        <?= Html::a($facility_service_link->service, ['/site/facility-management', 'page' => $facility_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
                                     <li>
@@ -231,31 +234,32 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                                                 </li>
                                                 <li class="dropdown"> <a href="#"  data-toggle="dropdown" class="<?= $action == 'site/technical-service' ? 'active' : '' ?>">technical service</a>
                                                     <ul class="dropdown-menu animated2 fadeInUp">
-                                                        <li>
-                                                            <?= Html::a('Steel Fabrication', ['/site/technical-service', 'page' => 'steel-fabrication'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Architectural metal works and Gold plating', ['/site/technical-service', 'page' => 'metal-works-and-gold-plating'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Interior designing', ['/site/technical-service', 'page' => 'interior-designing'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Sealing and partitioning', ['/site/technical-service', 'page' => 'sealing-and-partitioning'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
+                                                        <?php
+                                                        if (!empty($technical_service_links)) {
+                                                            foreach ($technical_service_links as $technical_service_link) {
+                                                                ?>
+                                                                <li>
+                                                                    <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                                </li>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                     </ul>
                                                 </li>
                                                 <li class="dropdown"> <a href="#"  data-toggle="dropdown" class="<?= $action == 'site/facility-management' ? 'active' : '' ?>">facility management</a>
                                                     <ul class="dropdown-menu animated2 fadeInUp">
-                                                        <li>
-                                                            <?= Html::a('Electro Mechanical Services', ['/site/facility-management', 'page' => 'electro-mechanical-services'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('House Keeping Services', ['/site/facility-management', 'page' => 'house-keeping-services'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('General Maintenance', ['/site/facility-management', 'page' => 'general-maintenance'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
+                                                        <?php
+                                                        if (!empty($facility_service_links)) {
+                                                            foreach ($facility_service_links as $facility_service_link) {
+                                                                ?>
+                                                                <li>
+                                                                    <?= Html::a($facility_service_link->service, ['/site/facility-management', 'page' => $facility_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                                </li>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                     </ul>
                                                 </li>
                                                 <li>
@@ -335,7 +339,7 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                     </div>
                     <div class="col-lg-3">
                         <h2 class="f-head">Address</h2>
-                        <div class="f-address"><?= $contact_info->address ?></div>
+                        <div class="f-address"><?= $contact_info->addtess ?></div>
                         <div class="f-address f-phone"><small>General Trading</small><?= $contact_info->general_trading_phone ?></div>
                         <div class="f-address f-phone"><small>IT</small><?= $contact_info->it_phone ?></div>
                         <div class="f-address f-phone"><small>Facility Management</small><?= $contact_info->facility_management_phone ?></div>
@@ -346,6 +350,7 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
             </div>
         </footer><!--footer-->
         <section class="copyright"><!--copyright-->
+            <a href="#" class="scrollup" style="display: inline;">Scroll</a>
             <div class="container">
                 <p>Copyright © <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <b>Avensiauae.</b> All Rights Reserved</p>
             </div>

@@ -20,41 +20,66 @@ $this->title = 'General Trading';
             <div class="col-lg-4">
                 <div class="service-categories">
                     <div class="service-categories">
-                        <h2 class="head active"><a data-toggle="collapse"  href="#general-trading" role="button">general trading</a></h2>
+                        <h2 class="head active"><a data-toggle="collapse"  href="" role="button">general trading</a></h2>
                         <ul class="list-box collapse" id="general-trading">
-                            <li><a href="#">Medical   Consumables</a></li>
-                            <li><a href="#">Stationery Products </a></li>
-                            <li><a href="#">General disposables</a></li>
-                            <li><a href="#">Industrial spare parts</a></li>
-                            <li><a href="#">Safety Products</a></li>
+                            <?php
+                            if (!empty($general_trading_menus)) {
+                                foreach ($general_trading_menus as $general_trading_menu) {
+                                    ?>
+                                    <li>
+                                        <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    </li>
+                                    <?php
+                                }
+                            }
+                            ?>
                         </ul>
                     </div>
-                    <h2 class="head"><a data-toggle="collapse"  href="#IT-Services" role="button">IT Services</a></h2>
+                    <h2 class="head"><a data-toggle="collapse"  href="" role="button">IT Services</a></h2>
                     <ul class="list-box collapse" id="IT-Services">
-                        <li><a href="#">Networking </a></li>
-                        <li><a href="#">IP Telephonic System - pbx or pabx</a></li>
-                        <li><a href="#">Network switches </a></li>
-                        <li><a href="#">Wifi or network access point </a></li>
-                        <li><a href="#">Office IT equipments </a></li>
-                        <li><a href="#">IT equipments in dubai</a></li>
-                        <li><a href="#">CCTV reference </a></li>
+                        <?php
+                        if (!empty($it_service_menus)) {
+                            foreach ($it_service_menus as $it_service_menu) {
+                                ?>
+                                <li>
+                                    <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                </li>
+                                <?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="service-categories">
-                    <h2 class="head"><a data-toggle="collapse"  href="#technical-services" role="button">technical services</a></h2>
+                    <h2 class="head"><a data-toggle="collapse"  href="" role="button">technical services</a></h2>
                     <ul class="list-box collapse" id="technical-services">
-                        <li><a href="#">Steel Fabrication</a></li>
-                        <li><a href="#">Architectural metal works and Gold plating</a></li>
-                        <li><a href="#">Interior designing</a></li>
-                        <li><a href="#">Sealing and partitioning</a></li>
+                        <?php
+                        if (!empty($technical_service_menus)) {
+                            foreach ($technical_service_menus as $technical_service_menu) {
+                                ?>
+                                <li>
+                                    <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                </li>
+                                <?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="service-categories">
-                    <h2 class="head"><a data-toggle="collapse"  href="#facility-management" role="button">facility management</a></h2>
+                    <h2 class="head"><a data-toggle="collapse"  href="" role="button">facility management</a></h2>
                     <ul class="list-box collapse" id="facility-management">
-                        <li><a href="#">Electro  Mechanical Services</a></li>
-                        <li><a href="#">House Keeping Services</a></li>
-                        <li><a href="#">General Maintenance </a></li>
+                        <?php
+                        if (!empty($facility_service_menus)) {
+                            foreach ($facility_service_menus as $facility_service_menu) {
+                                ?>
+                                <li>
+                                    <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                </li>
+                                <?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>

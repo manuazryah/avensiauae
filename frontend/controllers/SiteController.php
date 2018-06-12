@@ -30,12 +30,12 @@ class SiteController extends Controller {
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
                 'rules' => [
-                    [
+                        [
                         'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
-                    [
+                        [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -219,6 +219,10 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionGeneralTrading($page = NULL) {
+        $general_trading_menus = \common\models\GeneralTrading::find()->where(['status' => 1])->all();
+        $it_service_menus = \common\models\ItSevices::find()->where(['status' => 1])->all();
+        $technical_service_menus = \common\models\TechnicalServices::find()->where(['status' => 1])->all();
+        $facility_service_menus = \common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
         if (!empty($page) && $page != '') {
             $general_traid = \common\models\GeneralTrading::find()->where(['canonical_name' => $page])->one();
         } else {
@@ -226,6 +230,10 @@ class SiteController extends Controller {
         }
         return $this->render('general-trading', [
                     'general_traid' => $general_traid,
+                    'general_trading_menus' => $general_trading_menus,
+                    'it_service_menus' => $it_service_menus,
+                    'technical_service_menus' => $technical_service_menus,
+                    'facility_service_menus' => $facility_service_menus,
         ]);
     }
 
@@ -235,13 +243,21 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionItService($page = NULL) {
+        $general_trading_menus = \common\models\GeneralTrading::find()->where(['status' => 1])->all();
+        $it_service_menus = \common\models\ItSevices::find()->where(['status' => 1])->all();
+        $technical_service_menus = \common\models\TechnicalServices::find()->where(['status' => 1])->all();
+        $facility_service_menus = \common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
         if (!empty($page) && $page != '') {
             $it_service = \common\models\ItSevices::find()->where(['canonical_name' => $page])->one();
         } else {
             $it_service = \common\models\ItSevices::find()->where(['id' => 1])->one();
         }
-        return $this->render('it',[
-            'it_service'=>$it_service,
+        return $this->render('it', [
+                    'it_service' => $it_service,
+                    'general_trading_menus' => $general_trading_menus,
+                    'it_service_menus' => $it_service_menus,
+                    'technical_service_menus' => $technical_service_menus,
+                    'facility_service_menus' => $facility_service_menus,
         ]);
     }
 
@@ -251,7 +267,22 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionTechnicalService($page = NULL) {
-        return $this->render('technical-service');
+        $general_trading_menus = \common\models\GeneralTrading::find()->where(['status' => 1])->all();
+        $it_service_menus = \common\models\ItSevices::find()->where(['status' => 1])->all();
+        $technical_service_menus = \common\models\TechnicalServices::find()->where(['status' => 1])->all();
+        $facility_service_menus = \common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
+        if (!empty($page) && $page != '') {
+            $technical_service = \common\models\TechnicalServices::find()->where(['canonical_name' => $page])->one();
+        } else {
+            $technical_service = \common\models\TechnicalServices::find()->where(['id' => 1])->one();
+        }
+        return $this->render('technical-service', [
+                    'technical_service' => $technical_service,
+                    'general_trading_menus' => $general_trading_menus,
+                    'it_service_menus' => $it_service_menus,
+                    'technical_service_menus' => $technical_service_menus,
+                    'facility_service_menus' => $facility_service_menus,
+        ]);
     }
 
     /**
@@ -260,7 +291,22 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionFacilityManagement($page = NULL) {
-        return $this->render('facility-management');
+        $general_trading_menus = \common\models\GeneralTrading::find()->where(['status' => 1])->all();
+        $it_service_menus = \common\models\ItSevices::find()->where(['status' => 1])->all();
+        $technical_service_menus = \common\models\TechnicalServices::find()->where(['status' => 1])->all();
+        $facility_service_menus = \common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
+        if (!empty($page) && $page != '') {
+            $facility_service = \common\models\FacilityManagementDetails::find()->where(['canonical_name' => $page])->one();
+        } else {
+            $facility_service = \common\models\FacilityManagementDetails::find()->where(['id' => 1])->one();
+        }
+        return $this->render('facility-management', [
+                    'facility_service' => $facility_service,
+                    'general_trading_menus' => $general_trading_menus,
+                    'it_service_menus' => $it_service_menus,
+                    'technical_service_menus' => $technical_service_menus,
+                    'facility_service_menus' => $facility_service_menus,
+        ]);
     }
 
     /**

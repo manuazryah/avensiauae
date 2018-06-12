@@ -8,17 +8,17 @@ use common\models\FacilityManagementDetailsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * FacilityManagementDetailsController implements the CRUD actions for FacilityManagementDetails model.
  */
-class FacilityManagementDetailsController extends Controller
-{
+class FacilityManagementDetailsController extends Controller {
+
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -33,14 +33,13 @@ class FacilityManagementDetailsController extends Controller
      * Lists all FacilityManagementDetails models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new FacilityManagementDetailsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -49,10 +48,9 @@ class FacilityManagementDetailsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
+    public function actionView($id) {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $this->findModel($id),
         ]);
     }
 
@@ -61,17 +59,78 @@ class FacilityManagementDetailsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new FacilityManagementDetails();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $image = UploadedFile::getInstance($model, 'image');
+            $partners_files = UploadedFile::getInstances($model, 'our_partners');
+            $project_gallery_files = UploadedFile::getInstances($model, 'project_gallery');
+            if (!empty($image)) {
+                $model->image = $image->extension;
+            }
+            if ($model->validate() && $model->save()) {
+                if (!empty($image)) {
+                    $path = Yii::$app->basePath . '/../uploads/facility_management_services/services/' . $model->id . '/';
+                    $size = [
+                            ['width' => 100, 'height' => 100, 'name' => 'small'],
+                            ['width' => 750, 'height' => 537, 'name' => 'image'],
+                    ];
+                    Yii::$app->UploadFile->UploadFile($model, $image, $path, $size);
+                }
+                if (!empty($partners_files)) {
+                    $this->Upload($partners_files, $model, 1);
+                }
+                if (!empty($project_gallery_files)) {
+                    $this->Upload($project_gallery_files, $model, 2);
+                }
+                Yii::$app->session->setFlash('success', "Facility Management added Successfully");
+                $model = new FacilityManagementDetails();
+            }
+        }return $this->render('create', [
+                    'model' => $model,
+        ]);
+    }
+
+    public function Upload($files, $model, $type) {
+        if ($files != '' && $model != '') {
+            if ($type == 1) {
+                $folder = 'partners';
+            } else {
+                $folder = 'project_gallery';
+            }
+            $paths = Yii::$app->basePath . '/../uploads/facility_management_services/' . $folder . '/' . $model->id;
+            $path = $this->CheckPath($paths);
+            foreach ($files as $file) {
+                $name = $this->fileExists($path, $file->baseName . '.' . $file->extension, $file, 1);
+                $file->saveAs($path . '/' . $name);
+            }
         }
+        return TRUE;
+    }
+
+    public function CheckPath($paths) {
+        if (!is_dir($paths)) {
+            mkdir($paths);
+        }
+        return $paths;
+    }
+
+    public function fileExists($path, $name, $file, $sufix) {
+        if (file_exists($path . '/' . $name)) {
+
+            $name = basename($path . '/' . $file->baseName, '.' . $file->extension) . '_' . $sufix . '.' . $file->extension;
+            return $this->fileExists($path, $name, $file, $sufix + 1);
+        } else {
+            return $name;
+        }
+    }
+
+    public function actionRemove($path) {
+        if (file_exists($path)) {
+            unlink($path);
+        }
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     /**
@@ -80,17 +139,41 @@ class FacilityManagementDetailsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
+        $image_ = $model->image;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
+            $image = UploadedFile::getInstance($model, 'image');
+            $partners_files = UploadedFile::getInstances($model, 'our_partners');
+            $project_gallery_files = UploadedFile::getInstances($model, 'project_gallery');
+            if (!empty($image))
+                $model->image = $image->extension;
+            else
+                $model->image = $image_;
+            if ($model->validate() && $model->save()) {
+                if (!empty($image)) {
+                    $path = Yii::$app->basePath . '/../uploads/facility_management_services/services/' . $model->id . '/';
+                    $size = [
+                            ['width' => 100, 'height' => 100, 'name' => 'small'],
+                            ['width' => 750, 'height' => 537, 'name' => 'image'],
+                    ];
+                    Yii::$app->UploadFile->UploadFile($model, $image, $path, $size);
+                }
+                if (!empty($partners_files)) {
+                    $this->Upload($partners_files, $model, 1);
+                }
+                if (!empty($project_gallery_files)) {
+                    $this->Upload($project_gallery_files, $model, 2);
+                }
+            }
+            Yii::$app->session->setFlash('success', "Facility Management updated Successfully");
+            return $this->redirect(['update', 'id' => $model->id]);
         }
+
+        return $this->render('update', [
+                    'model' => $model,
+        ]);
     }
 
     /**
@@ -99,8 +182,7 @@ class FacilityManagementDetailsController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -113,12 +195,12 @@ class FacilityManagementDetailsController extends Controller
      * @return FacilityManagementDetails the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = FacilityManagementDetails::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

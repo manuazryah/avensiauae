@@ -32,14 +32,36 @@ $this->title = 'Contact Us';
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="location">
                                     <h2 class="head"><?= $contact_address->address_title ?></h2>
-                                    <div class="sub-box"><p><b>TEL:</b> <?= $contact_address->address_title ?></p>
-                                        <p><b>FAX:</b> <?= $contact_address->fax ?></p>
-                                        <p><b>P.O. Box:</b> <?= $contact_address->po_box ?></p>
-                                        <p><?= $contact_address->address ?></p>
+                                    <div class="sub-box">
+                                        <?php if ($contact_address->telephone != '') { ?>
+                                            <p><b>TEL:</b> <?= $contact_address->telephone ?></p>
+                                        <?php }
+                                        ?>
+                                        <?php if ($contact_address->fax != '') { ?>
+                                            <p><b>FAX:</b> <?= $contact_address->fax ?></p>
+                                        <?php }
+                                        ?>
+                                        <?php if ($contact_address->po_box != '') { ?>
+                                            <p><b>P.O.BOX:</b> <?= $contact_address->po_box ?></p>
+                                        <?php }
+                                        ?>
+                                        <?php if ($contact_address->address != '') { ?>
+                                            <p><?= $contact_address->address ?></p>
+                                        <?php }
+                                        ?>
                                     </div>
-                                    <h2 class="head">Contact Person</h2>
-                                    <p><span>Tech Solutions LLC:</span><br> <?= $contact_address->tech_solution_phone ?></p>
-                                    <p><span>General Trading: </span><br> <?= $contact_address->general_trading_phone ?></p>
+                                    <?php if ($contact_address->tech_solution_phone != '' || $contact_address->general_trading_phone) { ?>
+                                        <h2 class="head">Contact Person</h2>
+                                        <?php if ($contact_address->tech_solution_phone != '') { ?>
+                                            <p><span>Tech Solutions LLC:</span><br> <?= $contact_address->tech_solution_phone ?></p>
+                                        <?php }
+                                        ?>
+                                        <?php if ($contact_address->general_trading_phone != '') { ?>
+                                            <p><span>General Trading: </span><br> <?= $contact_address->general_trading_phone ?></p>
+                                        <?php }
+                                        ?>
+                                    <?php }
+                                    ?>
                                 </div>
                             </div>
                             <?php
@@ -56,7 +78,7 @@ $this->title = 'Contact Us';
         <div class="main-head">
             <h2 class="head">online enquiry</h2>
             <small class="small-text">contact form</small> </div>
-        <?php // \common\widgets\Alert::widget(); ?>
+        <?php // \common\widgets\Alert::widget();  ?>
         <?php
         $form = ActiveForm::begin(['id' => 'contact-form', 'options' => [
                         'class' => 'form-theme'
