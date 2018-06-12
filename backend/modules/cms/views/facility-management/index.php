@@ -24,7 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="panel-body">
 					<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-					<?= Html::a('<i class="fa-th-list"></i><span> Create Facility Management</span>', ['create'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
 					<?=
 					GridView::widget([
 					    'dataProvider' => $dataProvider,

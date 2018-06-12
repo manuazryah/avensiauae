@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ItSevicesSearch */
+/* @var $model common\models\ContactInfoSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="it-sevices-search">
+<div class="contact-info-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -17,19 +17,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'service') ?>
+    <?= $form->field($model, 'email') ?>
 
-    <?= $form->field($model, 'canonical_name') ?>
+    <?= $form->field($model, 'general_trading_phone') ?>
 
-    <?= $form->field($model, 'main_content') ?>
+    <?= $form->field($model, 'it_phone') ?>
 
-    <?= $form->field($model, 'image') ?>
+    <?= $form->field($model, 'facility_management_phone') ?>
 
-    <?php // echo $form->field($model, 'sub_title') ?>
-
-    <?php // echo $form->field($model, 'sub_content') ?>
-
-    <?php // echo $form->field($model, 'equipment_list') ?>
+    <?php // echo $form->field($model, 'addtess') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 
@@ -38,8 +34,6 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'UB') ?>
 
     <?php // echo $form->field($model, 'DOC') ?>
-
-    <?php // echo $form->field($model, 'DOU') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'dataProvider' => $dataProvider,
                         'filterModel' => $searchModel,
                         'columns' => [
-                                ['class' => 'yii\grid\SerialColumn'],
+                            ['class' => 'yii\grid\SerialColumn'],
 //                                                            'id',
                             [
                                 'attribute' => 'image',
@@ -39,8 +39,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 },
                             ],
                             'title',
-//                            'description:ntext',
-                            'alt_tag',
+                            [
+                                'attribute' => 'description',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    return wordwrap($data->description, 80, "<br />\n");
+                                },
+                            ],
+//                            'alt_tag',
                             // 'status',
                             // 'CB',
                             // 'UB',

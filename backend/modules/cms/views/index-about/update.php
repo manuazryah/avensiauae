@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\ItSevices */
+/* @var $model common\models\IndexAbout */
 
-$this->title = 'Update It Sevices: ' . $model->service;
-$this->params['breadcrumbs'][] = ['label' => 'It Sevices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->title = 'UpdateAbout Content';
+$this->params['breadcrumbs'][] = ['label' => 'About Content', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="row">
@@ -20,8 +20,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
                         </div>
                         <div class="panel-body">
-				<?=  Html::a('<i class="fa-th-list"></i><span> Manage It Sevices</span>', ['index'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
-                                <div class="panel-body"><div class="it-sevices-create">
+                                <div class="panel-body"><div class="index-about-create">
 						<?= $this->render('_form', [
                                                 'model' => $model,
                                                 ]) ?>

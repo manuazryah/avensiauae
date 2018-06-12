@@ -12,45 +12,68 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="it-sevices-index">
 
-        <div class="row">
-                <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
-                        <div class="panel panel-default">
-                                <div class="panel-heading">
-                                        <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
 
 
-                                </div>
-                                <div class="panel-body">
-                                                                                            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-                                        
-                                        <?=  Html::a('<i class="fa-th-list"></i><span> Create It Sevices</span>', ['create'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
-                                                                                                                                                        <?= GridView::widget([
-                                                'dataProvider' => $dataProvider,
-                                                'filterModel' => $searchModel,
-        'columns' => [
-                                                ['class' => 'yii\grid\SerialColumn'],
-
-                                                            'id',
-            'type',
-            'main_content:ntext',
-            'image',
-            'sub_title',
-            // 'sub_content:ntext',
-            // 'equipment_list:ntext',
-            // 'status',
-            // 'CB',
-            // 'UB',
-            // 'DOC',
-            // 'DOU',
-
-                                                ['class' => 'yii\grid\ActionColumn'],
-                                                ],
-                                                ]); ?>
-                                                                                                                </div>
-                        </div>
                 </div>
+                <div class="panel-body">
+                    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+                    <?=
+                    GridView::widget([
+                        'dataProvider' => $dataProvider,
+                        'filterModel' => $searchModel,
+                        'columns' => [
+                            ['class' => 'yii\grid\SerialColumn'],
+//                                                            'id',
+                            [
+                                'attribute' => 'image',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    if ($data->image != '') {
+                                        $dirPath = Yii::getAlias(Yii::$app->params['uploadPath']) . '/../uploads/it/services/' . $data->id . '/small.' . $data->image;
+                                        if (file_exists($dirPath)) {
+                                            $img = '<img width="120px" src="' . Yii::$app->homeUrl . '../uploads/it/services/' . $data->id . '/small.' . $data->image . '"/>';
+                                        } else {
+                                            $img = 'No Image';
+                                        }
+                                    } else {
+                                        $img = 'No Image';
+                                    }
+                                    return $img;
+                                },
+                            ],
+                            'service',
+//                            'canonical_name',
+                            [
+                                'attribute' => 'main_content',
+                                'format' => 'raw',
+                                'value' => function ($data) {
+                                    return wordwrap($data->main_content, 50, "<br />\n");
+                                },
+                            ],
+                            // 'sub_title',
+                            // 'sub_content:ntext',
+                            // 'equipment_list:ntext',
+                            // 'status',
+                            // 'CB',
+                            // 'UB',
+                            // 'DOC',
+                            // 'DOU',
+                            ['class' => 'yii\grid\ActionColumn',
+						    'template' => '{update}'],
+                        ],
+                    ]);
+                    ?>
+                </div>
+            </div>
         </div>
+    </div>
 </div>
 
 

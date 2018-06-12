@@ -17,8 +17,6 @@ class AppAsset extends AssetBundle {
         'css/bootstrap.min.css',
         'css/fonts/awesome/css/font-awesome.css',
         'css/animate.css',
-        'css/slick.css',
-        'css/slick-theme.css',
     ];
     public $js = [
 //        'js/jquery-min.js',

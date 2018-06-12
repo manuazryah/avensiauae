@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\ItSevices;
+use common\models\IndexAbout;
 
 /**
- * ItSevicesSearch represents the model behind the search form about `common\models\ItSevices`.
+ * IndexAboutSearch represents the model behind the search form about `common\models\IndexAbout`.
  */
-class ItSevicesSearch extends ItSevices
+class IndexAboutSearch extends IndexAbout
 {
     /**
      * @inheritdoc
@@ -19,7 +19,7 @@ class ItSevicesSearch extends ItSevices
     {
         return [
             [['id', 'status', 'CB', 'UB'], 'integer'],
-            [['service', 'canonical_name', 'main_content', 'image', 'sub_title', 'sub_content', 'equipment_list', 'DOC', 'DOU'], 'safe'],
+            [['title', 'content', 'DOC', 'DOU'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ItSevicesSearch extends ItSevices
      */
     public function search($params)
     {
-        $query = ItSevices::find();
+        $query = IndexAbout::find();
 
         // add conditions that should always apply here
 
@@ -67,13 +67,8 @@ class ItSevicesSearch extends ItSevices
             'DOU' => $this->DOU,
         ]);
 
-        $query->andFilterWhere(['like', 'service', $this->service])
-            ->andFilterWhere(['like', 'canonical_name', $this->canonical_name])
-            ->andFilterWhere(['like', 'main_content', $this->main_content])
-            ->andFilterWhere(['like', 'image', $this->image])
-            ->andFilterWhere(['like', 'sub_title', $this->sub_title])
-            ->andFilterWhere(['like', 'sub_content', $this->sub_content])
-            ->andFilterWhere(['like', 'equipment_list', $this->equipment_list]);
+        $query->andFilterWhere(['like', 'title', $this->title])
+            ->andFilterWhere(['like', 'content', $this->content]);
 
         return $dataProvider;
     }

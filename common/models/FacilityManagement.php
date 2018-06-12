@@ -34,7 +34,7 @@ class FacilityManagement extends \yii\db\ActiveRecord {
 			[['description'], 'string'],
 			[['status', 'CB', 'UB'], 'integer'],
 			[['DOC', 'DOU'], 'safe'],
-			[['title', 'description'], 'required'],
+			[['title', 'description','canonical_name'], 'required'],
 			[['title', 'image'], 'string', 'max' => 100],
 			[['image'], 'required', 'on' => 'create'],
 			[['image'], 'file', 'extensions' => 'jpg, png,jpeg'],

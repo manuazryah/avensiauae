@@ -2,14 +2,15 @@
 
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\ItSevices */
 
-$this->title = 'Update It Sevices: ' . $model->service;
-$this->params['breadcrumbs'][] = ['label' => 'It Sevices', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+/* @var $this yii\web\View */
+/* @var $model common\models\ContactInfo */
+
+$this->title = 'Create Contact Info';
+$this->params['breadcrumbs'][] = ['label' => 'Contact Infos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="row">
         <div class="col-md-12">
 
@@ -17,12 +18,11 @@ $this->params['breadcrumbs'][] = 'Update';
                         <div class="panel-heading">
                                 <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
 
-
                         </div>
                         <div class="panel-body">
-				<?=  Html::a('<i class="fa-th-list"></i><span> Manage It Sevices</span>', ['index'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
-                                <div class="panel-body"><div class="it-sevices-create">
-						<?= $this->render('_form', [
+                                <?=  Html::a('<i class="fa-th-list"></i><span> Manage Contact Info</span>', ['index'], ['class' => 'btn btn-warning  btn-icon btn-icon-standalone']) ?>
+                                <div class="panel-body"><div class="contact-info-create">
+                                                <?= $this->render('_form', [
                                                 'model' => $model,
                                                 ]) ?>
                                         </div>
@@ -31,3 +31,4 @@ $this->params['breadcrumbs'][] = 'Update';
                 </div>
         </div>
 </div>
+                

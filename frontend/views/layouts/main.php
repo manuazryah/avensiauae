@@ -7,6 +7,7 @@ use frontend\assets\AppAsset;
 
 AppAsset::register($this);
 $general_tradings = common\models\GeneralTrading::find()->where(['status' => 1])->all();
+$it_service_links = common\models\ItSevices::find()->where(['status' => 1])->all();
 $contact_info = \common\models\ContactAddress::find()->where(['default_address' => 1])->one();
 ?>
 <?php $this->beginPage() ?>
@@ -123,27 +124,17 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' ? 'active' : '' ?>">IT</a>
                                         <ul class="dropdown-menu animated2 fadeInUp">
-                                            <li>
-                                                <?= Html::a('Networking', ['/site/it', 'page' => 'networking'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('IP Telephonic System - pbx or pabx ', ['/site/it', 'page' => 'ip-telephonic-system'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Network switches', ['/site/it', 'page' => 'network-switches'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Wifi or network access point', ['/site/it', 'page' => 'wifi-network-access-point'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('Office IT equipments', ['/site/it', 'page' => 'office-it-equipments'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('IT equipments in dubai', ['/site/it', 'page' => 'it-equipments-dubai'], ['class' => 'dropdown-item']) ?>
-                                            </li>
-                                            <li>
-                                                <?= Html::a('CCTV reference', ['/site/it', 'page' => 'cctv-reference'], ['class' => 'dropdown-item']) ?>
-                                            </li>
+                                            <?php
+                                            if (!empty($it_service_links)) {
+                                                foreach ($it_service_links as $it_service_link) {
+                                                    ?>
+                                                    <li>
+                                                        <?= Html::a($it_service_link->service, ['/site/it-service', 'page' => $it_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                    </li>
+                                                    <?php
+                                                }
+                                            }
+                                            ?>
                                         </ul>
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/technical-service' ? 'active' : '' ?>">technical service</a>
@@ -225,27 +216,17 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                                                 </li>
                                                 <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' ? 'active' : '' ?>">IT</a>
                                                     <ul class="dropdown-menu animated2 fadeInUp">
-                                                        <li>
-                                                            <?= Html::a('Networking', ['/site/it', 'page' => 'networking'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('IP Telephonic System - pbx or pabx ', ['/site/it', 'page' => 'ip-telephonic-system'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Network switches', ['/site/it', 'page' => 'network-switches'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Wifi or network access point', ['/site/it', 'page' => 'wifi-network-access-point'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('Office IT equipments', ['/site/it', 'page' => 'office-it-equipments'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('IT equipments in dubai', ['/site/it', 'page' => 'it-equipments-dubai'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
-                                                        <li>
-                                                            <?= Html::a('CCTV reference', ['/site/it', 'page' => 'cctv-reference'], ['class' => 'dropdown-item']) ?>
-                                                        </li>
+                                                        <?php
+                                                        if (!empty($it_service_links)) {
+                                                            foreach ($it_service_links as $it_service_link) {
+                                                                ?>
+                                                                <li>
+                                                                    <?= Html::a($it_service_link->service, ['/site/it-service', 'page' => $it_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                                </li>
+                                                                <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                     </ul>
                                                 </li>
                                                 <li class="dropdown"> <a href="#"  data-toggle="dropdown" class="<?= $action == 'site/technical-service' ? 'active' : '' ?>">technical service</a>
@@ -341,7 +322,7 @@ $contact_info = \common\models\ContactAddress::find()->where(['default_address' 
                                 <?= Html::a('General trading', ['/site/general-trading']) ?>
                             </li>
                             <li>
-                                <?= Html::a('IT', ['/site/it']) ?>
+                                <?= Html::a('IT', ['/site/it-service']) ?>
                             </li>
                             <li>
                                 <?= Html::a('Technical Service', ['/site/technical-service']) ?>
