@@ -16,21 +16,38 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
     <head>
+        <!-- Google Analytics -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                        m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-XXXX-Y', 'auto');
+            ga('send', 'pageview');
+
+        </script>
+        <!-- End Google Analytics -->
         <meta charset="<?= Yii::$app->charset ?>">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="robots" content="noindex,nofollow">
-        <title>Avensia Group</title>
         <link rel="shortcut icon" href="<?= yii::$app->homeUrl; ?>images/favicon.png">
-        <script src="<?= Yii::$app->homeUrl ?>js/jquery-min.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noindex,nofollow">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
+        <script src="<?= Yii::$app->homeUrl ?>js/jquery-min.js"></script>
+<?php $this->head() ?>
     </head>
     <body>
-        <?php $this->beginBody() ?>
-        <?php $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id; // controller action id   ?>
+<?php $this->beginBody() ?>
+<?php $action = Yii::$app->controller->id . '/' . Yii::$app->controller->action->id; // controller action id    ?>
         <header class="header"><!--header-->
             <!--head-top-section-->
             <section class="top-section"><!--top-section-->
@@ -44,11 +61,11 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                 <div class="top-link">
                                     <ul>
                                         <li>
-                                            <?= Html::a('Blog', ['/site/blog']) ?>
+<?= Html::a('Blog', ['/site/blog']) ?>
                                         </li>
                                         <li><span>|</span></li>
                                         <li>
-                                            <?= Html::a('Sitemap', ['/site/sitemap']) ?>
+<?= Html::a('Sitemap', ['/site/sitemap']) ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,22 +89,22 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                     <div class="row">
                         <div class="col-sm-4">
                             <h1 class="logo">
-                                <?= Html::a('<img src="' . yii::$app->homeUrl . 'images/logo.png" alt="Avensia Group" title="Avensia Group" class="img-fluid">', ['/site/index']) ?>
+<?= Html::a('<img src="' . yii::$app->homeUrl . 'images/logo.png" alt="Avensia Group" title="Avensia Group" class="img-fluid">', ['/site/index']) ?>
                             </h1>
                         </div>
                         <div class="col-sm-8">
                             <div class="top-contat">
                                 <div class="phone"> <small class="small">Facility Management</small>
-                                    <h2 class="head-text"><?= $contact_info->facility_management_phone ?></h2>
+                                    <h3 class="head-text"><?= $contact_info->facility_management_phone ?></h3>
                                 </div>
                                 <div class="phone"> <small class="small">IT</small>
-                                    <h2 class="head-text"><?= $contact_info->it_phone ?></h2>
+                                    <h3 class="head-text"><?= $contact_info->it_phone ?></h3>
                                 </div>
                                 <div class="phone border-left"> <small class="small">General Trading</small>
-                                    <h2 class="head-text"><?= $contact_info->general_trading_phone ?></h2>
+                                    <h3 class="head-text"><?= $contact_info->general_trading_phone ?></h3>
                                 </div>
                                 <div class="mail"> <small class="small">Email:</small>
-                                    <h2 class="head-text"><?= $contact_info->email ?></h2>
+                                    <h3 class="head-text"><?= $contact_info->email ?></h3>
                                 </div>
                             </div>
                         </div>
@@ -104,10 +121,10 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav">
                                     <li>
-                                        <?= Html::a('Home', ['/site/index'], ['class' => $action == 'site/index' ? 'active' : '']) ?>
+                                            <?= Html::a('Home', ['/site/index'], ['class' => $action == 'site/index' ? 'active' : '']) ?>
                                     </li>
                                     <li>
-                                        <?= Html::a('About Us', ['/site/about'], ['class' => $action == 'site/about' ? 'active' : '']) ?>
+                                            <?= Html::a('About Us', ['/site/about'], ['class' => $action == 'site/about' ? 'active' : '']) ?>
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/general-trading' ? 'active' : '' ?>">General trading</a>
                                         <ul class="dropdown-menu animated2 fadeInUp">
@@ -116,7 +133,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                 foreach ($general_tradings as $general_trading) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
                                                     <?php
                                                 }
@@ -131,7 +148,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                 foreach ($it_service_links as $it_service_link) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($it_service_link->service, ['/site/it-service', 'page' => $it_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($it_service_link->service, ['/site/it-service', 'page' => $it_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
                                                     <?php
                                                 }
@@ -146,7 +163,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                 foreach ($technical_service_links as $technical_service_link) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
                                                     <?php
                                                 }
@@ -161,19 +178,19 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                 foreach ($facility_service_links as $facility_service_link) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($facility_service_link->service, ['/site/facility-management', 'page' => $facility_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($facility_service_link->service, ['/site/facility-management', 'page' => $facility_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
-                                                    <?php
-                                                }
+                                                <?php
                                             }
-                                            ?>
+                                        }
+                                        ?>
                                         </ul>
                                     </li>
                                     <li>
-                                        <?= Html::a('gallery', ['/site/gallery'], ['class' => $action == 'site/gallery' ? 'active' : '']) ?>
+<?= Html::a('gallery', ['/site/gallery'], ['class' => $action == 'site/gallery' ? 'active' : '']) ?>
                                     </li>
                                     <li>
-                                        <?= Html::a('Contact', ['/site/contact'], ['class' => $action == 'site/contact' ? 'active' : '']) ?>
+<?= Html::a('Contact', ['/site/contact'], ['class' => $action == 'site/contact' ? 'active' : '']) ?>
                                     </li>
                                 </ul>
                             </div>
@@ -197,10 +214,10 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                         <div class="collapse navbar-collapse" id="navbarNavDropdown2">
                                             <ul class="navbar-nav">
                                                 <li>
-                                                    <?= Html::a('Home', ['/site/index'], ['class' => $action == 'site/index' ? 'active' : '']) ?>
+                                                        <?= Html::a('Home', ['/site/index'], ['class' => $action == 'site/index' ? 'active' : '']) ?>
                                                 </li>
                                                 <li>
-                                                    <?= Html::a('About Us', ['/site/about'], ['class' => $action == 'site/about' ? 'active' : '']) ?>
+                                                        <?= Html::a('About Us', ['/site/about'], ['class' => $action == 'site/about' ? 'active' : '']) ?>
                                                 </li>
                                                 <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/general-trading' ? 'active' : '' ?>">General trading</a>
                                                     <ul class="dropdown-menu animated2 fadeInUp">
@@ -209,7 +226,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                             foreach ($general_tradings as $general_trading) {
                                                                 ?>
                                                                 <li>
-                                                                    <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
                                                                 </li>
                                                                 <?php
                                                             }
@@ -224,7 +241,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                             foreach ($it_service_links as $it_service_link) {
                                                                 ?>
                                                                 <li>
-                                                                    <?= Html::a($it_service_link->service, ['/site/it-service', 'page' => $it_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($it_service_link->service, ['/site/it-service', 'page' => $it_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                                 </li>
                                                                 <?php
                                                             }
@@ -239,7 +256,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                             foreach ($technical_service_links as $technical_service_link) {
                                                                 ?>
                                                                 <li>
-                                                                    <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                                 </li>
                                                                 <?php
                                                             }
@@ -254,19 +271,19 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                             foreach ($facility_service_links as $facility_service_link) {
                                                                 ?>
                                                                 <li>
-                                                                    <?= Html::a($facility_service_link->service, ['/site/facility-management', 'page' => $facility_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+        <?= Html::a($facility_service_link->service, ['/site/facility-management', 'page' => $facility_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                                 </li>
-                                                                <?php
-                                                            }
+                                                            <?php
                                                         }
-                                                        ?>
+                                                    }
+                                                    ?>
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <?= Html::a('gallery', ['/site/gallery'], ['class' => $action == 'site/gallery' ? 'active' : '']) ?>
+<?= Html::a('gallery', ['/site/gallery'], ['class' => $action == 'site/gallery' ? 'active' : '']) ?>
                                                 </li>
                                                 <li>
-                                                    <?= Html::a('Contact', ['/site/contact'], ['class' => $action == 'site/contact' ? 'active' : '']) ?>
+<?= Html::a('Contact', ['/site/contact'], ['class' => $action == 'site/contact' ? 'active' : '']) ?>
                                                 </li>
                                             </ul>
                                         </div>
@@ -280,7 +297,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
             <!--fixed-top header-->
             <!--nav-section-->
         </header>
-        <?= $content ?>
+<?= $content ?>
 
         <footer class="footer"><!--footer-->
             <div class="container">
@@ -302,43 +319,43 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                         </div>
                     </div>
                     <div class="col-lg-2">
-                        <h2 class="f-head">useful links</h2>
+                        <h3 class="f-head">useful links</h3>
                         <ul class="f-list">
                             <li>
-                                <?= Html::a('HOME', ['/site/index']) ?>
+<?= Html::a('HOME', ['/site/index']) ?>
                             </li>
                             <li>
-                                <?= Html::a('ABOUT', ['/site/about']) ?>
+<?= Html::a('ABOUT', ['/site/about']) ?>
                             </li>
                             <li>
-                                <?= Html::a('GALLERY', ['/site/gallery']) ?>
+<?= Html::a('GALLERY', ['/site/gallery']) ?>
                             </li>
                             <li>
-                                <?= Html::a('CONTACT', ['/site/contact']) ?>
+<?= Html::a('CONTACT', ['/site/contact']) ?>
                             </li>
                         </ul>
 
                     </div>
                     <div class="col-lg-3">
-                        <h2 class="f-head">Our Services</h2>
+                        <h3 class="f-head">Our Services</h3>
                         <ul class="f-list">
                             <li>
-                                <?= Html::a('General trading', ['/site/general-trading']) ?>
+<?= Html::a('General trading', ['/site/general-trading']) ?>
                             </li>
                             <li>
-                                <?= Html::a('IT', ['/site/it-service']) ?>
+<?= Html::a('IT', ['/site/it-service']) ?>
                             </li>
                             <li>
-                                <?= Html::a('Technical Service', ['/site/technical-service']) ?>
+<?= Html::a('Technical Service', ['/site/technical-service']) ?>
                             </li>
                             <li>
-                                <?= Html::a('Facility Management', ['/site/facility-management']) ?>
+<?= Html::a('Facility Management', ['/site/facility-management']) ?>
                             </li>
                         </ul>
 
                     </div>
                     <div class="col-lg-3">
-                        <h2 class="f-head">Address</h2>
+                        <h3 class="f-head">Address</h3>
                         <div class="f-address"><?= $contact_info->addtess ?></div>
                         <div class="f-address f-phone"><small>General Trading</small><?= $contact_info->general_trading_phone ?></div>
                         <div class="f-address f-phone"><small>IT</small><?= $contact_info->it_phone ?></div>
@@ -350,13 +367,13 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
             </div>
         </footer><!--footer-->
         <section class="copyright"><!--copyright-->
-            <a href="#" class="scrollup" style="display: inline;">Scroll</a>
+            <a href="#" class="scrollup">Scroll</a>
             <div class="container">
                 <p>Copyright © <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <b>Avensiauae.</b> All Rights Reserved</p>
             </div>
         </section>
 
-        <?php $this->endBody() ?>
+<?php $this->endBody() ?>
         <script type="text/javascript">
             $(document).ready(function () {
 
@@ -374,6 +391,12 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                     $("html, body").animate({scrollTop: 0}, 1000);
                     return false;
                 });
+
+            });
+        </script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed: 'normal', theme: 'light_square', slideshow: 2000, autoplay_slideshow: true});
 
             });
         </script>

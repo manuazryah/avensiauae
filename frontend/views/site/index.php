@@ -8,6 +8,11 @@ $arr1 = array(1, 2, 3);
 $arr2 = array(4, 5);
 $general_trading1 = common\models\GeneralTrading::find()->where(['id' => $arr1])->all();
 $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])->all();
+if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
+    $this->title = $meta_tags->meta_title;
+} else {
+    $this->title = 'Avensia Home';
+}
 ?>
 <section class="banner">
     <div id="demo" class="carousel slide" data-ride="carousel">
@@ -37,19 +42,19 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                 <div class="col-sm-4 boder-right">
                     <div class="cont-box">
                         <div class="icon"></div>
-                        <h2 class="head-style">Avensia General</h2>
+                        <h1 class="head-style">Avensia General</h1>
                         <small class="sub-text">Trading LLC</small> </div>
                 </div>
                 <div class="col-sm-4 boder-right">
                     <div class="cont-box">
                         <div class="icon icon2"></div>
-                        <h2 class="head-style">Avensia Tech </h2>
+                        <h4 class="head-style">Avensia Tech </h4>
                         <small class="sub-text">Solutions LLC</small> </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="cont-box boder-none">
                         <div class="icon icon3"></div>
-                        <h2 class="head-style">Avensia Facility </h2>
+                        <h4 class="head-style">Avensia Facility </h4>
                         <small class="sub-text">Management PVT LTD (IND)</small> </div>
                 </div>
             </div>
@@ -61,7 +66,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
     <section class="home-welcome-section"><!--home-welcome-section-->
         <div class="container">
             <div class="welcome-cont-box"> <small class="small">WELCOME TO THE</small>
-                <h2 class="head-text"><?= $about_content->title ?></h2>
+                <h4 class="head-text"><?= $about_content->title ?></h4>
                 <?= $about_content->content ?>
             </div>
         </div>
@@ -72,7 +77,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
 <section class="home-general-trading-section"><!--home-general-trading-section-->
     <div class="container">
         <div class="main-head">
-            <h2 class="head">General trading</h2>
+            <h4 class="head">General trading</h4>
             <small class="small-text">what we provide</small> </div>
         <div class="row">
             <?php
@@ -146,7 +151,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                                         if ($it_service != '') {
                                             ?>
                                             <li>
-                                                <?= Html::a($it_service , ['/site/it-service'], ['class' => '']) ?>
+                                                <?= Html::a($it_service, ['/site/it-service'], ['class' => '']) ?>
                                             </li>
                                             <?php
                                         }
@@ -173,7 +178,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                                         if ($it_service != '') {
                                             ?>
                                             <li>
-                                                <?= Html::a($technical_service , ['/site/technical-service'], ['class' => '']) ?>
+                                                <?= Html::a($technical_service, ['/site/technical-service'], ['class' => '']) ?>
                                             </li>
                                             <?php
                                         }
@@ -209,9 +214,9 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                         }
                         ?>
                         <div class="col-md-4">
-                            <div class="facility-box"> 
+                            <div class="facility-box">
                                 <img src="<?= yii::$app->homeUrl; ?>uploads/facility_management/<?= $facility_management->id ?>/<?= $facility_management->id ?>.<?= $facility_management->image ?>" class="img-fluid" alt="<?= $facility_management->canonical_name ?>" title="">
-                                <div class="head-box"> 
+                                <div class="head-box">
                                     <?= Html::a('<div class="' . $class3 . '"><small class="small">' . $facility_management->title . '</small></div>', ['/site/facility-management', 'page' => $facility_management->canonical_name], ['class' => '']) ?>
                                 </div>
                             </div>
@@ -258,7 +263,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
 <section class="home-blog"><!--home-blog-->
     <div class="container">
         <div class="main-head">
-            <h2 class="head">Our Blog</h2>
+            <h4 class="head">Our Blog</h4>
             <small class="small-text">Our Blog</small> </div>
         <div class="row">
             <?php
@@ -270,7 +275,7 @@ $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])
                             <div class="main-blog-box"> <img src="<?= yii::$app->homeUrl; ?>uploads/blog/<?= $blog->id ?>/<?= $blog->id ?>.<?= $blog->image ?>" alt="<?= $blog->blog_heading ?>" class="img-fluid">
                                 <div class="cont-box">
                                     <div class="date-box">
-                                        <h2 class="d-head"><?= date("d", strtotime($blog->blog_date)); ?></h2>
+                                        <h5 class="d-head"><?= date("d", strtotime($blog->blog_date)); ?></h5>
                                         <b class="b-text"><?= date("M Y", strtotime($blog->blog_date)); ?></b> </div>
                                     <h3 class="head-text"><?= $blog->blog_heading ?></h3>
                                     <p class="text"><?= $blog->small_description ?></p>

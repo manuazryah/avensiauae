@@ -1363,3 +1363,9 @@ input[type=checkbox], input[type=radio] {
     font-size: 16px;
     color: red;
 }
+.news-img {
+    border: 1px solid #e4dede;
+}
+.img-box {
+    margin: 10px 0px;
+}

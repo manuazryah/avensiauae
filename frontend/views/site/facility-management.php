@@ -5,7 +5,6 @@ use yii\helpers\Html;
 
 $this->title = 'Facility Management';
 ?>
-<link rel="stylesheet" href="<?= yii::$app->homeUrl; ?>css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
 <section class="in-banner"><!--in-banner-->
     <div class="container">
         <div class="banner-cont">
@@ -135,8 +134,37 @@ $this->title = 'Facility Management';
                     }
                     ?>
                     <div class="clear"></div>
-                    <h3 class="service-head">Our Brands</h3>
-                    <div class="brands"><img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid"></div>
+                    <?php
+                    $path1 = Yii::getAlias('@paths') . '/facility_management_services/partners/' . $facility_service->id;
+                    if (count(glob("{$path1}/*")) > 0) {
+                        ?>
+                        <h3 class="service-head">Our Brands</h3>
+                        <div class="brands">
+                            <div class="row">
+                                <?php
+                                $k = 0;
+                                foreach (glob("{$path1}/*") as $file) {
+                                    $k++;
+                                    $arry = explode('/', $file);
+                                    $img_nmee = end($arry);
+
+                                    $img_nmees = explode('.', $img_nmee);
+                                    if ($img_nmees['1'] != '') {
+                                        ?>
+                                        <div class="col-md-4">
+                                            <div class="brand-box">
+                                                <img src="<?= Yii::$app->homeUrl . 'uploads/facility_management_services/partners/' . $facility_service->id . '/' . end($arry) ?>" alt="it-partner-gallery" class="img-fluid">
+                                            </div>
+                                        </div>
+                                        <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <?php
                     $path = Yii::getAlias('@paths') . '/facility_management_services/project_gallery/' . $facility_service->id;
                     if (count(glob("{$path}/*")) > 0) {
@@ -177,11 +205,3 @@ $this->title = 'Facility Management';
         </div>
     </div>
 </section><!--in-service-section-->
-<script src="<?= yii::$app->homeUrl; ?>js/jquery-1.6.1.min.js" type="text/javascript"></script>
-<script src="<?= yii::$app->homeUrl; ?>js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed: 'normal', theme: 'light_square', slideshow: 2000, autoplay_slideshow: true});
-
-    });
-</script>

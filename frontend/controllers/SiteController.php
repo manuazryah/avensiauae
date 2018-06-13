@@ -15,6 +15,7 @@ use frontend\models\SignupForm;
 use common\models\Slider;
 use common\models\About;
 use common\models\ProjectGallery;
+use common\models\MetaTags;
 
 /**
  * Site controller
@@ -78,6 +79,9 @@ class SiteController extends Controller {
         $facility_managements = \common\models\FacilityManagement::find()->where(['status' => 1])->all();
         $testimonials = \common\models\Testimonial::find()->where(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(2)->all();
         $blogs = \common\models\Blog::find(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(3)->all();
+        $meta_tags = MetaTags::find()->where(['id' => 1])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('index', [
                     'sliders' => $sliders,
                     'about_content' => $about_content,
@@ -85,6 +89,7 @@ class SiteController extends Controller {
                     'blogs' => $blogs,
                     'tech_content' => $tech_content,
                     'facility_managements' => $facility_managements,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 

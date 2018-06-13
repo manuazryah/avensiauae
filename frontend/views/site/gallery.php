@@ -5,7 +5,6 @@ use yii\helpers\Html;
 
 $this->title = 'Project Gallery';
 ?>
-<link rel="stylesheet" href="<?= yii::$app->homeUrl; ?>css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
 <section class="in-banner"><!--in-banner-->
     <div class="container">
         <div class="banner-cont">
@@ -36,11 +35,3 @@ $this->title = 'Project Gallery';
         ?>
     </div>
 </section><!--in-service-section-->
-<script src="<?= yii::$app->homeUrl; ?>js/jquery-1.6.1.min.js" type="text/javascript"></script>
-<script src="<?= yii::$app->homeUrl; ?>js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8">
-    $(document).ready(function () {
-        $(".gallery:first a[rel^='prettyPhoto']").prettyPhoto({animation_speed: 'normal', theme: 'light_square', slideshow: 2000, autoplay_slideshow: true});
-
-    });
-</script>
