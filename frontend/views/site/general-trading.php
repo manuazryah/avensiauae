@@ -3,7 +3,11 @@
 
 use yii\helpers\Html;
 
-$this->title = 'General Trading';
+if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
+    $this->title = $meta_tags->meta_title;
+} else {
+    $this->title = 'General Trading';
+}
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
@@ -27,7 +31,7 @@ $this->title = 'General Trading';
                                 foreach ($general_trading_menus as $general_trading_menu) {
                                     ?>
                                     <li>
-                                        <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                     </li>
                                     <?php
                                 }
@@ -42,7 +46,7 @@ $this->title = 'General Trading';
                             foreach ($it_service_menus as $it_service_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -58,7 +62,7 @@ $this->title = 'General Trading';
                             foreach ($technical_service_menus as $technical_service_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -74,7 +78,7 @@ $this->title = 'General Trading';
                             foreach ($facility_service_menus as $facility_service_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -90,7 +94,7 @@ $this->title = 'General Trading';
                         ?>
                         <h3 class="service-head"><?= $general_traid->title ?></h3>
                         <div class="cont">
-                            <?= $general_traid->description ?>
+                        <?= $general_traid->description ?>
                         </div>
                         <?php
                         $products = common\models\Product::find()->where(['general_trad_id' => $general_traid->id])->all();
@@ -100,7 +104,7 @@ $this->title = 'General Trading';
                             ?>
                             <div class="general-trading-box">
                                 <div class="row">
-                                    <?php foreach ($products as $product) { ?>
+        <?php foreach ($products as $product) { ?>
                                         <div class="col-lg-4 col-md-6">
                                             <div class="tradin-main">
                                                 <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>uploads/products/<?= $product->id ?>/<?= $product->id ?>.<?= $product->product_image ?>" class="img-fluid" alt="<?= $product->alt_tag ?>"></div>

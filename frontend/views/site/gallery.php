@@ -3,7 +3,11 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Project Gallery';
+if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
+    $this->title = $meta_tags->meta_title;
+} else {
+    $this->title = 'Project Gallery';
+}
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
@@ -11,7 +15,7 @@ $this->title = 'Project Gallery';
             <h2>Project Gallery</h2>
         </div>
         <div class="main-breadcrumb">
-            <?= Html::a('Home', ['/site/index']) ?><i>|</i><span>Project Gallery</span> </div>
+<?= Html::a('Home', ['/site/index']) ?><i>|</i><span>Project Gallery</span> </div>
     </div>
 </section>
 <!--in-banner-->

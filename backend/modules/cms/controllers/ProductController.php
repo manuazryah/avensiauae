@@ -14,6 +14,17 @@ use yii\web\UploadedFile;
  * ProductController implements the CRUD actions for Product model.
  */
 class ProductController extends Controller {
+    
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @inheritdoc

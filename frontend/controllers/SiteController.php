@@ -134,6 +134,9 @@ class SiteController extends Controller {
     public function actionContact() {
         $contact_addresses = \common\models\ContactAddress::find()->all();
         $model = new \common\models\ContactForm();
+        $meta_tags = MetaTags::find()->where(['id' => 8])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         if ($model->load(Yii::$app->request->post())) {
             $model->date = date('Y-m-d');
             if ($model->save()) {
@@ -144,6 +147,7 @@ class SiteController extends Controller {
         }
         return $this->render('contact', [
                     'contact_addresses' => $contact_addresses,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -213,8 +217,12 @@ class SiteController extends Controller {
      */
     public function actionAbout() {
         $about_content = About::find()->where(['status' => 1])->one();
+        $meta_tags = MetaTags::find()->where(['id' => 2])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('about', [
                     'about_content' => $about_content,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -233,12 +241,16 @@ class SiteController extends Controller {
         } else {
             $general_traid = \common\models\GeneralTrading::find()->where(['id' => 1])->one();
         }
+        $meta_tags = MetaTags::find()->where(['id' => 3])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('general-trading', [
                     'general_traid' => $general_traid,
                     'general_trading_menus' => $general_trading_menus,
                     'it_service_menus' => $it_service_menus,
                     'technical_service_menus' => $technical_service_menus,
                     'facility_service_menus' => $facility_service_menus,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -257,12 +269,16 @@ class SiteController extends Controller {
         } else {
             $it_service = \common\models\ItSevices::find()->where(['id' => 1])->one();
         }
+        $meta_tags = MetaTags::find()->where(['id' => 4])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('it', [
                     'it_service' => $it_service,
                     'general_trading_menus' => $general_trading_menus,
                     'it_service_menus' => $it_service_menus,
                     'technical_service_menus' => $technical_service_menus,
                     'facility_service_menus' => $facility_service_menus,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -281,12 +297,16 @@ class SiteController extends Controller {
         } else {
             $technical_service = \common\models\TechnicalServices::find()->where(['id' => 1])->one();
         }
+        $meta_tags = MetaTags::find()->where(['id' => 5])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('technical-service', [
                     'technical_service' => $technical_service,
                     'general_trading_menus' => $general_trading_menus,
                     'it_service_menus' => $it_service_menus,
                     'technical_service_menus' => $technical_service_menus,
                     'facility_service_menus' => $facility_service_menus,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -305,12 +325,16 @@ class SiteController extends Controller {
         } else {
             $facility_service = \common\models\FacilityManagementDetails::find()->where(['id' => 1])->one();
         }
+        $meta_tags = MetaTags::find()->where(['id' => 6])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('facility-management', [
                     'facility_service' => $facility_service,
                     'general_trading_menus' => $general_trading_menus,
                     'it_service_menus' => $it_service_menus,
                     'technical_service_menus' => $technical_service_menus,
                     'facility_service_menus' => $facility_service_menus,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -321,8 +345,12 @@ class SiteController extends Controller {
      */
     public function actionGallery() {
         $gallery_images = ProjectGallery::find()->where(['status' => 1])->all();
+        $meta_tags = MetaTags::find()->where(['id' => 7])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('gallery', [
                     'gallery_images' => $gallery_images,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -332,9 +360,13 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionBlog() {
+        $meta_tags = MetaTags::find()->where(['id' => 9])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         $blogs = \common\models\Blog::find()->where(['status' => 1])->all();
         return $this->render('blog', [
                     'blogs' => $blogs,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -344,11 +376,15 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionBlogDetails($id) {
+        $meta_tags = MetaTags::find()->where(['id' => 9])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         $blog_detail = \common\models\Blog::find()->where(['id' => $id])->one();
         $blogs = \common\models\Blog::find()->where(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(15)->all();
         return $this->render('blog-details', [
                     'blog_detail' => $blog_detail,
                     'blogs' => $blogs,
+                    'meta_tags' => $meta_tags,
         ]);
     }
 
@@ -358,7 +394,11 @@ class SiteController extends Controller {
      * @return mixed
      */
     public function actionSitemap() {
+        $meta_tags = MetaTags::find()->where(['id' => 8])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('sitemap', [
+                    'meta_tags' => $meta_tags,
         ]);
     }
 

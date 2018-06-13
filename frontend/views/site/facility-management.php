@@ -3,7 +3,11 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Facility Management';
+if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
+    $this->title = $meta_tags->meta_title;
+} else {
+    $this->title = 'Facility Management';
+}
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
@@ -11,7 +15,7 @@ $this->title = 'Facility Management';
             <h2>Facility Management</h2>
         </div>
         <div class="main-breadcrumb">
-            <?= Html::a('Home', ['/site/index']) ?><i>|</i><span>facility management</span> </div>
+<?= Html::a('Home', ['/site/index']) ?><i>|</i><span>facility management</span> </div>
     </div>
 </section>
 <!--in-banner-->
@@ -28,7 +32,7 @@ $this->title = 'Facility Management';
                             foreach ($facility_service_menus as $facility_service_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -44,7 +48,7 @@ $this->title = 'Facility Management';
                             foreach ($technical_service_menus as $technical_service_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -60,7 +64,7 @@ $this->title = 'Facility Management';
                             foreach ($general_trading_menus as $general_trading_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -76,7 +80,7 @@ $this->title = 'Facility Management';
                             foreach ($it_service_menus as $it_service_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -91,7 +95,7 @@ $this->title = 'Facility Management';
                 <div class="service-cont-box">
                     <h3 class="service-head"><?= $facility_service->service ?></h3>
                     <div class="cont">
-                        <?= $facility_service->main_content ?>
+                    <?= $facility_service->main_content ?>
                     </div>
                     <?php
                     if ($facility_service->image != '') {
@@ -109,9 +113,9 @@ $this->title = 'Facility Management';
                         <h3 class="service-head"><?= $facility_service->sub_title ?></h3>
                     <?php }
                     ?>
-                    <?php if ($facility_service->sub_title != '') { ?>
+                        <?php if ($facility_service->sub_title != '') { ?>
                         <div class="cont">
-                            <?= $facility_service->sub_content ?>
+                        <?= $facility_service->sub_content ?>
                         </div>
                     <?php }
                     ?>

@@ -3,7 +3,11 @@
 
 use yii\helpers\Html;
 
-$this->title = 'Blog';
+if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
+    $this->title = $meta_tags->meta_title;
+} else {
+    $this->title = 'Blog Details';
+}
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">

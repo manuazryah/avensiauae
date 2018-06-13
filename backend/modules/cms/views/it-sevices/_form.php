@@ -7,6 +7,7 @@ use dosamigos\ckeditor\CKEditor;
 /* @var $this yii\web\View */
 /* @var $model common\models\ItSevices */
 /* @var $form yii\widgets\ActiveForm */
+$label = 'Image [ File Size :( 750x537 ) ]';
 ?>
 
 <div class="it-sevices-form form-inline">

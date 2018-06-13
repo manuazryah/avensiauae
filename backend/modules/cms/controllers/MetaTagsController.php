@@ -13,6 +13,16 @@ use yii\filters\VerbFilter;
  * MetaTagsController implements the CRUD actions for MetaTags model.
  */
 class MetaTagsController extends Controller {
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @inheritdoc

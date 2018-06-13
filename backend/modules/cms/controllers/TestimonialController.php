@@ -14,6 +14,17 @@ use yii\web\UploadedFile;
  * TestimonialController implements the CRUD actions for Testimonial model.
  */
 class TestimonialController extends Controller {
+    
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @inheritdoc
@@ -39,7 +50,7 @@ class TestimonialController extends Controller {
         return $this->render('index', [
                     'searchModel' => $searchModel,
                     'dataProvider' => $dataProvider,
-                    'model' => $model,
+                   
         ]);
     }
 

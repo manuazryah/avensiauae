@@ -14,6 +14,17 @@ use yii\web\UploadedFile;
  * TechnicalServicesController implements the CRUD actions for TechnicalServices model.
  */
 class TechnicalServicesController extends Controller {
+    
+    public function beforeAction($action) {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        if (Yii::$app->user->isGuest) {
+            $this->redirect(['/site/index']);
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @inheritdoc

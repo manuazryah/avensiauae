@@ -4,7 +4,11 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Contact Us';
+if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
+    $this->title = $meta_tags->meta_title;
+} else {
+    $this->title = 'Contact Us';
+}
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
