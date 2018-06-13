@@ -134,7 +134,40 @@ $this->title = 'IT';
                     ?>
                     <div class="clear"></div>
                     <h3 class="service-head">Our Brands</h3>
-                    <div class="brands"><img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid"></div>
+                    <div class="brands">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="brand-box">
+                                    <img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="brand-box">
+                                    <img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="brand-box">
+                                    <img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="brand-box">
+                                    <img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="brand-box">
+                                    <img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="brand-box">
+                                    <img src="<?= yii::$app->homeUrl; ?>images/brands/b1.jpg" class="img-fluid">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <?php
                     $path = Yii::getAlias('@paths') . '/it/project_gallery/' . $it_service->id;
                     if (count(glob("{$path}/*")) > 0) {
@@ -157,7 +190,7 @@ $this->title = 'IT';
                                                 <img src="<?= Yii::$app->homeUrl . 'uploads/it/project_gallery/' . $it_service->id . '/' . end($arry) ?>" alt="it-project-gallery" class="img-fluid">
                                                 <div class="title-box">
                                                     <h3></h3>
-                                                    <a href="<?= Yii::$app->homeUrl . 'uploads/it/project_gallery/' . $it_service->id . '/' . end($arry) ?>" class="zoom-icon"></a>
+                                                    <a href="<?= Yii::$app->homeUrl . 'uploads/it/project_gallery/' . $it_service->id . '/' . end($arry) ?>" rel="prettyPhoto[gallery1]" class="zoom-icon"></a>
                                                 </div>
                                             </div>
                                         </div>

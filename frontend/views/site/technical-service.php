@@ -158,7 +158,7 @@ $this->title = 'Technical Services';
                                                 <img src="<?= Yii::$app->homeUrl . 'uploads/technical_services/project_gallery/' . $technical_service->id . '/' . end($arry) ?>" alt="it-project-gallery" class="img-fluid">
                                                 <div class="title-box">
                                                     <h3></h3>
-                                                    <a href="<?= Yii::$app->homeUrl . 'uploads/technical_services/project_gallery/' . $technical_service->id . '/' . end($arry) ?>" class="zoom-icon"></a>
+                                                    <a href="<?= Yii::$app->homeUrl . 'uploads/technical_services/project_gallery/' . $technical_service->id . '/' . end($arry) ?>" rel="prettyPhoto[gallery1]" class="zoom-icon"></a>
                                                 </div>
                                             </div>
                                         </div>

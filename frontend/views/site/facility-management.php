@@ -159,7 +159,7 @@ $this->title = 'Facility Management';
                                                 <img src="<?= Yii::$app->homeUrl . 'uploads/facility_management_services/project_gallery/' . $facility_service->id . '/' . end($arry) ?>" alt="it-project-gallery" class="img-fluid">
                                                 <div class="title-box">
                                                     <h3></h3>
-                                                    <a href="<?= Yii::$app->homeUrl . 'uploads/facility_management_services/project_gallery/' . $facility_service->id . '/' . end($arry) ?>" class="zoom-icon"></a>
+                                                    <a href="<?= Yii::$app->homeUrl . 'uploads/facility_management_services/project_gallery/' . $facility_service->id . '/' . end($arry) ?>" rel="prettyPhoto[gallery1]" class="zoom-icon"></a>
                                                 </div>
                                             </div>
                                         </div>
