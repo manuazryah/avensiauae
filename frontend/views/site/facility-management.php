@@ -101,7 +101,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                     if ($facility_service->image != '') {
                         $dirPath = Yii::getAlias(Yii::$app->params['uploadPath']) . '/uploads/it/services/' . $facility_service->id . '/' . $facility_service->id . '.' . $facility_service->image;
                         if (file_exists($dirPath)) {
-                            echo '<div class="img-box"><img class="img-responsive" src="' . Yii::$app->homeUrl . 'uploads/it/services/' . $facility_service->id . '/' . $facility_service->id . '.' . $facility_service->image . '"/> </div>';
+                            echo '<div class="img-box"><img class="img-fluid" src="' . Yii::$app->homeUrl . 'uploads/it/services/' . $facility_service->id . '/' . $facility_service->id . '.' . $facility_service->image . '"/> </div>';
                         } else {
                             echo '';
                         }
