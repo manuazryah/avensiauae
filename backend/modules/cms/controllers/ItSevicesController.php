@@ -14,7 +14,7 @@ use yii\web\UploadedFile;
  * ItSevicesController implements the CRUD actions for ItSevices model.
  */
 class ItSevicesController extends Controller {
-    
+
     public function beforeAction($action) {
         if (!parent::beforeAction($action)) {
             return false;
@@ -138,9 +138,27 @@ class ItSevicesController extends Controller {
     }
 
     public function actionRemove($path) {
-        if (file_exists($path)) {
-            unlink($path);
+        $img_path = Yii::$app->basePath . '/../uploads/' . $path;
+        if (file_exists($img_path)) {
+            unlink($img_path);
         }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionRemoveDirectory($id) {
+        $model = $this->findModel($id);
+        $img_path = Yii::$app->basePath . '/../uploads/it/services/' . $id;
+        if (is_dir($img_path)) {
+            foreach (glob("{$img_path}/*") as $file) {
+                unlink($file);
+            }
+            if(rmdir($img_path)){
+                if(!empty($model)){
+                    $model->image = '';
+                    $model->update();
+                }
+            }
+        } 
         return $this->redirect(Yii::$app->request->referrer);
     }
 

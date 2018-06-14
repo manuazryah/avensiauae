@@ -42,7 +42,7 @@ class TechnicalServices extends \yii\db\ActiveRecord {
                 [['status', 'CB', 'UB'], 'integer'],
                 [['DOC', 'DOU'], 'safe'],
                 [['main_content', 'service', 'canonical_name'], 'required'],
-                [['service', 'canonical_name'], 'string', 'max' => 100],
+                [['service', 'canonical_name','equipment_list_title'], 'string', 'max' => 100],
                 [['image'], 'string', 'max' => 50],
                 [['sub_title'], 'string', 'max' => 200],
                 [['our_partners', 'project_gallery'], 'file', 'extensions' => 'jpg, png,jpeg', 'maxFiles' => 100],

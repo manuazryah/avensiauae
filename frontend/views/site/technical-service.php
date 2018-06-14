@@ -15,7 +15,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
             <h2>Technical Service</h2>
         </div>
         <div class="main-breadcrumb">
-<?= Html::a('Home', ['/site/index']) ?><i>|</i><span>technical service</span> </div>
+            <?= Html::a('Home', ['/site/index']) ?><i>|</i><span>technical service</span> </div>
     </div>
 </section>
 <!--in-banner-->
@@ -32,7 +32,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($technical_service_menus as $technical_service_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -48,7 +48,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($general_trading_menus as $general_trading_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -64,7 +64,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($it_service_menus as $it_service_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -81,26 +81,27 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($facility_service_menus as $facility_service_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
                         }
                         ?>
                     </ul>
+                    <div class="clear"></div>
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="service-cont-box">
                     <h3 class="service-head"><?= $technical_service->service ?></h3>
                     <div class="cont">
-                    <?= $technical_service->main_content ?>
+                        <?= $technical_service->main_content ?>
                     </div>
                     <?php
                     if ($technical_service->image != '') {
-                        $dirPath = Yii::getAlias(Yii::$app->params['uploadPath']) . '/uploads/it/services/' . $technical_service->id . '/' . $technical_service->id . '.' . $technical_service->image;
+                        $dirPath = Yii::getAlias(Yii::$app->params['uploadPath']) . '/uploads/technical_services/services/' . $technical_service->id . '/' . $technical_service->id . '.' . $technical_service->image;
                         if (file_exists($dirPath)) {
-                            echo '<div class="img-box"><img class="img-fluid" src="' . Yii::$app->homeUrl . 'uploads/it/services/' . $technical_service->id . '/' . $technical_service->id . '.' . $technical_service->image . '"/> </div>';
+                            echo '<div class="img-box"><img class="img-fluid" src="' . Yii::$app->homeUrl . 'uploads/technical_services/services/' . $technical_service->id . '/' . $technical_service->id . '.' . $technical_service->image . '"/> </div>';
                         } else {
                             echo '';
                         }
@@ -112,10 +113,14 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                         <h3 class="service-head"><?= $technical_service->sub_title ?></h3>
                     <?php }
                     ?>
-                        <?php if ($technical_service->sub_title != '') { ?>
+                    <?php if ($technical_service->sub_title != '') { ?>
                         <div class="cont">
-                        <?= $technical_service->sub_content ?>
+                            <?= $technical_service->sub_content ?>
                         </div>
+                    <?php }
+                    ?>
+                    <?php if ($technical_service->equipment_list_title != '') { ?>
+                        <h3 class="service-head"><?= $technical_service->equipment_list_title ?></h3>
                     <?php }
                     ?>
                     <?php
@@ -156,7 +161,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                         ?>
                                         <div class="col-md-4">
                                             <div class="brand-box">
-                                                <img src="<?= Yii::$app->homeUrl . 'uploads/technical_services/partners/' . $technical_service->id . '/' . end($arry) ?>" alt="it-partner-gallery" class="img-fluid">
+                                                <img src="<?= Yii::$app->homeUrl . 'uploads/technical_services/partners/' . $technical_service->id . '/' . end($arry) ?>" alt="technical_services-partner-gallery" class="img-fluid">
                                             </div>
                                         </div>
                                         <?php
@@ -187,7 +192,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                         ?>
                                         <div class="col-md-6">
                                             <div class="gallery-box ">
-                                                <img src="<?= Yii::$app->homeUrl . 'uploads/technical_services/project_gallery/' . $technical_service->id . '/' . end($arry) ?>" alt="it-project-gallery" class="img-fluid">
+                                                <img src="<?= Yii::$app->homeUrl . 'uploads/technical_services/project_gallery/' . $technical_service->id . '/' . end($arry) ?>" alt="technical_services-project-gallery" class="img-fluid">
                                                 <div class="title-box">
                                                     <h3></h3>
                                                     <a href="<?= Yii::$app->homeUrl . 'uploads/technical_services/project_gallery/' . $technical_service->id . '/' . end($arry) ?>" rel="prettyPhoto[gallery1]" class="zoom-icon"></a>

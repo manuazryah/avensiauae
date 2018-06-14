@@ -14,7 +14,7 @@ use yii\web\UploadedFile;
  * TechnicalServicesController implements the CRUD actions for TechnicalServices model.
  */
 class TechnicalServicesController extends Controller {
-    
+
     public function beforeAction($action) {
         if (!parent::beforeAction($action)) {
             return false;
@@ -84,8 +84,8 @@ class TechnicalServicesController extends Controller {
                 if (!empty($image)) {
                     $path = Yii::$app->basePath . '/../uploads/technical_services/services/' . $model->id . '/';
                     $size = [
-                            ['width' => 100, 'height' => 100, 'name' => 'small'],
-                            ['width' => 750, 'height' => 537, 'name' => 'image'],
+                        ['width' => 100, 'height' => 100, 'name' => 'small'],
+                        ['width' => 750, 'height' => 537, 'name' => 'image'],
                     ];
                     Yii::$app->UploadFile->UploadFile($model, $image, $path, $size);
                 }
@@ -138,8 +138,26 @@ class TechnicalServicesController extends Controller {
     }
 
     public function actionRemove($path) {
-        if (file_exists($path)) {
-            unlink($path);
+        $img_path = Yii::$app->basePath . '/../uploads/' . $path;
+        if (file_exists($img_path)) {
+            unlink($img_path);
+        }
+        return $this->redirect(Yii::$app->request->referrer);
+    }
+
+    public function actionRemoveDirectory($id) {
+        $model = $this->findModel($id);
+        $img_path = Yii::$app->basePath . '/../uploads/technical_services/services/' . $id;
+        if (is_dir($img_path)) {
+            foreach (glob("{$img_path}/*") as $file) {
+                unlink($file);
+            }
+            if (rmdir($img_path)) {
+                if (!empty($model)) {
+                    $model->image = '';
+                    $model->update();
+                }
+            }
         }
         return $this->redirect(Yii::$app->request->referrer);
     }
@@ -166,8 +184,8 @@ class TechnicalServicesController extends Controller {
                 if (!empty($image)) {
                     $path = Yii::$app->basePath . '/../uploads/technical_services/services/' . $model->id . '/';
                     $size = [
-                            ['width' => 100, 'height' => 100, 'name' => 'small'],
-                            ['width' => 750, 'height' => 537, 'name' => 'image'],
+                        ['width' => 100, 'height' => 100, 'name' => 'small'],
+                        ['width' => 750, 'height' => 537, 'name' => 'image'],
                     ];
                     Yii::$app->UploadFile->UploadFile($model, $image, $path, $size);
                 }

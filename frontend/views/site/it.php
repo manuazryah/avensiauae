@@ -117,6 +117,10 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                         </div>
                     <?php }
                     ?>
+                    <?php if ($it_service->equipment_list_title != '') { ?>
+                        <h3 class="service-head"><?= $it_service->equipment_list_title ?></h3>
+                    <?php }
+                    ?>
                     <?php
                     if ($it_service->equipment_list != '') {
                         $it_equipment_lists = explode(",", $it_service->equipment_list);
@@ -131,6 +135,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                 }
                                 ?>
                             </ul>
+                            <div class="clear"></div>
                         </div>
                         <?php
                     }

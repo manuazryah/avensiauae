@@ -36,7 +36,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
 <section class="in-about-section grey-bg"><!--in-about-section-->
     <div class="container">
         <div class="row">
-            <div class="col-lg-6"><div class="img-box2"><img src="<?= yii::$app->homeUrl; ?>uploads/about/general_trending_image.<?= $about_content->general_trending_image ?>" class="img-fluid" alt="general_trending_image"></div></div>
+            <div class="col-lg-6"><div class="img-box grey-color"><img src="<?= yii::$app->homeUrl; ?>uploads/about/general_trending_image.<?= $about_content->general_trending_image ?>" class="img-fluid" alt="general_trending_image"></div></div>
             <div class="col-lg-6">
                 <div class="main-cont-box">
                     <h2 class="head-text head-text2">Avensia General Trading LLC</h2>
@@ -65,7 +65,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
 <section class="in-about-section grey-bg"><!--in-about-section-->
     <div class="container">
         <div class="row">
-            <div class="col-lg-6"><div class="img-box2"><img src="<?= yii::$app->homeUrl; ?>uploads/about/facility_management_image.<?= $about_content->facility_management_image ?>" class="img-fluid" alt="facility_management_image"></div></div>
+            <div class="col-lg-6"><div class="img-box grey-color"><img src="<?= yii::$app->homeUrl; ?>uploads/about/facility_management_image.<?= $about_content->facility_management_image ?>" class="img-fluid" alt="facility_management_image"></div></div>
             <div class="col-lg-6">
                 <div class="main-cont-box">
                     <h2 class="head-text head-text2">Avensia Facility Management PVT Ltd</h2>

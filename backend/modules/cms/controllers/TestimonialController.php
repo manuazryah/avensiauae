@@ -75,7 +75,9 @@ class TestimonialController extends Controller {
 
         if ($model->load(Yii::$app->request->post()) && Yii::$app->SetValues->Attributes($model)) {
             $image = UploadedFile::getInstance($model, 'image');
-            $model->image = $image->extension;
+            if(!empty($image)){
+                $model->image = $image->extension;
+            }
             if ($model->validate() && $model->save()) {
                 if (!empty($image)) {
                     $path = Yii::$app->basePath . '/../uploads/testimonial/' . $model->id . '/';

@@ -11,7 +11,7 @@ $label = 'Image [ File Size :( 750x537 ) ]';
 ?>
 
 <div class="it-sevices-form form-inline">
-
+    <?= \common\components\AlertMessageWidget::widget() ?>
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
     <div class="row">
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
@@ -33,15 +33,19 @@ $label = 'Image [ File Size :( 750x537 ) ]';
     </div>
     <div class="row">
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
-            <?= $form->field($model, 'image', ['options' => ['class' => 'form-group']])->fileInput(['maxlength' => true])->label($label) ?>
+            <?= $form->field($model, 'image', ['options' => ['class' => 'form-group']])->fileInput(['maxlength' => true])->label('Image [ File Size :( 694x332 ) ]') ?>
             <?php
             if ($model->isNewRecord)
                 echo "";
             else {
                 if (!empty($model->image)) {
                     ?>
-
-                    <img src="<?= Yii::$app->homeUrl ?>../uploads/facility_management_services/services/<?= $model->id ?>/image.<?= $model->image; ?>" width="300" height="100"/>
+                    <div class = "col-md-4 img-box">
+                        <div class="news-img">
+                            <img class="img-responsive" src="<?= Yii::$app->homeUrl ?>../uploads/facility_management_services/services/<?= $model->id ?>/image.<?= $model->image; ?>" />
+                            <?= Html::a('<i class="fa fa-remove"></i>', ['/cms/facility-management-details/remove-directory', 'id' => $model->id], ['class' => 'gal-img-remove']) ?>
+                        </div>
+                    </div>
                     <?php
                 }
             }
@@ -60,18 +64,46 @@ $label = 'Image [ File Size :( 750x537 ) ]';
             ])
             ?>
         </div>
+        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'equipment_list_title')->textInput(['maxlength' => true]) ?>
+        </div>
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
             <?= $form->field($model, 'equipment_list')->textInput()->label('Equipment List ( Seperated with commas )') ?>
         </div>
     </div>
     <div class="row">
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
-            <?= $form->field($model, 'our_partners[]', ['options' => ['class' => 'form-group'], 'template' => '{label}<label>Our Partners Images [ File Size :( 750x537 ) ]</label>{input}{error}'])->fileInput(['multiple' => true])->label(FALSE) ?>
+            <?= $form->field($model, 'our_partners[]', ['options' => ['class' => 'form-group'], 'template' => '{label}<label>Our Partners Images [ File Size :( 150x150 ) ]</label>{input}{error}'])->fileInput(['multiple' => true])->label(FALSE) ?>
+            <div class="row box-images">
+                <?php
+                $path = Yii::getAlias('@paths') . '/facility_management_services/partners/' . $model->id;
+                if (count(glob("{$path}/*")) > 0) {
+                    $k = 0;
+                    foreach (glob("{$path}/*") as $file) {
+                        $k++;
+                        $arry = explode('/', $file);
+                        $img_nmee = end($arry);
 
+                        $img_nmees = explode('.', $img_nmee);
+                        if ($img_nmees['1'] != '') {
+                            ?>
+
+                            <div class = "col-md-4 img-box" id="<?= $k; ?>">
+                                <div class="news-img">
+                                    <img class="img-responsive" src="<?= Yii::$app->homeUrl . '../uploads/facility_management_services/partners/' . $model->id . '/' . end($arry) ?>">
+                                    <?= Html::a('<i class="fa fa-remove"></i>', ['/cms/it-sevices/remove', 'path' => 'facility_management_services/partners/' . $model->id . '/' . end($arry)], ['class' => 'gal-img-remove']) ?>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
+                }
+                ?>
+            </div>
         </div>
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'project_gallery[]', ['options' => ['class' => 'form-group'], 'template' => '{label}<label>Project Gallery Images [ File Size :( 750x537 ) ]</label>{input}{error}'])->fileInput(['multiple' => true])->label(FALSE) ?>
-            <div class="row">
+            <div class="row box-images">
                 <?php
                 $path = Yii::getAlias('@paths') . '/facility_management_services/project_gallery/' . $model->id;
                 if (count(glob("{$path}/*")) > 0) {
@@ -88,14 +120,9 @@ $label = 'Image [ File Size :( 750x537 ) ]';
                             <div class = "col-md-4 img-box" id="<?= $k; ?>">
                                 <div class="news-img">
                                     <img class="img-responsive" src="<?= Yii::$app->homeUrl . '../uploads/facility_management_services/project_gallery/' . $model->id . '/' . end($arry) ?>">
-                                    <?= Html::a('<i class="fa fa-remove"></i>', ['/cms/facility-management-details/remove', 'path' => Yii::$app->basePath . '/../uploads/facility_management_services/project_gallery/' . $model->id . '/' . end($arry)], ['class' => 'gal-img-remove']) ?>
+                                    <?= Html::a('<i class="fa fa-remove"></i>', ['/cms/facility-management-details/remove', 'path' => 'facility_management_services/project_gallery/' . $model->id . '/' . end($arry)], ['class' => 'gal-img-remove']) ?>
                                 </div>
                             </div>
-                            <?php
-                        }
-                        if ($k % 4 == 0) {
-                            ?>
-                            <div class="clearfix"></div>
                             <?php
                         }
                     }

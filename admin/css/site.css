@@ -1369,3 +1369,7 @@ input[type=checkbox], input[type=radio] {
 .img-box {
     margin: 10px 0px;
 }
+.box-images{
+    border: 1px solid #ccc;
+    margin: 0px;
+}
