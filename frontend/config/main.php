@@ -42,7 +42,7 @@ return [
         ],
         'assetManager' => [
             'bundles' => [
-                'yii\web\JqueryAsset' => [
+                'yii\bootstrap\BootstrapPluginAsset' => [
                     'js' => []
                 ],
                 'yii\bootstrap\BootstrapAsset' => [

@@ -64,7 +64,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($general_trading_menus as $general_trading_menu) {
                                 ?>
                                 <li>
-                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'trade' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -147,7 +147,12 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                     $path1 = Yii::getAlias('@paths') . '/facility_management_services/partners/' . $facility_service->id;
                     if (count(glob("{$path1}/*")) > 0) {
                         ?>
-                        <h3 class="service-head">Our Brands</h3>
+                        <?php if ($facility_service->sub_title != '') { ?>
+                            <h3 class="service-head"><?= $facility_service->gallery_title ?></h3>
+                        <?php } else { ?>
+                            <h3 class="service-head">Our Brands</h3>
+                        <?php }
+                        ?>
                         <div class="brands">
                             <div class="row">
                                 <?php

@@ -42,7 +42,14 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
         <meta name="robots" content="noindex,nofollow">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <script src="<?= Yii::$app->homeUrl ?>js/jquery-min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <?php $this->head() ?>
     </head>
     <body>
@@ -133,7 +140,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                 foreach ($general_tradings as $general_trading) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                        <?= Html::a($general_trading->title, ['/site/general-trading', 'trade' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
                                                     <?php
                                                 }
@@ -163,7 +170,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                 foreach ($technical_service_links as $technical_service_link) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'trade' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
                                                     <?php
                                                 }
@@ -203,7 +210,9 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-2 col-md-4 col-4">
-                                <h1 class="logo"><a href="index.html"><img src="<?= yii::$app->homeUrl; ?>images/top-fixed-logo.png" alt="Avensia Group" title="Avensia Group" class="img-fluid"></a></h1>
+                                <h1 class="logo">
+                                    <?= Html::a('<img src="' . yii::$app->homeUrl . 'images/top-fixed-logo.png" alt="Avensia Group" title="Avensia Group" class="img-fluid">', ['/site/index']) ?>
+                                </h1>
                             </div>
                             <div class="col-lg-10 col-md-8 col-8">
                                 <div class="main-nav-section">
@@ -226,7 +235,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                                             foreach ($general_tradings as $general_trading) {
                                                                 ?>
                                                                 <li>
-                                                                    <?= Html::a($general_trading->title, ['/site/general-trading', 'page' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                                    <?= Html::a($general_trading->title, ['/site/general-trading', 'trade' => $general_trading->canonical_name], ['class' => 'dropdown-item']) ?>
                                                                 </li>
                                                                 <?php
                                                             }

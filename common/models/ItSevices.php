@@ -38,15 +38,15 @@ class ItSevices extends \yii\db\ActiveRecord {
      */
     public function rules() {
         return [
-            [['main_content', 'sub_content', 'equipment_list'], 'string'],
-            [['status', 'CB', 'UB'], 'integer'],
-            [['DOC', 'DOU'], 'safe'],
-            [['main_content','service', 'canonical_name'], 'required'],
-            [['service', 'canonical_name','equipment_list_title'], 'string', 'max' => 100],
-            [['image'], 'string', 'max' => 50],
-            [['sub_title'], 'string', 'max' => 200],
-            [['our_partners', 'project_gallery'], 'file','extensions' => 'jpg, png,jpeg', 'maxFiles' => 100],
-            [['image'], 'file', 'extensions' => 'jpg, png,jpeg'],
+                [['main_content', 'sub_content', 'equipment_list'], 'string'],
+                [['status', 'CB', 'UB'], 'integer'],
+                [['DOC', 'DOU'], 'safe'],
+                [['main_content', 'service', 'canonical_name'], 'required'],
+                [['service', 'canonical_name', 'equipment_list_title', 'gallery_title'], 'string', 'max' => 100],
+                [['image'], 'string', 'max' => 50],
+                [['sub_title'], 'string', 'max' => 200],
+                [['our_partners', 'project_gallery'], 'file', 'extensions' => 'jpg, png,jpeg', 'maxFiles' => 100],
+                [['image'], 'file', 'extensions' => 'jpg, png,jpeg'],
         ];
     }
 

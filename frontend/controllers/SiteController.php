@@ -16,6 +16,7 @@ use common\models\Slider;
 use common\models\About;
 use common\models\ProjectGallery;
 use common\models\MetaTags;
+use common\models\ProductSearch;
 
 /**
  * Site controller
@@ -231,19 +232,23 @@ class SiteController extends Controller {
      *
      * @return mixed
      */
-    public function actionGeneralTrading($page = NULL) {
+    public function actionGeneralTrading($trade = NULL) {
         $general_trading_menus = \common\models\GeneralTrading::find()->where(['status' => 1])->all();
         $it_service_menus = \common\models\ItSevices::find()->where(['status' => 1])->all();
         $technical_service_menus = \common\models\TechnicalServices::find()->where(['status' => 1])->all();
         $facility_service_menus = \common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
-        if (!empty($page) && $page != '') {
-            $general_traid = \common\models\GeneralTrading::find()->where(['canonical_name' => $page])->one();
+        if (!empty($trade) && $trade != '') {
+            $general_traid = \common\models\GeneralTrading::find()->where(['canonical_name' => $trade])->one();
         } else {
             $general_traid = \common\models\GeneralTrading::find()->where(['id' => 1])->one();
         }
         $meta_tags = MetaTags::find()->where(['id' => 3])->one();
         \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['general_trad_id' => $general_traid->id]);
+        $dataProvider->pagination->pageSize = 36;
         return $this->render('general-trading', [
                     'general_traid' => $general_traid,
                     'general_trading_menus' => $general_trading_menus,
@@ -251,6 +256,8 @@ class SiteController extends Controller {
                     'technical_service_menus' => $technical_service_menus,
                     'facility_service_menus' => $facility_service_menus,
                     'meta_tags' => $meta_tags,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 

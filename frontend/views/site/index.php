@@ -249,7 +249,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                         <p><?= $testimonial->message ?></p>
                                     </div>
                                     <h3 class="head"><?= $testimonial->name ?></h3>
-                                    <small class="small">Genarel customer</small> </div>
+                                    <small class="small"><?= $testimonial->customr_type ?></small> </div>
                             </div>
                         </div>
                         <?php

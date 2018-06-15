@@ -12,14 +12,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
-        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
         </div>
-        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'customr_type')->textInput(['maxlength' => true]) ?>
+
+        </div>
+        <div class='col-md-4 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'status')->dropDownList(['1' => 'Enabled', '0' => 'Disabled']) ?>
 
         </div>
+    </div>
+    <div class="row">
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'message')->textarea(['style' => 'height: 150px;', 'maxlength' => true]) ?>
 

@@ -391,7 +391,7 @@ a:focus {
     display: block;
     color: #FFF;
     text-transform: uppercase;
-    padding: 0 22px;
+    padding: 0 20px;
     font-weight: 500;
     line-height: 49px
 }
@@ -1664,7 +1664,8 @@ a:focus {
     padding: 8px;
     text-align: center;
     color: #FFF;
-    font-size: 12px
+    font-size: 12px;
+    min-height: 44px;
 }
 
 .general-trading-box .green {
@@ -1891,4 +1892,15 @@ a:focus {
 
 #yii-debug-toolbar {
     display: none!important
+}
+.pagination{
+    clear: both;
+    padding: 0px 15px !important;
+    display: block !important;
+}
+.general-trading-box .list-view{
+    width: 100%;
+}
+.general-trading-box .list-view .summary{
+    display: none;
 }

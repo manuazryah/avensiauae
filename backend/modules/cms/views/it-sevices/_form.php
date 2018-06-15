@@ -70,6 +70,9 @@ $label = 'Image [ File Size :( 750x537 ) ]';
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
             <?= $form->field($model, 'equipment_list')->textInput()->label('Equipment List ( Seperated with commas )') ?>
         </div>
+        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'gallery_title')->textInput(['maxlength' => true]) ?>
+        </div>
     </div>
     <div class="row">
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>

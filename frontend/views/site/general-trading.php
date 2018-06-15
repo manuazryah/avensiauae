@@ -2,6 +2,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\widgets\ListView;
 
 if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
     $this->title = $meta_tags->meta_title;
@@ -31,7 +32,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                 foreach ($general_trading_menus as $general_trading_menu) {
                                     ?>
                                     <li>
-                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'page' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                        <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'trade' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                     </li>
                                     <?php
                                 }
@@ -46,7 +47,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($it_service_menus as $it_service_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($it_service_menu->service, ['/site/it-service', 'page' => $it_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -62,7 +63,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($technical_service_menus as $technical_service_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($technical_service_menu->service, ['/site/technical-service', 'page' => $technical_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -78,7 +79,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             foreach ($facility_service_menus as $facility_service_menu) {
                                 ?>
                                 <li>
-                                <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                    <?= Html::a($facility_service_menu->service, ['/site/facility-management', 'page' => $facility_service_menu->canonical_name], ['class' => 'dropdown-item']) ?>
                                 </li>
                                 <?php
                             }
@@ -94,29 +95,31 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                         ?>
                         <h3 class="service-head"><?= $general_traid->title ?></h3>
                         <div class="cont">
-                        <?= $general_traid->description ?>
+                            <?= $general_traid->description ?>
+                        </div>
+                        <div class="general-trading-box">
+                            <div class="row">
+                                <?=
+                                $dataProvider->totalcount > 0 ? ListView::widget([
+                                            'dataProvider' => $dataProvider,
+                                            'itemView' => '_product_list',
+                                            'pager' => [
+                                                'options' => ['class' => 'pagination'],
+                                                'prevPageLabel' => '<', // Set the label for the "previous" page button
+                                                'nextPageLabel' => '>', // Set the label for the "next" page button
+                                                'firstPageLabel' => '<<', // Set the label for the "first" page button
+                                                'lastPageLabel' => '>>', // Set the label for the "last" page button
+                                                'nextPageCssClass' => '>', // Set CSS class for the "next" page button
+                                                'prevPageCssClass' => '<', // Set CSS class for the "previous" page button
+                                                'firstPageCssClass' => '<<', // Set CSS class for the "first" page button
+                                                'lastPageCssClass' => '>>', // Set CSS class for the "last" page button
+                                                'maxButtonCount' => 5, // Set maximum number of page buttons that can be displayed
+                                            ],
+                                        ]) : '';
+                                ?>
+                            </div>
                         </div>
                         <?php
-                        $products = common\models\Product::find()->where(['general_trad_id' => $general_traid->id])->all();
-                        ?>
-                        <?php
-                        if (!empty($products)) {
-                            ?>
-                            <div class="general-trading-box">
-                                <div class="row">
-        <?php foreach ($products as $product) { ?>
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="tradin-main">
-                                                <div class="trading-img-box"><img src="<?= yii::$app->homeUrl; ?>uploads/products/<?= $product->id ?>/<?= $product->id ?>.<?= $product->product_image ?>" class="img-fluid" alt="<?= $product->alt_tag ?>"></div>
-                                                <h3 class="trading-head"><?= $product->product_name ?></h3>
-                                            </div>
-                                        </div>
-                                    <?php }
-                                    ?>
-                                </div>
-                            </div>
-                            <?php
-                        }
                     }
                     ?>
                 </div>
