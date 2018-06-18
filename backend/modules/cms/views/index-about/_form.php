@@ -26,6 +26,25 @@ use dosamigos\ckeditor\CKEditor;
         </div>
     </div>
     <div class="row">
+        <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
+            <?= $form->field($model, 'about_content_in_footer')->textarea(['rows' => 6]) ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'facebook_link')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'twitter_link')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'linkedin_link')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
+            <?= $form->field($model, 'youtube_link')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
+    <div class="row">
         <div class='col-md-12 col-sm-12 col-xs-12'>
             <div class="form-group">
                 <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-success', 'style' => 'float:right;']) ?>

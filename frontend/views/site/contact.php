@@ -64,6 +64,10 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                             <p><span>General Trading: </span><br> <?= $contact_address->general_trading_phone ?></p>
                                         <?php }
                                         ?>
+                                        <?php if ($contact_address->it_phone != '') { ?>
+                                            <p><span>IT Service: </span><br> <?= $contact_address->it_phone ?></p>
+                                        <?php }
+                                        ?>
                                     <?php }
                                     ?>
                                 </div>

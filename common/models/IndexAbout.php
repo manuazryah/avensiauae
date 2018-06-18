@@ -10,6 +10,11 @@ use Yii;
  * @property int $id
  * @property string $title
  * @property string $content
+ * @property string $about_content_in_footer
+ * @property string $facebook_link
+ * @property string $twitter_link
+ * @property string $linkedin_link
+ * @property string $youtube_link
  * @property int $status
  * @property int $CB
  * @property int $UB
@@ -32,11 +37,11 @@ class IndexAbout extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['content'], 'string'],
+            [['content', 'about_content_in_footer'], 'string'],
+            [['content', 'about_content_in_footer','title'], 'required'],
             [['status', 'CB', 'UB'], 'integer'],
-            [['content', 'title'], 'required'],
             [['DOC', 'DOU'], 'safe'],
-            [['title'], 'string', 'max' => 100],
+            [['title', 'facebook_link', 'twitter_link', 'linkedin_link', 'youtube_link'], 'string', 'max' => 100],
         ];
     }
 
@@ -48,7 +53,12 @@ class IndexAbout extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Title',
-            'content' => 'Content',
+            'content' => 'About Content In Home',
+            'about_content_in_footer' => 'About Content In Footer',
+            'facebook_link' => 'Facebook Link',
+            'twitter_link' => 'Twitter Link',
+            'linkedin_link' => 'Linkedin Link',
+            'youtube_link' => 'Youtube Link',
             'status' => 'Status',
             'CB' => 'Cb',
             'UB' => 'Ub',

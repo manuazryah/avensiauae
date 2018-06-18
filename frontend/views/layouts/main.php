@@ -11,6 +11,7 @@ $it_service_links = common\models\ItSevices::find()->where(['status' => 1])->all
 $technical_service_links = common\models\TechnicalServices::find()->where(['status' => 1])->all();
 $facility_service_links = common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
 $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
+$about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -104,7 +105,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                                 <div class="phone"> <small class="small">Facility Management</small>
                                     <h3 class="head-text"><?= $contact_info->facility_management_phone ?></h3>
                                 </div>
-                                <div class="phone"> <small class="small">IT</small>
+                                <div class="phone"> <small class="small">IT & Technical Service</small>
                                     <h3 class="head-text"><?= $contact_info->it_phone ?></h3>
                                 </div>
                                 <div class="phone border-left"> <small class="small">General Trading</small>
@@ -314,14 +315,25 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                     <div class="col-lg-4">
                         <h2 class="f-head">ABOUT US</h2>
                         <div class="f-about">
-                            <p>Avensia is one of the leading General Trading companies in Dubai.  The company also offers state of the art services in Information Technology and Facility Management. Avensia as the pioneers in offering technical services helps clients with utmost quality solutions using deep knowledge and cutting-edge technologies.</p>
+                            <p>
+                                <?php
+                                if (!empty($about_footer)) {
+                                    if ($about_footer->about_content_in_footer != '') {
+                                        echo $about_footer->about_content_in_footer;
+                                    }
+                                }
+                                ?>
+                            </p>
                             <div class="f-follows">
                                 <ul>
                                     <li> <span>follow us on  - </span></li>
-                                    <li> <a href="#" target="_blank"> <i class="fa fa-facebook"></i> </a></li>
-                                    <li> <a href="#" target="_blank"> <i class="fa fa-twitter"></i> </a></li>
-                                    <li> <a href="#" target="_blank"> <i class="fa fa-linkedin"></i> </a></li>
-                                    <li> <a href="#" target="_blank"> <i class="fa fa-youtube"></i> </a></li>
+                                    <?php if (!empty($about_footer)) { ?>
+                                        <li> <a href="<?= $about_footer->facebook_link != '' ? $about_footer->facebook_link : '' ?>" target="_blank"> <i class="fa fa-facebook"></i> </a></li>
+                                        <li> <a href="<?= $about_footer->twitter_link != '' ? $about_footer->twitter_link : '' ?>" target="_blank"> <i class="fa fa-twitter"></i> </a></li>
+                                        <li> <a href="<?= $about_footer->linkedin_link != '' ? $about_footer->linkedin_link : '' ?>" target="_blank"> <i class="fa fa-linkedin"></i> </a></li>
+                                        <li> <a href="<?= $about_footer->youtube_link != '' ? $about_footer->youtube_link : '' ?>" target="_blank"> <i class="fa fa-youtube"></i> </a></li>
+                                    <?php }
+                                    ?>
                                 </ul>
                                 <div class="clear"></div>
                             </div>
@@ -367,7 +379,7 @@ $contact_info = \common\models\ContactInfo::find()->where(['id' => 1])->one();
                         <h3 class="f-head">Address</h3>
                         <div class="f-address"><?= $contact_info->addtess ?></div>
                         <div class="f-address f-phone"><small>General Trading</small><?= $contact_info->general_trading_phone ?></div>
-                        <div class="f-address f-phone"><small>IT</small><?= $contact_info->it_phone ?></div>
+                        <div class="f-address f-phone"><small>IT & Technical Service</small><?= $contact_info->it_phone ?></div>
                         <div class="f-address f-phone"><small>Facility Management</small><?= $contact_info->facility_management_phone ?></div>
                         <div class="f-address f-mail"><?= $contact_info->email ?></div>
 
