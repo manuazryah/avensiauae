@@ -319,7 +319,7 @@ a:focus {
 .top-contat .mail,
 .top-contat .phone {
     float: right;
-   padding: 10px 0 10px 20px;
+    padding: 10px 0 10px 20px;
 }
 
 .top-contat {
@@ -1774,6 +1774,119 @@ a:focus {
 
 .cont-site-map .list li a:hover {
     color: #e6cb04
+}
+
+/*in-download-section*/
+.in-download-section{
+    padding:55px 0px;	
+}
+.in-download-section .download-top-cont{
+    text-align:center;
+    margin-bottom:35px;
+}
+.in-download-section .download-top-cont p{
+    font-size:16px;
+    margin-bottom:5px;
+}
+.in-download-section .download-top-cont b{
+    font-size:16px;
+    color:#62ba46;
+}
+.in-download-section .download-box{
+    margin-bottom:30px;
+}
+.in-download-section .download-box .img-box{
+    overflow:hidden;
+    position:relative;
+    background:#000;
+}
+.in-download-section .download-box .img-box img{
+    transition:.7s;
+    display:block;
+    margin:0px auto;
+}
+
+.in-download-section .download-box .img-box .head-text{
+    position:absolute;
+    width:100%;
+    top:0px;
+    height:100%;
+    color:#fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow:0px 0px 15px #000; 
+    background:rgba(0,0,0,.3);
+    transition:.7s;
+    font-size: 20px;
+    padding: 0px 15px;
+}
+.in-download-section .download-box:hover .img-box .head-text{
+    background:rgba(0,0,0,.6);
+}
+.in-download-section .download-box .link{
+    background:#25439c;
+    position:relative;
+    padding:0px 10px 0px 62px;
+    color:#FFF;
+    display: flex;
+    font-size:17px;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    min-height:60px;
+    transition:.7s;
+}
+.in-download-section .download-box:hover .link{
+    background:#62ba46;
+}
+.in-download-section .download-box .link::before{
+    position:absolute;
+    left:0px;
+    top:0px;
+    background:url(../images/icon/pdf-icon.png) center center no-repeat #62ba46;
+    width:55px;
+    height:60px;
+    content:"";
+}
+/*in-not-found-section*/
+.in-not-found-section{
+    padding:55px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height:500px;
+}
+.in-not-found-section .head-one{
+    font-size:120px;
+    font-weight:700;
+    color:#25439c;
+}
+.in-not-found-section .head-two{
+    font-size:20px;
+    font-weight:600;
+    color:#696969;
+    margin-bottom:20px;
+}
+.in-not-found-section .head-three{
+    font-size:25px;
+    font-weight:600;
+    color:#62ba46;
+    margin-bottom:15px;
+}
+.in-not-found-section .link{
+    background:#62ba46;
+    padding:13px 20px;
+    color:#FFF;
+    margin-top:35px;
+    display:inline-block;
+    text-transform:uppercase;
+    font-weight:500;
+}
+.in-not-found-section .link:hover{
+    background:#25439c;
 }
 
 .footer {

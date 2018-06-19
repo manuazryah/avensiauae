@@ -408,6 +408,22 @@ class SiteController extends Controller {
                     'meta_tags' => $meta_tags,
         ]);
     }
+    
+    /**
+     * Displays site map page.
+     *
+     * @return mixed
+     */
+    public function actionDownloads() {
+        $meta_tags = MetaTags::find()->where(['id' => 11])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
+        $downloads = \common\models\ProfileDownloads::find()->all();
+        return $this->render('downloads', [
+                    'meta_tags' => $meta_tags,
+                    'downloads' => $downloads,
+        ]);
+    }
 
     /**
      * Signs user up.

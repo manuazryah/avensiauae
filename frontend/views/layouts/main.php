@@ -73,7 +73,7 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                         </li>
                                         <li><span>|</span></li>
                                         <li>
-                                            <?= Html::a('Sitemap', ['/site/sitemap']) ?>
+                                            <?= Html::a('Downloads', ['/site/downloads']) ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -350,6 +350,12 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                             </li>
                             <li>
                                 <?= Html::a('GALLERY', ['/site/gallery']) ?>
+                            </li>
+                            <li>
+                                <?= Html::a('SITEMAP', ['/site/sitemap']) ?>
+                            </li>
+                            <li>
+                                <?= Html::a('BLOG', ['/site/blog']) ?>
                             </li>
                             <li>
                                 <?= Html::a('CONTACT', ['/site/contact']) ?>

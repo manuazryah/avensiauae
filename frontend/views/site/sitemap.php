@@ -22,8 +22,8 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
 
 <section class="cont-site-map">
     <div class="container">
-        <h2>Pages</h2>
-        <div class="col-md-6">
+         <h2>Pages</h2>
+        <div class="col-md-12">
             <ul class="list">
                 <ul>
                     <li>
@@ -41,11 +41,11 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                 </ul>
             </ul>
         </div>
-        <h2>Products</h2>
-        <div class="col-md-6">
+         <h2>Products</h2>
+        <div class="col-md-12">
             <ul class="list">
                 <ul>
-                    <li>
+                   <li>
                         <?= Html::a('General trading', ['/site/general-trading']) ?>
                     </li>
                     <li>

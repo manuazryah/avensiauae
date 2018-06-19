@@ -141,6 +141,9 @@ AppAsset::register($this);
                         <?= Html::a('<i class="fa fa-rss"></i> <span class="title">Blogs</span>', ['/cms/blog/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
+                        <?= Html::a('<i class="fa fa-file-pdf-o"></i> <span class="title">Profile Downloads</span>', ['/cms/profile-downloads/index'], ['class' => 'title']) ?>
+                    </li>
+                    <li>
                         <?= Html::a('<i class="fa fa-tags"></i> <span class="title">Meta Tags</span>', ['/cms/meta-tags/index'], ['class' => 'title']) ?>
                     </li>
                 </ul>
@@ -289,6 +292,9 @@ AppAsset::register($this);
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-rss"></i> <span class="title">Blogs</span>', ['/cms/blog/index'], ['class' => 'title']) ?>
+                        </li>
+                        <li>
+                            <?= Html::a('<i class="fa fa-file-pdf-o"></i> <span class="title">Profile Downloads</span>', ['/cms/profile-downloads/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-tags"></i> <span class="title">Meta Tags</span>', ['/cms/meta-tags/index'], ['class' => 'title']) ?>
