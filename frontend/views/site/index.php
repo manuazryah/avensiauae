@@ -96,7 +96,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                     $class1 = 'blue';
                                 }
                                 ?>
-                                <?= Html::a('<div class="' . $class1 . '"><small class="small">' . $value1->title . '</small></div>', ['/site/general-trading', 'page' => 'medical-consumables'], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a('<div class="' . $class1 . '"><small class="small">' . $value1->title . '</small></div>', ['/site/general-trading', 'trade' => $value1->canonical_name], ['class' => 'dropdown-item']) ?>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                     $class2 = 'green';
                                 }
                                 ?>
-                                <?= Html::a('<div class="' . $class2 . '"><small class="small">' . $value2->title . '</small></div>', ['/site/general-trading', 'page' => $value2->canonical_name], ['class' => 'dropdown-item']) ?>
+                                <?= Html::a('<div class="' . $class2 . '"><small class="small">' . $value2->title . '</small></div>', ['/site/general-trading', 'trade' => $value2->canonical_name], ['class' => 'dropdown-item']) ?>
                             </div>
                         </div>
                     </div>

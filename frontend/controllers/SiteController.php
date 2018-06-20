@@ -32,12 +32,12 @@ class SiteController extends Controller {
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'signup'],
                 'rules' => [
-                        [
+                    [
                         'actions' => ['signup'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
-                        [
+                    [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -157,11 +157,11 @@ class SiteController extends Controller {
      */
 
     public function sendContactMail($model) {
-        $to = "manu@azryah.com";
-//        $to = 'bookings@venicecabs.com';
-        $subject = "Contact Request";
+        $to = "info@avensiauae.com";
 
-        $message = "
+$subject = "Contact Request";
+
+$message = "
 <html>
 <head>
 
@@ -201,13 +201,15 @@ class SiteController extends Controller {
 </body>
 </html>
 ";
-// Always set content-type when sending HTML email
-        $headers = "MIME-Version: 1.0" . "\r\n";
-        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-        $headers .= 'From: ' . $model->email . "\r\n";
-        $headers .= "To: $to\r\n";
-        mail($to, $subject, $message, $headers);
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= 'From: <info@avensiauae.com>' . "\r\n";
+
+mail($to,$subject,$message,$headers);
         return TRUE;
     }
 
@@ -408,7 +410,7 @@ class SiteController extends Controller {
                     'meta_tags' => $meta_tags,
         ]);
     }
-    
+
     /**
      * Displays site map page.
      *

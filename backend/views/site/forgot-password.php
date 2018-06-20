@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div id="login" class="animate form">
             <section class="login_content">
                 <div>
-                    <img width="225" class="img-responsive" src="<?= Yii::$app->homeUrl; ?>images/site-logo.png"/>
+                    <img width="225" class="img-responsive" src="<?= Yii::$app->homeUrl; ?>images/logo.png"/>
                 </div>
                 <h1>Forgot Your Password ?</h1>
                 <p>Let us help you</p>
@@ -34,7 +34,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="separator">
 
                     <p class="change_link">
-                        <a href="<?= Yii::$app->homeUrl; ?>site/forgot" class="to_register">Forgot your password?</a>
                         <a href="<?= Yii::$app->homeUrl; ?>site/index" class="to_register">Login to your account?</a>
                     </p>
                     <div class="clearfix"></div>
