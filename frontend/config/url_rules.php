@@ -6,7 +6,7 @@ return [
     'gallery' => '/site/gallery',
     'contact' => '/site/contact',
     'blog' => '/site/blog',
-    'sitemap' => '/site/sitemap',
+    'site-map' => '/site/site-map',
     'general-trading/<trade:\w+(-\w+)*>' => 'site/general-trading',
     'it-service/<page:\w+(-\w+)*>' => 'site/it-service',
     'technical-service/<page:\w+(-\w+)*>' => 'site/technical-service',

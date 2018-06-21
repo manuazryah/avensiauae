@@ -402,7 +402,7 @@ mail($to,$subject,$message,$headers);
      *
      * @return mixed
      */
-    public function actionSitemap() {
+    public function actionSiteMap() {
         $meta_tags = MetaTags::find()->where(['id' => 8])->one();
         \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
@@ -412,7 +412,7 @@ mail($to,$subject,$message,$headers);
     }
 
     /**
-     * Displays site map page.
+     * Displays Download Page.
      *
      * @return mixed
      */
@@ -424,6 +424,22 @@ mail($to,$subject,$message,$headers);
         return $this->render('downloads', [
                     'meta_tags' => $meta_tags,
                     'downloads' => $downloads,
+        ]);
+    }
+    
+    /**
+     * Displays Our Clients Page.
+     *
+     * @return mixed
+     */
+    public function actionOurClients() {
+        $meta_tags = MetaTags::find()->where(['id' => 12])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
+        $clients = \common\models\OurClient::find()->where(['status'=>1])->all();
+        return $this->render('our_clients', [
+                    'meta_tags' => $meta_tags,
+                    'clients' => $clients,
         ]);
     }
 

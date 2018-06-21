@@ -144,6 +144,9 @@ AppAsset::register($this);
                         <?= Html::a('<i class="fa fa-file-pdf-o"></i> <span class="title">Profile Downloads</span>', ['/cms/profile-downloads/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
+                        <?= Html::a('<i class="fa fa-users"></i> <span class="title">Our Clients</span>', ['/cms/our-client/index'], ['class' => 'title']) ?>
+                    </li>
+                    <li>
                         <?= Html::a('<i class="fa fa-envelope"></i> <span class="title">Enquiries</span>', ['/cms/contact-form/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
@@ -298,6 +301,9 @@ AppAsset::register($this);
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-file-pdf-o"></i> <span class="title">Profile Downloads</span>', ['/cms/profile-downloads/index'], ['class' => 'title']) ?>
+                        </li>
+                        <li>
+                            <?= Html::a('<i class="fa fa-users"></i> <span class="title">Our Clients</span>', ['/cms/our-client/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
                             <?= Html::a('<i class="fa fa-envelope"></i> <span class="title">Enquiries</span>', ['/cms/contact-form/index'], ['class' => 'title']) ?>

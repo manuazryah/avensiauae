@@ -98,26 +98,32 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             <?= $general_traid->description ?>
                         </div>
                         <div class="general-trading-box">
-                            <div class="row">
-                                <?=
-                                $dataProvider->totalcount > 0 ? ListView::widget([
-                                            'dataProvider' => $dataProvider,
-                                            'itemView' => '_product_list',
-                                            'pager' => [
-                                                'options' => ['class' => 'pagination'],
-                                                'prevPageLabel' => '<', // Set the label for the "previous" page button
-                                                'nextPageLabel' => '>', // Set the label for the "next" page button
-                                                'firstPageLabel' => '<<', // Set the label for the "first" page button
-                                                'lastPageLabel' => '>>', // Set the label for the "last" page button
-                                                'nextPageCssClass' => '>', // Set CSS class for the "next" page button
-                                                'prevPageCssClass' => '<', // Set CSS class for the "previous" page button
-                                                'firstPageCssClass' => '<<', // Set CSS class for the "first" page button
-                                                'lastPageCssClass' => '>>', // Set CSS class for the "last" page button
-                                                'maxButtonCount' => 5, // Set maximum number of page buttons that can be displayed
-                                            ],
-                                        ]) : '';
-                                ?>
-                            </div>
+                            <?=
+                            $dataProvider->totalcount > 0 ? ListView::widget([
+                                        'dataProvider' => $dataProvider,
+                                        'itemView' => '_product_list',
+                                        'options' => [
+                                            'tag' => 'div',
+                                            'class' => 'row'
+                                        ],
+                                        'itemOptions' => [
+                                            'tag' => 'div',
+                                            'class' => 'col-lg-4 col-md-6'
+                                        ],
+                                        'pager' => [
+                                            'options' => ['class' => 'pagination'],
+                                            'prevPageLabel' => '<', // Set the label for the "previous" page button
+                                            'nextPageLabel' => '>', // Set the label for the "next" page button
+                                            'firstPageLabel' => '<<', // Set the label for the "first" page button
+                                            'lastPageLabel' => '>>', // Set the label for the "last" page button
+                                            'nextPageCssClass' => '>', // Set CSS class for the "next" page button
+                                            'prevPageCssClass' => '<', // Set CSS class for the "previous" page button
+                                            'firstPageCssClass' => '<<', // Set CSS class for the "first" page button
+                                            'lastPageCssClass' => '>>', // Set CSS class for the "last" page button
+                                            'maxButtonCount' => 5, // Set maximum number of page buttons that can be displayed
+                                        ],
+                                    ]) : '';
+                            ?>
                         </div>
                         <?php
                     }

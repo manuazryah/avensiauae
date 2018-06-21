@@ -43,14 +43,6 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
         <meta name="robots" content="noindex,nofollow">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <?php $this->head() ?>
     </head>
     <body>
@@ -74,6 +66,10 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                         <li><span>|</span></li>
                                         <li>
                                             <?= Html::a('Downloads', ['/site/downloads']) ?>
+                                        </li>
+                                        <li><span>|</span></li>
+                                        <li>
+                                            <?= Html::a('Our Clients', ['/site/our-clients']) ?>
                                         </li>
                                     </ul>
                                 </div>
@@ -352,13 +348,16 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                 <?= Html::a('GALLERY', ['/site/gallery']) ?>
                             </li>
                             <li>
-                                <?= Html::a('SITEMAP', ['/site/sitemap']) ?>
+                                <?= Html::a('SITEMAP', ['/site/site-map']) ?>
                             </li>
                             <li>
                                 <?= Html::a('BLOG', ['/site/blog']) ?>
                             </li>
                             <li>
                                 <?= Html::a('CONTACT', ['/site/contact']) ?>
+                            </li>
+                            <li>
+                                <?= Html::a('OUR CLIENTS', ['/site/our-clients']) ?>
                             </li>
                         </ul>
 
