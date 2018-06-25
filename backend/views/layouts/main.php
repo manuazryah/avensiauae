@@ -345,9 +345,9 @@ AppAsset::register($this);
             </div>
         </div>
         <!-- Page Loading Overlay -->
-        <div class="page-loading-overlay">
+<!--        <div class="page-loading-overlay">
             <div class="loader-2"></div>
-        </div>
+        </div>-->
         <?php $this->endBody() ?>
     </body>
 </html>

@@ -59,8 +59,9 @@ $label = 'Image [ File Size :( 750x537 ) ]';
         <div class='col-md-12 col-sm-12 col-xs-12 left_padd'>
             <?=
             $form->field($model, 'sub_content', ['options' => ['class' => 'form-group']])->widget(CKEditor::className(), [
-                'options' => ['rows' => 2],
+                'options' => ['rows' => 15],
                 'preset' => 'custom',
+                'clientOptions' => ['height' => 200]
             ])
             ?>
         </div>
@@ -149,6 +150,7 @@ $label = 'Image [ File Size :( 750x537 ) ]';
             var name = slug($(this).val());
             $('#itsevices-canonical_name').val(slug($(this).val()));
         });
+        
     });
 
     var slug = function (str) {

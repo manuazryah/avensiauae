@@ -8,6 +8,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
 } else {
     $this->title = 'IT Service';
 }
+
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
@@ -111,7 +112,7 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                         <h3 class="service-head"><?= $it_service->sub_title ?></h3>
                     <?php }
                     ?>
-                    <?php if ($it_service->sub_title != '') { ?>
+                    <?php if ($it_service->sub_content != '') { ?>
                         <div class="cont">
                             <?= $it_service->sub_content ?>
                         </div>
