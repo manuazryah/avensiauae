@@ -65,6 +65,10 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                         </li>
                                         <li><span>|</span></li>
                                         <li>
+                                            <a href="http://uaeyellowpagesonline.com/companies/avensia-general-trading-llc-1295434.htm" target="_blank">Used Links</a>
+                                        </li>
+                                        <li><span>|</span></li>
+                                        <li>
                                             <?= Html::a('Downloads', ['/site/downloads']) ?>
                                         </li>
                                         <li><span>|</span></li>
@@ -352,6 +356,9 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                             </li>
                             <li>
                                 <?= Html::a('BLOG', ['/site/blog']) ?>
+                            </li>
+                            <li>
+                                <a href="http://uaeyellowpagesonline.com/companies/avensia-general-trading-llc-1295434.htm" target="_blank">Used Links</a>
                             </li>
                             <li>
                                 <?= Html::a('CONTACT', ['/site/contact']) ?>

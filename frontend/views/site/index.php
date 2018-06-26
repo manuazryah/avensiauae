@@ -4,8 +4,8 @@
 use yii\helpers\Html;
 
 $this->title = '';
-$arr1 = array(1, 2, 3);
-$arr2 = array(4, 5);
+$arr1 = array(1, 2, 4);
+$arr2 = array(5, 6);
 $general_trading1 = common\models\GeneralTrading::find()->where(['id' => $arr1])->all();
 $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])->all();
 if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
