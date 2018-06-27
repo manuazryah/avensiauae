@@ -171,7 +171,7 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                                 foreach ($technical_service_links as $technical_service_link) {
                                                     ?>
                                                     <li>
-                                                        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'trade' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
+                                                        <?= Html::a($technical_service_link->service, ['/site/technical-service', 'page' => $technical_service_link->canonical_name], ['class' => 'dropdown-item']) ?>
                                                     </li>
                                                     <?php
                                                 }

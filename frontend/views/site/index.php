@@ -143,20 +143,13 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                     <h2 class="head-text">information technology</h2>
                     <ul class="list">
                         <?php
-                        if (!empty($tech_content)) {
-                            if ($tech_content->information_technology != '') {
-                                $it_services = explode(",", $tech_content->information_technology);
-                                if (!empty($it_services)) {
-                                    foreach ($it_services as $it_service) {
-                                        if ($it_service != '') {
-                                            ?>
-                                            <li>
-                                                <?= Html::a($it_service, ['/site/it-service'], ['class' => '']) ?>
-                                            </li>
-                                            <?php
-                                        }
-                                    }
-                                }
+                        if (!empty($it_data_links)) {
+                            foreach ($it_data_links as $it_data_link) {
+                                ?>
+                                <li>
+                                    <?= Html::a($it_data_link->service, ['/site/it-service', 'page' => $it_data_link->canonical_name], ['class' => '']) ?>
+                                </li>
+                                <?php
                             }
                         }
                         ?>
@@ -170,20 +163,13 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                     <h2 class="head-text">Technical</h2>
                     <ul class="list">
                         <?php
-                        if (!empty($tech_content)) {
-                            if ($tech_content->technical != '') {
-                                $technical_services = explode(",", $tech_content->technical);
-                                if (!empty($technical_services)) {
-                                    foreach ($technical_services as $technical_service) {
-                                        if ($it_service != '') {
-                                            ?>
-                                            <li>
-                                                <?= Html::a($technical_service, ['/site/technical-service'], ['class' => '']) ?>
-                                            </li>
-                                            <?php
-                                        }
-                                    }
-                                }
+                        if (!empty($technical_data_links)) {
+                            foreach ($technical_data_links as $technical_data_link) {
+                                ?>
+                                <li>
+                                    <?= Html::a($technical_data_link->service, ['/site/technical-service', 'page' => $technical_data_link->canonical_name], ['class' => '']) ?>
+                                </li>
+                                <?php
                             }
                         }
                         ?>

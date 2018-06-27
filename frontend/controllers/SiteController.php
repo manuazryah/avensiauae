@@ -81,6 +81,8 @@ class SiteController extends Controller {
         $testimonials = \common\models\Testimonial::find()->where(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(2)->all();
         $blogs = \common\models\Blog::find(['status' => 1])->orderBy(['DOU' => SORT_DESC])->limit(3)->all();
         $meta_tags = MetaTags::find()->where(['id' => 1])->one();
+        $it_data_links = \common\models\ItSevices::find()->where(['status' => 1])->limit(4)->all();
+        $technical_data_links = \common\models\TechnicalServices::find()->where(['status' => 1])->limit(4)->all();
         \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
         return $this->render('index', [
@@ -91,6 +93,8 @@ class SiteController extends Controller {
                     'tech_content' => $tech_content,
                     'facility_managements' => $facility_managements,
                     'meta_tags' => $meta_tags,
+                    'it_data_links' => $it_data_links,
+                    'technical_data_links' => $technical_data_links,
         ]);
     }
 
@@ -159,9 +163,9 @@ class SiteController extends Controller {
     public function sendContactMail($model) {
         $to = "info@avensiauae.com";
 
-$subject = "Contact Request";
+        $subject = "Contact Request";
 
-$message = "
+        $message = "
 <html>
 <head>
 
@@ -203,13 +207,13 @@ $message = "
 ";
 
 // Always set content-type when sending HTML email
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
 // More headers
-$headers .= 'From: <info@avensiauae.com>' . "\r\n";
+        $headers .= 'From: <info@avensiauae.com>' . "\r\n";
 
-mail($to,$subject,$message,$headers);
+        mail($to, $subject, $message, $headers);
         return TRUE;
     }
 
@@ -426,7 +430,7 @@ mail($to,$subject,$message,$headers);
                     'downloads' => $downloads,
         ]);
     }
-    
+
     /**
      * Displays Our Clients Page.
      *
@@ -436,7 +440,7 @@ mail($to,$subject,$message,$headers);
         $meta_tags = MetaTags::find()->where(['id' => 12])->one();
         \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
         \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
-        $clients = \common\models\OurClient::find()->where(['status'=>1])->all();
+        $clients = \common\models\OurClient::find()->where(['status' => 1])->all();
         return $this->render('our_clients', [
                     'meta_tags' => $meta_tags,
                     'clients' => $clients,
