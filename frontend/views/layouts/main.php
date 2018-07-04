@@ -40,7 +40,6 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
         <link rel="shortcut icon" href="<?= yii::$app->homeUrl; ?>images/favicon.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noindex,nofollow">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
@@ -79,10 +78,13 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                 </div>
                                 <div class="follows-top">
                                     <ul>
-                                        <li> <a href="#" target="_blank"> <i class="fa fa-facebook"></i> </a></li>
-                                        <li> <a href="#" target="_blank"> <i class="fa fa-twitter"></i> </a></li>
-                                        <li> <a href="#" target="_blank"> <i class="fa fa-linkedin"></i> </a></li>
-                                        <li> <a href="#" target="_blank"> <i class="fa fa-youtube"></i> </a></li>
+                                        <?php if (!empty($about_footer)) { ?>
+                                            <li> <a href="<?= $about_footer->facebook_link != '' ? $about_footer->facebook_link : '' ?>" target="_blank"> <i class="fa fa-facebook"></i> </a></li>
+                                            <li> <a href="<?= $about_footer->twitter_link != '' ? $about_footer->twitter_link : '' ?>" target="_blank"> <i class="fa fa-twitter"></i> </a></li>
+                                            <li> <a href="<?= $about_footer->linkedin_link != '' ? $about_footer->linkedin_link : '' ?>" target="_blank"> <i class="fa fa-linkedin"></i> </a></li>
+                                            <li> <a href="<?= $about_footer->youtube_link != '' ? $about_footer->youtube_link : '' ?>" target="_blank"> <i class="fa fa-youtube"></i> </a></li>
+                                        <?php }
+                                        ?>
                                     </ul>
                                 </div>
                             </div>
@@ -149,7 +151,7 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                             ?>
                                         </ul>
                                     </li>
-                                    <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' ? 'active' : '' ?>">IT</a>
+                                    <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' || $action == 'site/it-products' ? 'active' : '' ?>">IT</a>
                                         <ul class="dropdown-menu animated2 fadeInUp">
                                             <?php
                                             if (!empty($it_service_links)) {
@@ -162,6 +164,9 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                                 }
                                             }
                                             ?>
+                                            <li>
+                                                <?= Html::a('IT Products', ['/site/it-products'], ['class' => 'dropdown-item']) ?>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/technical-service' ? 'active' : '' ?>">technical service</a>
@@ -244,7 +249,7 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                                         ?>
                                                     </ul>
                                                 </li>
-                                                <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' ? 'active' : '' ?>">IT</a>
+                                                <li class="dropdown"> <a href=""  data-toggle="dropdown" class="<?= $action == 'site/it' || $action == 'site/it-products' ? 'active' : '' ?>">IT</a>
                                                     <ul class="dropdown-menu animated2 fadeInUp">
                                                         <?php
                                                         if (!empty($it_service_links)) {
@@ -257,6 +262,9 @@ $about_footer = \common\models\IndexAbout::find()->where(['id' => 1])->one();
                                                             }
                                                         }
                                                         ?>
+                                                        <li>
+                                                            <?= Html::a('IT Products', ['/site/it-products'], ['class' => 'dropdown-item']) ?>
+                                                        </li>
                                                     </ul>
                                                 </li>
                                                 <li class="dropdown"> <a href="#"  data-toggle="dropdown" class="<?= $action == 'site/technical-service' ? 'active' : '' ?>">technical service</a>

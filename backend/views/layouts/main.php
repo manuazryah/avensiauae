@@ -129,6 +129,9 @@ AppAsset::register($this);
                         </ul>
                     </li>
                     <li>
+                        <?= Html::a('<i class="fa fa-shopping-cart"></i> <span class="title">IT Products</span>', ['/cms/it-products/index'], ['class' => 'title']) ?>
+                    </li>
+                    <li>
                         <?= Html::a('<i class="fa fa-image"></i> <span class="title">Project Gallery</span>', ['/cms/project-gallery/index'], ['class' => 'title']) ?>
                     </li>
                     <li>
@@ -288,6 +291,9 @@ AppAsset::register($this);
                             </ul>
                         </li>
                         <li>
+                            <?= Html::a('<i class="fa fa-shopping-cart"></i> <span class="title">IT Products</span>', ['/cms/it-products/index'], ['class' => 'title']) ?>
+                        </li>
+                        <li>
                             <?= Html::a('<i class="fa fa-image"></i> <span class="title">Project Gallery</span>', ['/cms/project-gallery/index'], ['class' => 'title']) ?>
                         </li>
                         <li>
@@ -345,9 +351,9 @@ AppAsset::register($this);
             </div>
         </div>
         <!-- Page Loading Overlay -->
-<!--        <div class="page-loading-overlay">
-            <div class="loader-2"></div>
-        </div>-->
+        <!--        <div class="page-loading-overlay">
+                    <div class="loader-2"></div>
+                </div>-->
         <?php $this->endBody() ?>
     </body>
 </html>

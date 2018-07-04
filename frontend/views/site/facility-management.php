@@ -86,6 +86,9 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             }
                         }
                         ?>
+                        <li>
+                            <?= Html::a('IT Products', ['/site/it-products'], ['class' => 'dropdown-item']) ?>
+                        </li>
                     </ul>
                 </div>
 

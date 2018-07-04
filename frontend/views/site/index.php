@@ -6,6 +6,9 @@ use yii\helpers\Html;
 $this->title = '';
 $arr1 = array(1, 2, 4);
 $arr2 = array(5, 6);
+$general_trad_link1 = common\models\GeneralTrading::find()->where(['id' => 1])->one();
+$tech_page_link1 = common\models\TechnicalServices::find()->where(['id' => 1])->one();
+$facility_page_link1 = common\models\FacilityManagement::find()->where(['id' => 1])->one();
 $general_trading1 = common\models\GeneralTrading::find()->where(['id' => $arr1])->all();
 $general_trading2 = common\models\GeneralTrading::find()->where(['id' => $arr2])->all();
 if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
@@ -41,21 +44,18 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
             <div class="row">
                 <div class="col-sm-4 boder-right">
                     <div class="cont-box">
-                        <div class="icon"></div>
-                        <h1 class="head-style">Avensia General</h1>
-                        <small class="sub-text">Trading LLC</small> </div>
+                        <?= Html::a('<div class="icon"></div><h1 class="head-style">Avensia General</h1><small class="sub-text">Trading LLC</small>', ['/site/general-trading', 'trade' => $general_trad_link1->canonical_name], ['class' => '']) ?>
+                    </div>
                 </div>
                 <div class="col-sm-4 boder-right">
                     <div class="cont-box">
-                        <div class="icon icon2"></div>
-                        <h4 class="head-style">Avensia Tech </h4>
-                        <small class="sub-text">Solutions LLC</small> </div>
+                        <?= Html::a('<div class="icon icon2"></div><h4 class="head-style">Avensia Tech </h4><small class="sub-text">Solutions LLC</small>', ['/site/technical-service', 'page' => $tech_page_link1->canonical_name], ['class' => '']) ?>
+                    </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="cont-box boder-none">
-                        <div class="icon icon3"></div>
-                        <h4 class="head-style">Avensia Facility </h4>
-                        <small class="sub-text">Management PVT LTD (IND)</small> </div>
+                        <?= Html::a('<div class="icon icon3"></div><h4 class="head-style">Avensia Facility </h4><small class="sub-text">Management PVT LTD (IND)</small> ', ['/site/facility-management', 'page' => $facility_page_link1->canonical_name], ['class' => '']) ?>
+                    </div>
                 </div>
             </div>
         </div>

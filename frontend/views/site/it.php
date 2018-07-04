@@ -8,7 +8,6 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
 } else {
     $this->title = 'IT Service';
 }
-
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
@@ -39,6 +38,9 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                             }
                         }
                         ?>
+                        <li>
+                            <?= Html::a('IT Products', ['/site/it-products'], ['class' => 'dropdown-item']) ?>
+                        </li>
                     </ul>
                 </div>
                 <div class="service-categories">

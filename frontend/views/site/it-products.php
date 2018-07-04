@@ -7,40 +7,26 @@ use yii\widgets\ListView;
 if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
     $this->title = $meta_tags->meta_title;
 } else {
-    $this->title = 'General Trading';
+    $this->title = 'IT Products';
 }
 ?>
 <section class="in-banner"><!--in-banner-->
     <div class="container">
         <div class="banner-cont">
-            <h2>General Trading</h2>
+            <h2>IT Products</h2>
         </div>
-        <div class="main-breadcrumb"><?= Html::a('Home', ['/site/index']) ?><i>|</i><span>general trading</span> </div>
+        <div class="main-breadcrumb">
+            <?= Html::a('Home', ['/site/index']) ?><i>|</i><span>IT Products</span> </div>
     </div>
 </section>
 <!--in-banner-->
+
 <section class="in-service-section"><!--in-service-section-->
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
                 <div class="service-categories">
-                    <div class="service-categories">
-                        <h2 class="head active"><a data-toggle="collapse"  href="" role="button">general trading</a></h2>
-                        <ul class="list-box collapse" id="general-trading">
-                            <?php
-                            if (!empty($general_trading_menus)) {
-                                foreach ($general_trading_menus as $general_trading_menu) {
-                                    ?>
-                                    <li>
-                                        <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'trade' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
-                                    </li>
-                                    <?php
-                                }
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                    <h2 class="head"><a data-toggle="collapse"  href="" role="button">IT Services</a></h2>
+                    <h2 class="head active"><a data-toggle="collapse"  href="#IT-Services" role="button">IT Services</a></h2>
                     <ul class="list-box collapse" id="IT-Services">
                         <?php
                         if (!empty($it_service_menus)) {
@@ -56,6 +42,22 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                         <li>
                             <?= Html::a('IT Products', ['/site/it-products'], ['class' => 'dropdown-item']) ?>
                         </li>
+                    </ul>
+                </div>
+                <div class="service-categories">
+                    <h2 class="head"><a data-toggle="collapse"  href="" role="button">general trading</a></h2>
+                    <ul class="list-box collapse" id="general-trading">
+                        <?php
+                        if (!empty($general_trading_menus)) {
+                            foreach ($general_trading_menus as $general_trading_menu) {
+                                ?>
+                                <li>
+                                    <?= Html::a($general_trading_menu->title, ['/site/general-trading', 'trade' => $general_trading_menu->canonical_name], ['class' => 'dropdown-item']) ?>
+                                </li>
+                                <?php
+                            }
+                        }
+                        ?>
                     </ul>
                 </div>
                 <div class="service-categories">
@@ -91,20 +93,13 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-8">
+         <div class="col-lg-8">
                 <div class="service-cont-box">
-                    <?php
-                    if (!empty($general_traid)) {
-                        ?>
-                        <h3 class="service-head"><?= $general_traid->title ?></h3>
-                        <div class="cont">
-                            <?= $general_traid->description ?>
-                        </div>
                         <div class="general-trading-box">
                             <?=
                             $dataProvider->totalcount > 0 ? ListView::widget([
                                         'dataProvider' => $dataProvider,
-                                        'itemView' => '_product_list',
+                                        'itemView' => '_it_product_list',
                                         'options' => [
                                             'tag' => 'div',
                                             'class' => 'row'
@@ -128,9 +123,6 @@ if (isset($meta_tags->meta_title) && $meta_tags->meta_title != '') {
                                     ]) : '';
                             ?>
                         </div>
-                        <?php
-                    }
-                    ?>
                 </div>
             </div>
         </div>

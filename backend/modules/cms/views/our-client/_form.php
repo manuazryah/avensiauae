@@ -9,14 +9,14 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="our-client-form form-inline">
-
+    <?= \common\components\AlertMessageWidget::widget() ?>
     <?php $form = ActiveForm::begin(); ?>
     <div class="row">
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
             <?= $form->field($model, 'client_name')->textInput(['maxlength' => true]) ?>
         </div>
         <div class='col-md-6 col-sm-6 col-xs-12 left_padd'>
-           <?= $form->field($model, 'status')->dropDownList(['1' => 'Enabled', '0' => 'Disabled']) ?>
+            <?= $form->field($model, 'status')->dropDownList(['1' => 'Enabled', '0' => 'Disabled']) ?>
         </div>
     </div>
     <div class="row">

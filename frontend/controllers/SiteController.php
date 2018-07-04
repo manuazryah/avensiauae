@@ -446,6 +446,33 @@ class SiteController extends Controller {
                     'clients' => $clients,
         ]);
     }
+    
+    /*
+     * Display IT Products Page
+     */
+    
+    public function actionItProducts() {
+        $general_trading_menus = \common\models\GeneralTrading::find()->where(['status' => 1])->all();
+        $it_service_menus = \common\models\ItSevices::find()->where(['status' => 1])->all();
+        $technical_service_menus = \common\models\TechnicalServices::find()->where(['status' => 1])->all();
+        $facility_service_menus = \common\models\FacilityManagementDetails::find()->where(['status' => 1])->all();
+        $searchModel = new \common\models\ItProductsSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andWhere(['status' => 1]);
+        $dataProvider->pagination->pageSize = 36;
+        $meta_tags = MetaTags::find()->where(['id' => 4])->one();
+        \Yii::$app->view->registerMetaTag(['name' => 'keywords', 'content' => $meta_tags->meta_keyword]);
+        \Yii::$app->view->registerMetaTag(['name' => 'description', 'content' => $meta_tags->meta_description]);
+        return $this->render('it-products', [
+                    'general_trading_menus' => $general_trading_menus,
+                    'it_service_menus' => $it_service_menus,
+                    'technical_service_menus' => $technical_service_menus,
+                    'facility_service_menus' => $facility_service_menus,
+                    'meta_tags' => $meta_tags,
+            'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
+    }
 
     /**
      * Signs user up.
